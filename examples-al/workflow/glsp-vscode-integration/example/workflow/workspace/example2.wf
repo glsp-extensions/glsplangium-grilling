@@ -1,0 +1,10 @@
+TaskNode _tn1 "PrepareFile123" automated;
+Category _cat1 "Category12";
+// this is a third comment
+ActivityNode _an1 fork;
+ActivityNode _an2 merge;
+
+// this is a comment
+// this is another comment
+TaskNode _tn2 "TaskNode" automated;
+TaskNode _tn3 "TaskNode123" manual;

@@ -1,0 +1,14 @@
+{
+  "projectName": "WorkflowDiagram",
+  "languages": [
+    {
+      "id": "workflow-diagram",
+      "grammar": "src/language-server/yo-generated/workflow-diagram.langium",
+      "fileExtensions": [".wf", ".wfd"],
+      "textMate": {
+        "out": "syntaxes/workflow-diagram.tmLanguage.json"
+      }
+    }
+  ],
+  "out": "src/language-server/generated"
+}

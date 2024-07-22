@@ -1,0 +1,109 @@
+{
+	"nodes": [
+		{
+			"__type": "TaskNode",
+			"__id": "ae964348d-45fc-4577-867d-27914711a447",
+			"label": "WF1",
+			"taskType": "automated",
+			"name": "_tn1"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a18335b36-6945-465c-a7c8-2f59064785b4",
+			"label": "_tn2",
+			"duration": 0,
+			"taskType": "automated",
+			"name": "_tn2"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a15f86349-6ade-40a7-9916-53cb6c30e794",
+			"nodeType": "decision",
+			"name": "_an1"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a6ebf007e-7881-4671-9516-7f1cc4a06b35",
+			"nodeType": "fork",
+			"name": "_an2"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a78314dd1-1c50-4b5b-9ac9-8d00a7f24ed6",
+			"nodeType": "decision",
+			"name": "_an3"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "aa11be704-08e7-45a3-b095-6b832de2caea",
+			"nodeType": "join",
+			"name": "_an4"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "adfd96225-eb9d-4b39-9c5a-4dd109d4acda",
+			"label": "_tn3",
+			"duration": 0,
+			"taskType": "manual",
+			"name": "_tn3"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a773b072a-b41b-413b-9b45-a85a16ef0c3f",
+			"nodeType": "merge",
+			"name": "_an5"
+		},
+		{
+			"__type": "Category",
+			"__id": "a0787f18b-59b3-41bd-83e1-33e03f71d39e",
+			"children": {
+				"nodes": [
+					{
+						"__type": "TaskNode",
+						"__id": "a626223a5-4a64-4253-8bc4-5dd1fa705445",
+						"label": "_tn4",
+						"duration": 0,
+						"taskType": "automated",
+						"name": "_tn4"
+					}
+				],
+				"edges": [],
+				"metaInfos": []
+			},
+			"label": "_category1",
+			"name": "_category1"
+		}
+	],
+	"edges": [
+		{
+			"__type": "WeightedEdge",
+			"__id": "a62c49094-bb3b-420a-bc7b-bbfaddd9a8e1",
+			"weight": "medium",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a15f86349-6ade-40a7-9916-53cb6c30e794"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "adfd96225-eb9d-4b39-9c5a-4dd109d4acda"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a387fcb12-a325-4478-bf6a-3a499d5ea1e2",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "ae964348d-45fc-4577-867d-27914711a447"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a18335b36-6945-465c-a7c8-2f59064785b4"
+			}
+		}
+	],
+	"metaInfos": []
+}

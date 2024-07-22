@@ -1,0 +1,26 @@
+ActivityNode _an1 decision;
+ActivityNode _an2 decision;
+TaskNode _tn1 "TN1" automated;
+TaskNode _tn2 "TaskNode" automated;
+Category _cat1 "Category" {
+TaskNode _tn3 "TaskNode" manual;
+TaskNode _tn4 "TaskNode" automated;
+TaskNode _tn5 "TaskNode" automated;
+ActivityNode _an4 decision;
+_tn3 -> _tn4;
+_an4 -> _tn3;
+};
+ActivityNode _an3 decision;
+TaskNode _tn6 "TaskNode" automated;
+ActivityNode _an5 decision;
+ActivityNode _an10 fork;
+TaskNode _tn20 automated;
+TaskNode _tn7 "New Test Node" automated;
+TaskNode _tn8 "New Test Node 3rd" automated;
+_tn1 -> _an1;
+_tn2 -> _an2;
+_an2 -> high _tn1;
+_an5 -> medium _tn2;
+_an3 -> medium _tn6;
+_tn20 -> _an10;
+_tn2 -> _tn7;

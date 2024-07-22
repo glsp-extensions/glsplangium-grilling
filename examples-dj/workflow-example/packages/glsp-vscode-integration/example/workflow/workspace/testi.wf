@@ -1,0 +1,358 @@
+{
+	"nodes": [
+		{
+			"__type": "TaskNode",
+			"__id": "a61293423-5438-478a-8748-1a995471a32d",
+			"label": "Push",
+			"taskType": "manual",
+			"name": "_tn1"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a378631d7-9db4-4c9a-ad17-0869825f01b1",
+			"label": "Check_Water",
+			"taskType": "automated",
+			"name": "_tn2"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "aa6305b80-8b62-4710-b223-43f2665c6c3b",
+			"label": "Check_Temp",
+			"taskType": "automated",
+			"name": "_tn3"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a26d1cad0-bf17-46da-9f14-ae16bd60a73b",
+			"label": "Wait",
+			"taskType": "manual",
+			"name": "_tn4"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a256b7ca1-e76e-4786-9b27-55ef361c9f2b",
+			"label": "Temp_OK",
+			"taskType": "automated",
+			"name": "_tn5"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a1e36b431-f468-4aa8-8f64-8353cb3214f5",
+			"label": "Heat",
+			"taskType": "automated",
+			"name": "_tn6"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a626aed8b-fa42-4814-ad7a-e59d72dd3048",
+			"label": "Waterlevel_OK",
+			"taskType": "automated",
+			"name": "_tn7"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a459b637e-338a-4ea3-bccb-a675a3fe4519",
+			"label": "Refill_Water",
+			"taskType": "manual",
+			"name": "_tn8"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a8dac7f67-905b-4a0b-a929-b442d1716b2a",
+			"nodeType": "fork",
+			"name": "_an1"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a1d9671af-2263-4687-a73d-aa7164873fef",
+			"nodeType": "merge",
+			"name": "_an2"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a93eb72cc-24dd-482f-84a4-528a32aa9ef5",
+			"nodeType": "merge",
+			"name": "_an3"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "aa17cf11e-c238-48e8-8769-136748b747cf",
+			"nodeType": "join",
+			"name": "_an4"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a3c259252-7b1f-42f9-a18e-0b38a85ee092",
+			"label": "Brew",
+			"taskType": "automated",
+			"name": "_tn9"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a03a66661-317d-4424-ab04-ea0dfa7c975e",
+			"nodeType": "merge",
+			"name": "_an5"
+		},
+		{
+			"__type": "ActivityNode",
+			"__id": "a9e3fa5dd-b988-40da-9265-42b85de848f8",
+			"nodeType": "merge",
+			"name": "_an6"
+		}
+	],
+	"edges": [
+		{
+			"__type": "Edge",
+			"__id": "ad46ff2fd-4b4e-4831-a71d-1d6ae137641b",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a61293423-5438-478a-8748-1a995471a32d"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a8dac7f67-905b-4a0b-a929-b442d1716b2a"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a81114680-339e-445a-af3c-efa5b53a6163",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a8dac7f67-905b-4a0b-a929-b442d1716b2a"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a01ed69ec-eb96-4178-ae83-92db2b540ef1"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a65e5675a-0d49-4871-b660-df04e21b3553",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a8dac7f67-905b-4a0b-a929-b442d1716b2a"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "aa6305b80-8b62-4710-b223-43f2665c6c3b"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "abd5e70c2-a4a4-4a89-8d66-cdbb75f4d843",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a378631d7-9db4-4c9a-ad17-0869825f01b1"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a03a66661-317d-4424-ab04-ea0dfa7c975e"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a595988ba-68a3-4953-89f1-a1e5da10ad5e",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a03a66661-317d-4424-ab04-ea0dfa7c975e"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a459b637e-338a-4ea3-bccb-a675a3fe4519"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a00b79488-7aee-45c7-b027-181aa113fa3e",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a03a66661-317d-4424-ab04-ea0dfa7c975e"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a626aed8b-fa42-4814-ad7a-e59d72dd3048"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a904470a7-34d1-4ccd-be8d-27c6f9e3b2b1",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a9e3fa5dd-b988-40da-9265-42b85de848f8"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a26d1cad0-bf17-46da-9f14-ae16bd60a73b"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a31008c69-5c4f-445d-9f9f-d25508e644e8",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a9e3fa5dd-b988-40da-9265-42b85de848f8"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a256b7ca1-e76e-4786-9b27-55ef361c9f2b"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "addb68f04-4bb4-4980-beb3-eaa051c87d53",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a9e3fa5dd-b988-40da-9265-42b85de848f8"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a1e36b431-f468-4aa8-8f64-8353cb3214f5"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "af44a0e60-fd13-4565-974e-e83986976322",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "aa6305b80-8b62-4710-b223-43f2665c6c3b"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a9e3fa5dd-b988-40da-9265-42b85de848f8"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "aa6cd9c1c-751a-46c3-b4f7-fa9325889164",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a459b637e-338a-4ea3-bccb-a675a3fe4519"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a1d9671af-2263-4687-a73d-aa7164873fef"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a8970bb81-9310-4a64-bb8b-231e145a28a4",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a626aed8b-fa42-4814-ad7a-e59d72dd3048"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a1d9671af-2263-4687-a73d-aa7164873fef"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "ac524a430-6e81-49fb-b345-baf59b4d9ab8",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a26d1cad0-bf17-46da-9f14-ae16bd60a73b"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a93eb72cc-24dd-482f-84a4-528a32aa9ef5"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "aeecd24a9-f7b8-47f1-a4dc-54a93b291a95",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a256b7ca1-e76e-4786-9b27-55ef361c9f2b"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a93eb72cc-24dd-482f-84a4-528a32aa9ef5"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a356b092a-02ec-480c-81dd-1f2522209546",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a1e36b431-f468-4aa8-8f64-8353cb3214f5"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a93eb72cc-24dd-482f-84a4-528a32aa9ef5"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a9b09ee75-7130-43a9-8fde-c33d74b565ed",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a1d9671af-2263-4687-a73d-aa7164873fef"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "aa17cf11e-c238-48e8-8769-136748b747cf"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "a58c09330-929e-4a86-b34a-f09dccc1f82e",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a93eb72cc-24dd-482f-84a4-528a32aa9ef5"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "aa17cf11e-c238-48e8-8769-136748b747cf"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "afc18e716-def9-4575-8d65-a41ec68ac7b2",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "aa17cf11e-c238-48e8-8769-136748b747cf"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a3c259252-7b1f-42f9-a18e-0b38a85ee092"
+			}
+		}
+	],
+	"metaInfos": []
+}

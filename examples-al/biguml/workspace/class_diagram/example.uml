@@ -1,0 +1,258 @@
+{
+  "diagram": {
+    "__type": "ClassDiagram",
+    "__id": "Animals",
+    "diagramType": "CLASS",
+    "entities": [
+      // Fish
+      {
+        "__type": "Class",
+        "__id": "aca7c219d-7809-457c-b5ad-408d397e4b88",
+        "name": "Fish",
+        "isAbstract": false,
+        "properties": [
+          {
+            "__type": "Property",
+            "__id": "af20c95f4-c76b-47fc-b68a-8c7a87460101",
+            "name": "canEat",
+            "isDerived": false,
+            "isOrdered": false,
+            "isStatic": false,
+            "isDerivedUnion": false,
+            "isReadOnly": false,
+            "isUnique": false,
+            "visibility": "PUBLIC"
+          },
+          {
+            "__type": "Property",
+            "__id": "a65cc4f38-492d-4cba-8bd3-97ff5050d263",
+            "name": "sizeInCm",
+            "isDerived": false,
+            "isOrdered": false,
+            "isStatic": false,
+            "isDerivedUnion": false,
+            "isReadOnly": false,
+            "isUnique": false,
+            "visibility": "PUBLIC"
+          }
+        ],
+        "operations": [
+          {
+            "__type": "Operation",
+            "__id": "ae62be05c-d79b-4117-8d3c-d925c6c1ec10",
+            "name": "swim",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "visibility": "PUBLIC",
+            "parameters": []
+          }
+        ],
+        "isActive": true,
+        "visibility": "PUBLIC"
+      },
+      {
+        "__type": "Class",
+        "__id": "a6c22b801-dd69-467b-b481-30b0c8f47e79",
+        "name": "Duck",
+        "isAbstract": false,
+        "properties": [
+          {
+            "__type": "Property",
+            "__id": "a24598c9f-4df5-41b9-83c4-a73f400c72a1",
+            "name": "beakColor",
+            "isDerived": false,
+            "isOrdered": false,
+            "isStatic": false,
+            "isDerivedUnion": false,
+            "isReadOnly": false,
+            "isUnique": false,
+            "visibility": "PUBLIC"
+          }
+        ],
+        "operations": [
+          {
+            "__type": "Operation",
+            "__id": "a05a4a6a0-bdae-45e0-9be7-981345892f00",
+            "name": "quack",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "visibility": "PUBLIC",
+            "parameters": []
+          },
+          {
+            "__type": "Operation",
+            "__id": "ad092cc12-f3a0-4ac7-8594-25431439aae2",
+            "name": "fly",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "visibility": "PUBLIC",
+            "parameters": []
+          }
+        ],
+        "isActive": true,
+        "visibility": "PUBLIC"
+      },
+      {
+        "__type": "Class",
+        "__id": "a0e64839f-9a22-4f44-938c-5d2e2ac0ee72",
+        "name": "Animal",
+        "isAbstract": true,
+        "properties": [
+          {
+            "__type": "Property",
+            "__id": "ac33869ec-a975-4471-8527-dec6ab7d498d",
+            "name": "gender",
+            "isDerived": false,
+            "isOrdered": false,
+            "isStatic": false,
+            "isDerivedUnion": false,
+            "isReadOnly": false,
+            "isUnique": false,
+            "visibility": "PUBLIC"
+          },
+          {
+            "__type": "Property",
+            "__id": "a8121e4c2-0784-425b-b14a-2d0fcb81a026",
+            "name": "age",
+            "isDerived": false,
+            "isOrdered": false,
+            "isStatic": false,
+            "isDerivedUnion": false,
+            "isReadOnly": false,
+            "isUnique": false,
+            "visibility": "PUBLIC"
+          }
+        ],
+        "operations": [
+          {
+            "__type": "Operation",
+            "__id": "a2f9bfbad-4ccc-49ad-9436-3866931b8584",
+            "name": "mate",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "visibility": "PUBLIC",
+            "parameters": []
+          },
+          {
+            "__type": "Operation",
+            "__id": "a16b8a99d-13af-4e69-83cc-c08dd36256d9",
+            "name": "isMammal",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "visibility": "PUBLIC",
+            "parameters": []
+          }
+        ],
+        "isActive": true,
+        "visibility": "PUBLIC"
+      }
+    ],
+    "relations": [
+      {
+        "__type": "Abstraction",
+        "__id": "a4c6f480f-bff6-4808-a80c-ba315da665bf",
+        "visibility": "PUBLIC",
+        "source": {
+          "__type": "Reference",
+          "__refType": "Entity",
+          "__value": "aca7c219d-7809-457c-b5ad-408d397e4b88"
+        },
+        "target": {
+          "__type": "Reference",
+          "__refType": "Entity",
+          "__value": "a0e64839f-9a22-4f44-938c-5d2e2ac0ee72"
+        },
+        "relationType": "ABSTRACTION"
+      },
+      {
+        "__type": "Abstraction",
+        "__id": "aed50dfab-c694-4be3-af90-74886bc945d3",
+        "visibility": "PUBLIC",
+        "source": {
+          "__type": "Reference",
+          "__refType": "Entity",
+          "__value": "a6c22b801-dd69-467b-b481-30b0c8f47e79"
+        },
+        "target": {
+          "__type": "Reference",
+          "__refType": "Entity",
+          "__value": "a0e64839f-9a22-4f44-938c-5d2e2ac0ee72"
+        },
+        "relationType": "ABSTRACTION"
+      }
+    ]
+  },
+  "metaInfos": [
+    {
+      "__type": "Position",
+      "__id": "pos_aca7c219d-7809-457c-b5ad-408d397e4b88",
+      "x": 533,
+      "y": 58,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "aca7c219d-7809-457c-b5ad-408d397e4b88"
+      }
+    },
+    {
+      "__type": "Size",
+      "__id": "size_aca7c219d-7809-457c-b5ad-408d397e4b88",
+      "height": 197,
+      "width": 168,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "aca7c219d-7809-457c-b5ad-408d397e4b88"
+      }
+    },
+    {
+      "__type": "Position",
+      "__id": "pos_a6c22b801-dd69-467b-b481-30b0c8f47e79",
+      "x": 91,
+      "y": 63,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "a6c22b801-dd69-467b-b481-30b0c8f47e79"
+      }
+    },
+    {
+      "__type": "Size",
+      "__id": "size_a6c22b801-dd69-467b-b481-30b0c8f47e79",
+      "height": 197,
+      "width": 194,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "a6c22b801-dd69-467b-b481-30b0c8f47e79"
+      }
+    },
+    {
+      "__type": "Position",
+      "__id": "pos_a0e64839f-9a22-4f44-938c-5d2e2ac0ee72",
+      "x": 312,
+      "y": -283,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "a0e64839f-9a22-4f44-938c-5d2e2ac0ee72"
+      }
+    },
+    {
+      "__type": "Size",
+      "__id": "size_a0e64839f-9a22-4f44-938c-5d2e2ac0ee72",
+      "height": 254,
+      "width": 239,
+      "element": {
+        "__type": "Reference",
+        "__refType": "ElementWithSizeAndPosition",
+        "__value": "a0e64839f-9a22-4f44-938c-5d2e2ac0ee72"
+      }
+    }
+  ]
+}

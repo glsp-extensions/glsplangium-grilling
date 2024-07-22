@@ -1,0 +1,9 @@
+node_modules
+.browser_modules
+lib
+*.log
+*.jar
+dist
+tsconfig.tsbuildinfo
+eslint.xml
+*.vsix

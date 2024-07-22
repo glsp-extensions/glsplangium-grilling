@@ -1,0 +1,66 @@
+{
+  "name": "@eclipse-glsp/vscode-integration",
+  "displayName": "GLSP VSCode Integration",
+  "version": "2.1.0-next",
+  "description": "Glue code to integrate GLSP diagrams in VSCode extensions (extension part)",
+  "keywords": [
+    "eclipse",
+    "vscode-extension",
+    "glsp",
+    "modeling"
+  ],
+  "homepage": "https://www.eclipse.org/glsp/",
+  "bugs": "https://github.com/eclipse-glsp/glsp/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-glsp/glsp-vscode-integration.git"
+  },
+  "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0)",
+  "author": {
+    "name": "Eclipse GLSP"
+  },
+  "contributors": [
+    {
+      "name": "Eclipse GLSP Project",
+      "email": "glsp-dev@eclipse.org",
+      "url": "https://projects.eclipse.org/projects/ecd.glsp"
+    }
+  ],
+  "main": "lib/node/index",
+  "browser": {
+    "lib/node/index": "lib/browser/index"
+  },
+  "files": [
+    "lib",
+    "src",
+    "node.js",
+    "node.d.ts",
+    "browser.d.ts",
+    "browser.js"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf lib tsconfig.tsbuildinfo ",
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint:ci": "yarn lint -o eslint.xml -f checkstyle",
+    "prepare": "yarn clean && yarn build",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@eclipse-glsp/protocol": "next",
+    "vscode-jsonrpc": "^8.0.2",
+    "vscode-messenger": "^0.4.5",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.0",
+    "@types/vscode": "^1.54.0",
+    "@types/ws": "^8.5.4"
+  },
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

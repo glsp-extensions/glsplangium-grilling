@@ -1,0 +1,136 @@
+{
+	"diagram": {
+		"__type": "PackageDiagram",
+		"__id": "PackageDiagram_1",
+		"diagramType": "PACKAGE",
+		"entities": [
+			{
+				"__type": "Class",
+				"__id": "a710c1eb2-f528-4c96-892d-5a5dffe7a105",
+				"name": "asdf",
+				"isAbstract": true,
+				"properties": [],
+				"operations": [],
+				"isActive": true,
+				"visibility": "PROTECTED"
+			},
+			{
+				"__type": "Package",
+				"__id": "a527e1dda-13bd-4e8b-a81e-1383e37e383d",
+				"name": "PackageTest",
+				"uri": "asdf",
+				"visibility": "PRIVATE",
+				"entities": [
+					{
+						"__type": "Package",
+						"__id": "a9ac857c0-fea1-4b57-b2bb-f098fda0d085",
+						"name": "NewPackage1",
+						"visibility": "PUBLIC",
+						"entities": []
+					}
+				]
+			},
+			{
+				"__type": "Class",
+				"__id": "a1a1078b8-f8a3-4bb7-ad89-fcbfae25fa92",
+				"name": "NewClass1",
+				"isAbstract": true,
+				"properties": [],
+				"operations": [],
+				"isActive": true,
+				"visibility": "PUBLIC"
+			}
+		],
+		"relations": []
+	},
+	"metaInfos": [
+		{
+			"__type": "Size",
+			"__id": "size_a710c1eb2-f528-4c96-892d-5a5dffe7a105",
+			"height": 30,
+			"width": 80,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a710c1eb2-f528-4c96-892d-5a5dffe7a105"
+			}
+		},
+		{
+			"__type": "Position",
+			"__id": "pos_a710c1eb2-f528-4c96-892d-5a5dffe7a105",
+			"x": 440,
+			"y": 130,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a710c1eb2-f528-4c96-892d-5a5dffe7a105"
+			}
+		},
+		{
+			"__type": "Size",
+			"__id": "size_a527e1dda-13bd-4e8b-a81e-1383e37e383d",
+			"height": 192,
+			"width": 283,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a527e1dda-13bd-4e8b-a81e-1383e37e383d"
+			}
+		},
+		{
+			"__type": "Position",
+			"__id": "pos_a527e1dda-13bd-4e8b-a81e-1383e37e383d",
+			"x": 804,
+			"y": 34,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a527e1dda-13bd-4e8b-a81e-1383e37e383d"
+			}
+		},
+		{
+			"__type": "Size",
+			"__id": "size_a1a1078b8-f8a3-4bb7-ad89-fcbfae25fa92",
+			"height": 30,
+			"width": 80,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a1a1078b8-f8a3-4bb7-ad89-fcbfae25fa92"
+			}
+		},
+		{
+			"__type": "Position",
+			"__id": "pos_a1a1078b8-f8a3-4bb7-ad89-fcbfae25fa92",
+			"x": 430,
+			"y": 290,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a1a1078b8-f8a3-4bb7-ad89-fcbfae25fa92"
+			}
+		},
+		{
+			"__type": "Size",
+			"__id": "size_a9ac857c0-fea1-4b57-b2bb-f098fda0d085",
+			"height": 65,
+			"width": 153,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a9ac857c0-fea1-4b57-b2bb-f098fda0d085"
+			}
+		},
+		{
+			"__type": "Position",
+			"__id": "pos_a9ac857c0-fea1-4b57-b2bb-f098fda0d085",
+			"x": 193,
+			"y": 128,
+			"element": {
+				"__type": "Reference",
+				"__refType": "ElementWithSizeAndPosition",
+				"__value": "a9ac857c0-fea1-4b57-b2bb-f098fda0d085"
+			}
+		}
+	]
+}

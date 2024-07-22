@@ -1,0 +1,18 @@
+//TaskNodes
+TaskNode _tn1 "Prepare" automated;
+TaskNode _tn2 "Cheap Task" manual;
+TaskNode _tn3 "Expensive Task" manual;
+TaskNode _tn4 "Evaluate22" manual;
+
+//ActivityNodes
+ActivityNode _an1 decision;
+ActivityNode _an2 merge;
+
+//Edges
+_tn1 -> _an1;
+_an1 -> low _tn2;
+_an1 -> high _tn3;
+// this is a comment
+_tn2 -> _an2;
+_tn3 -> _an2;
+_an2 -> _tn4;

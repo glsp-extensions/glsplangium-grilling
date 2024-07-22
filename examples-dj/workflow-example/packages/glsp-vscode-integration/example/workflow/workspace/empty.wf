@@ -1,0 +1,140 @@
+{
+	"nodes": [
+		{
+			"__type": "TaskNode",
+			"__id": "cf24b18-5d97-4327-9290-9e094bcb0f73",
+			"name": "_tn1",
+			"label": "_tn1",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "cc3f376-3bcf-4d10-8d4b-629bddadf10f",
+			"name": "_tn3",
+			"label": "_tn3",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a7f0fab1-5ddc-4899-bf6e-fb6b85e0ce77",
+			"name": "_tn4",
+			"label": "_tn4",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "dd42da7-6bef-4dbe-9056-8127b2202a1a",
+			"name": "_tn5",
+			"label": "_tn5",
+			"taskType": "manual"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "f3c3b69b-be90-49b3-978f-89628b4f0baa",
+			"name": "_tn2",
+			"label": "_tn2",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "ea327-1be9-4988-9ce0-aaab74d3063f",
+			"name": "_tn8",
+			"label": "_tn8",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a7616d1-ff66-408f-8823-fe49b39a66ce",
+			"name": "_tn9",
+			"label": "_tn9",
+			"taskType": "manual"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "cf04a-70a0-402b-8259-9b001aef91cb",
+			"name": "_tn11",
+			"label": "_tn11",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "ff0188c-490c-4974-8f8f-1ccdfee0db49",
+			"name": "_tn12",
+			"label": "_tn12",
+			"taskType": "manual"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "eb6e4b7-b2ce-42d7-bef3-7199e84fadb9",
+			"name": "_tn13",
+			"label": "_tn13",
+			"taskType": "automated"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "e5c213b4-f83d-471e-9233-962d3b57f874",
+			"name": "_tn14",
+			"label": "_tn14",
+			"taskType": "automated"
+		}
+	],
+	"edges": [
+		{
+			"__type": "Edge",
+			"__id": "fb65801f-696e-4344-86bc-86783c35cda9",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "cc3f376-3bcf-4d10-8d4b-629bddadf10f"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a7f0fab1-5ddc-4899-bf6e-fb6b85e0ce77"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "dcb9f1e0-bee9-48ef-805a-d8d515c9042a",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a7f0fab1-5ddc-4899-bf6e-fb6b85e0ce77"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "dd42da7-6bef-4dbe-9056-8127b2202a1a"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "fb200c22-85e4-409b-b6e5-bb33cda661fe",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "cf24b18-5d97-4327-9290-9e094bcb0f73"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "f3c3b69b-be90-49b3-978f-89628b4f0baa"
+			}
+		},
+		{
+			"__type": "Edge",
+			"__id": "dc26370-330b-46c1-90a4-b845b0a28561",
+			"source": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "cf04a-70a0-402b-8259-9b001aef91cb"
+			},
+			"target": {
+				"__type": "Reference",
+				"__refType": "Node",
+				"__value": "a7616d1-ff66-408f-8823-fe49b39a66ce"
+			}
+		}
+	],
+	"metaInfos": []
+}

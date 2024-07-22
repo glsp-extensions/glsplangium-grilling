@@ -1,0 +1,39 @@
+
+{
+    "nodes": [
+        {
+            "__type": "ActivityNode",
+            "__id": "an1",
+            "name": "ActivityNode1"
+        }, 
+        {
+            "__type": "ActivityNode",
+            "__id": "an2",
+            "name": "ActivityNode2"
+        }
+    ],
+    "metaInfos": [
+        {
+            "__type": "Position",
+            "__id": "pos_an1",
+            "x": 100,
+            "y": 100,
+            "node": {
+                "__type": "Reference",
+                "__refType": "Node", 
+                "__value": "an1"
+            }
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+

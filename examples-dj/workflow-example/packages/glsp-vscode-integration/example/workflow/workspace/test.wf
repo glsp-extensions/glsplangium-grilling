@@ -1,0 +1,20 @@
+{
+	"nodes": [
+		{
+			"__type": "TaskNode",
+			"__id": "a01ed69ec-eb96-4178-ae83-92db2b540ef1",
+			"label": "_tn1",
+			"taskType": "automated",
+			"name": "_tn1"
+		},
+		{
+			"__type": "TaskNode",
+			"__id": "a6f939542-90df-49e1-b0a2-af9c18c33281",
+			"label": "_tn2",
+			"taskType": "automated",
+			"name": "_tn2"
+		}
+	],
+	"edges": [],
+	"metaInfos": []
+}

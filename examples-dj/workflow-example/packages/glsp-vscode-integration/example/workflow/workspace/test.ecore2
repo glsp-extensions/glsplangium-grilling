@@ -1,0 +1,64 @@
+{
+    "league": [
+        {
+            "__type": "League",
+            "__id": "id-0",
+            "players": [
+                {
+                    "__type": "Player",
+                    "__id": "id-1",
+                    "name": "John_Doe",
+                    "height": 6.5,
+                    "isProfessional": true
+                },
+                {
+                    "__type": "Player",
+                    "__id": "id-2",
+                    "name": "Jane_Doe",
+                    "height": 5.5,
+                    "isProfessional": false
+                },
+                {
+                    "__type": "Player",
+                    "__id": "id-3",
+                    "name": "John_Smith",
+                    "height": 6.0,
+                    "isProfessional": true
+                }
+            ]
+        }
+    ],
+    "tournament": [
+        {
+            "__type": "Tournament",
+            "__id": "id-4",
+            "type": "Pro",
+            "matchup": [
+                {
+                    "__type": "Matchup",
+                    "__id": "id-5", 
+                    "games": [
+                        {
+                            "__type": "Game",
+                            "__id": "id-6",
+                            "player": {
+                                "__type": "Reference",
+                                "__refType": "Player",
+                                "__value": "id-1"
+                            }
+                        },
+                        {
+                            "__type": "Game",
+                            "__id": "id-7",
+                            "player": {
+                                "__type": "Reference",
+                                "__refType": "Player",
+                                "__value": "id-3"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

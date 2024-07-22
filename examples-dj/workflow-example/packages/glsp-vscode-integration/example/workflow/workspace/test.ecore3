@@ -1,0 +1,25 @@
+{
+    "fruit_writingobject": [
+        {
+            "__type": "Fruit_WritingObject",
+            "__id": "id-1",
+            "mmmm": "mmmmm_APPLE_PEN",
+            "fruitType": "APPLE",
+            "writingObjectType": "PEN"
+        },
+        {
+            "__type": "Fruit_WritingObject",
+            "__id": "id-2",
+            "mmmm": "MMMM_PINEAPPLE_PENCIL",
+            "fruitType": "PINEAPPLE",
+            "writingObjectType": "PENCIL"
+        },
+        {
+            "__type": "Fruit_WritingObject",
+            "__id": "id-3",
+            "mmmm": "MMMMMMMM_ORANGE_CRAYON",
+            "fruitType": "ORANGE",
+            "writingObjectType": "CRAYON"
+        }
+    ]
+}

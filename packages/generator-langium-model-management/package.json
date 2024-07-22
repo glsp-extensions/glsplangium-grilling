@@ -1,0 +1,56 @@
+{
+  "name": "generator-langium-model-management",
+  "version": "2.0.0",
+  "description": "Yeoman generator to setup Langium with Model Service - enabling graphical editors access to the AST",
+  "author": "David Jäger",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "language",
+    "dsl",
+    "lsp",
+    "vscode"
+  ],
+  "license": "MIT",
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "scripts": {
+    "clean": "shx rm -rf app",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint src test --ext .ts",
+    "run": "yo langium",
+    "debug": "npx --node-arg=--inspect yo langium",
+    "publish:next": "npm --no-git-tag-version version \"$(semver $npm_package_version -i minor)-next.$(git rev-parse --short HEAD)\" && npm publish --tag next",
+    "publish:latest": "npm publish --tag latest --access public",
+    "test": "vitest --silent=false",
+    "prepare": "yarn build"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "fast-xml-parser": "^4.3.5",
+    "lodash": "~4.17.21",
+    "prettier": "^3.1.1",
+    "typescript": "^5.2.2",
+    "typescript-graph": "^0.3.0",
+    "which": "~3.0.1",
+    "yeoman-generator": "~5.9.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "~4.14.197",
+    "@types/which": "~3.0.0",
+    "@types/yeoman-generator": "~5.2.11",
+    "@types/yeoman-test": "~4.0.3",
+    "vitest": "^1.0.4",
+    "yeoman-test": "~7.4.0"
+  },
+  "volta": {
+    "node": "18.17.1",
+    "npm": "9.6.7"
+  },
+  "bin": "./generators/cli.js"
+}

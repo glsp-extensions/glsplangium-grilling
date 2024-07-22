@@ -1,0 +1,118 @@
+{
+    "cps": [
+        {
+            "__type": "CPS",
+            "__id": "id-0",
+            "name": "prod",
+            "environment": [
+                {
+                    "__type": "Environment",
+                    "__id": "id-1",
+                    "name": "ProductionFloor",
+                    "node": [
+                        {
+                            "__type": "Node",
+                            "__id": "id-2",
+                            "component": [
+                                {
+                                    "__type": "Actuator",
+                                    "__id": "id-6",
+                                    "runs": 70,
+                                    "ratedRuns": 100000,
+                                    "topic": "temp",
+                                    "functions": [
+                                        {
+                                            "__type": "Function_",
+                                            "__id": "id-7",
+                                            "name": "setTemperature",
+                                            "description": "Set_the_temperature_of_the_heated_print_bed",
+                                            "hasReturn": true,
+                                            "parameter": [
+                                                {
+                                                    "__type": "Parameter",
+                                                    "__id": "id-8",
+                                                    "name": "temperature",
+                                                    "dataType": "INTEGER"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "status": "CRITICAL",
+                                    "name": "HeatedPrintBed"
+                                },
+                                {
+                                    "__type": "Actuator",
+                                    "__id": "id-123",
+                                    "runs": 70,
+                                    "ratedRuns": 200000,
+                                    "topic": "production",
+                                    "functions": [
+                                        {
+                                            "__type": "Function_",
+                                            "__id": "id-12312313",
+                                            "name": "startPrint",
+                                            "description": "Start_the_printing_process",
+                                            "hasReturn": true
+                                        },
+                                        {
+                                            "__type": "Function_",
+                                            "__id": "id-1231231331",
+                                            "name": "getRemainingPrintDuration",
+                                            "description": "returns_the_remaining_print_duration",
+                                            "returnDataType": "INTEGER",
+                                            "hasReturn": true
+                                        }
+                                    ],
+                                    "status": "CRITICAL",
+                                    "name": "HeatedPrintBed"
+                                }
+                            ],
+                            "connectionmodule": [
+                                {
+                                    "__type": "WirelessModule",
+                                    "__id": "id-9",
+                                    "range": 100,
+                                    "name": "THREEDPRINTER_wl1",
+                                    "supportedProtocols": [
+                                        "MQTT"
+                                    ],
+                                    "connectionmodule": [
+                                        {
+                                            "__type": "Reference",
+                                            "__refType": "ConnectionModule",
+                                            "__value": "id-9"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "status": "CRITICAL",
+                            "name": "ThreeDPrinter"
+                        }
+                    ]
+                }
+            ],
+            "messagebroker": [
+                {
+                    "__type": "MessageBroker",
+                    "__id": "id-3",
+                    "name": "id",
+                    "position": {
+                        "__type": "Position",
+                        "__id": "id-4",
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "connectionmodule": []
+                }
+            ],
+            "controller": [
+                {
+                    "__type": "Controller",
+                    "__id": "id-5",
+                    "name": "id"
+                }
+            ]
+        }
+    ]
+}

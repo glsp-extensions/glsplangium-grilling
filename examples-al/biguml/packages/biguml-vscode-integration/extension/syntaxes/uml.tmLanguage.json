@@ -1,0 +1,47 @@
+{
+  "name": "uml",
+  "scopeName": "source.uml",
+  "fileTypes": [
+    ".uml"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "name": "keyword.control.uml",
+      "match": "\\b(activity|class)\\b|\\B(\"ActivtiyDiagram\"|\"Class\"|\"ClassDiagram\"|\"Edge\"|\"Position\"|\"Reference\"|\"Size\"|\"__id\"|\"__refType\"|\"__type\"|\"__value\"|\"classes\"|\"diagram\"|\"diagramType\"|\"edges\"|\"height\"|\"metaInfos\"|\"name\"|\"node\"|\"source\"|\"target\"|\"width\"|\"x\"|\"y\")\\B"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.uml",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.uml"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.uml"
+            }
+          }
+        },
+        {
+          "begin": "//",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.uml"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.uml"
+        }
+      ]
+    }
+  }
+}
