@@ -14,7 +14,8 @@ import { findAvailableNodeName } from '../../../../language-server/yo-generated/
 import { BigUmlCommand } from '../../../biguml/index.js';
 import { ClassDiagramModelState } from '../../model/class-diagram-model-state.js';
 import { getDefaultPosition, getDefaultSize } from './default-values.js';
-import { elementTypeConfigs } from './element-type-configs.js';
+import { DefaultValueConfiguration } from './providers/default-value-configuration.js';
+import { ElementTypeConfigProvider } from './providers/element-type-config-provider.js';
 import { ElementTypeConfig } from './types.js';
 
 @injectable()
@@ -24,13 +25,20 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     @inject(ClassDiagramModelState)
     protected override modelState: ClassDiagramModelState;
 
+    @inject(DefaultValueConfiguration)
+    protected defaultValueConfiguration: DefaultValueConfiguration;
+
+    @inject(ElementTypeConfigProvider)
+    protected elementTypeConfigProvider: ElementTypeConfigProvider;
+
     get elementTypeIds(): string[] {
-        return Object.keys(elementTypeConfigs);
+        return Object.keys(this.elementTypeConfigProvider.getElementTypeConfigs());
     }
 
     override label: string = '';
 
     override createCommand(operation: CreateNodeOperation): Command {
+        const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
         const elementTypeId = operation.elementTypeId;
         const config = elementTypeConfigs[elementTypeId];
         if (!config) {
@@ -45,6 +53,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     }
 
     createNodeDetails(operation: CreateNodeOperation, id: string, nodeDocumentUri: string): string {
+        const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
         const elementTypeId = operation.elementTypeId;
         const config = elementTypeConfigs[elementTypeId];
 
@@ -82,7 +91,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
 
         const containerPath = this.resolveContainerPath(operation, config);
 
-        const defaults = this.getTypeDefaultValues(modelType);
+        const defaults = this.collectDefaultValues(modelType);
 
         const value: any = {
             $type: modelType,
@@ -110,20 +119,16 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
         return config.containerPath || defaultContainerPath;
     }
 
-    getTypeDefaultValues(type: string): any {
-        const typeMetaData = this.getTypeMetaData(type);
+    collectDefaultValues(type: string): any {
         const defaults: any = {};
-        for (const mandatoryField of typeMetaData.mandatory) {
-            switch (mandatoryField.type) {
-                case 'boolean':
-                    defaults[mandatoryField.name] = false;
-                    break;
-                case 'array':
-                    defaults[mandatoryField.name] = [];
-                    break;
-                default:
-                    defaults[mandatoryField.name] = null;
-                    break;
+        const typeMetaData = this.getTypeMetaData(type);
+
+        for (const property of typeMetaData.mandatory) {
+            const defaultValue = this.defaultValueConfiguration.getDefaultValueFor(type, property.name);
+            if (defaultValue !== undefined) {
+                defaults[property.name] = defaultValue;
+            } else {
+                defaults[property.name] = null;
             }
         }
         return defaults;
