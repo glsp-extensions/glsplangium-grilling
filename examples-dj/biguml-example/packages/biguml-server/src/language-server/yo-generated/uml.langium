@@ -5,10 +5,11 @@ import 'terminals'
 entry Diagram :   '{'    (   '"diagram"' ':' diagram = UnionType_0 ) ( ','  '"metaInfos"' ':' '[' ( (  metaInfos += MetaInfo  ) (  ','   metaInfos += MetaInfo  )* )? ']' )?   '}' ;
 Size :   '{'  '"__type"' ':' '"Size"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"height"' ':' height = LANGIUM_INT ) ( ','  '"width"' ':' width = LANGIUM_INT ) ( ','  '"element"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"ElementWithSizeAndPosition"'  ','  '"__value"' ':' '"'element=[ElementWithSizeAndPosition:LANGIUM_ID]'"' '}' )   '}' ;
 Position :   '{'  '"__type"' ':' '"Position"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"x"' ':' x = LANGIUM_INT ) ( ','  '"y"' ':' y = LANGIUM_INT ) ( ','  '"element"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"ElementWithSizeAndPosition"'  ','  '"__value"' ':' '"'element=[ElementWithSizeAndPosition:LANGIUM_ID]'"' '}' )   '}' ;
+TestElementKarol :   '{'  '"__type"' ':' '"TestElementKarol"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"description"' ':' '"' description = LANGIUM_ID '"' )?   '}' ;
 ClassDiagram :   '{'  '"__type"' ':' '"ClassDiagram"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"diagramType"' ':' '"' diagramType = "CLASS" '"' ) ( ','  '"entities"' ':' '[' ( (  entities += Entity  ) (  ','   entities += Entity  )* )? ']' )? ( ','  '"relations"' ':' '[' ( (  relations += Relation  ) (  ','   relations += Relation  )* )? ']' )?   '}' ;
 Enumeration :   '{'  '"__type"' ':' '"Enumeration"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"values"' ':' '[' ( (  values += EnumerationLiteral  ) (  ','   values += EnumerationLiteral  )* )? ']' )?   '}' ;
 EnumerationLiteral :   '{'  '"__type"' ':' '"EnumerationLiteral"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"value"' ':' '"' value = LANGIUM_ID '"' )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )?   '}' ;
-Class :   '{'  '"__type"' ':' '"Class"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"isAbstract"' ':' isAbstract = LANGIUM_BOOL )? ( ','  '"properties"' ':' '[' ( (  properties += Property  ) (  ','   properties += Property  )* )? ']' )? ( ','  '"operations"' ':' '[' ( (  operations += Operation  ) (  ','   operations += Operation  )* )? ']' )? ( ','  '"isActive"' ':' isActive = LANGIUM_BOOL )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )?   '}' ;
+Class :   '{'  '"__type"' ':' '"Class"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"isAbstract"' ':' isAbstract = LANGIUM_BOOL ) ( ','  '"properties"' ':' '[' ( (  properties += Property  ) (  ','   properties += Property  )* )? ']' )? ( ','  '"operations"' ':' '[' ( (  operations += Operation  ) (  ','   operations += Operation  )* )? ']' )? ( ','  '"isActive"' ':' isActive = LANGIUM_BOOL )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )?   '}' ;
 Interface :   '{'  '"__type"' ':' '"Interface"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"properties"' ':' '[' ( (  properties += Property  ) (  ','   properties += Property  )* )? ']' )? ( ','  '"operations"' ':' '[' ( (  operations += Operation  ) (  ','   operations += Operation  )* )? ']' )?   '}' ;
 Property :   '{'  '"__type"' ':' '"Property"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"isDerived"' ':' isDerived = LANGIUM_BOOL )? ( ','  '"isOrdered"' ':' isOrdered = LANGIUM_BOOL )? ( ','  '"isStatic"' ':' isStatic = LANGIUM_BOOL )? ( ','  '"isDerivedUnion"' ':' isDerivedUnion = LANGIUM_BOOL )? ( ','  '"isReadOnly"' ':' isReadOnly = LANGIUM_BOOL )? ( ','  '"isUnique"' ':' isUnique = LANGIUM_BOOL )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )? ( ','  '"multiplicity"' ':' '"' multiplicity = LANGIUM_ID '"' )? ( ','  '"propertyType"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"DataTypeReference"'  ','  '"__value"' ':' '"'propertyType=[DataTypeReference:LANGIUM_ID]'"' '}' )? ( ','  '"aggregation"' ':' '"' aggregation = AggregationType '"' )?   '}' ;
 Operation :   '{'  '"__type"' ':' '"Operation"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"isAbstract"' ':' isAbstract = LANGIUM_BOOL )? ( ','  '"isStatic"' ':' isStatic = LANGIUM_BOOL )? ( ','  '"isQuery"' ':' isQuery = LANGIUM_BOOL )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )? ( ','  '"concurrency"' ':' '"' concurrency = Concurrency '"' )? ( ','  '"parameters"' ':' '[' ( (  parameters += Parameter  ) (  ','   parameters += Parameter  )* )? ']' )?   '}' ;
@@ -32,15 +33,15 @@ Usage :   '{'  '"__type"' ':' '"Usage"'   ( ','  '"__id"' ':' '"' __id = LANGIUM
 StateMachineDiagram :   '{'  '"__type"' ':' '"StateMachineDiagram"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"diagramType"' ':' '"' diagramType = "STATE_MACHINE" '"' )   '}' ;
 PackageDiagram :   '{'  '"__type"' ':' '"PackageDiagram"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"diagramType"' ':' '"' diagramType = "PACKAGE" '"' ) ( ','  '"entities"' ':' '[' ( (  entities += Entity  ) (  ','   entities += Entity  )* )? ']' )? ( ','  '"relations"' ':' '[' ( (  relations += Relation  ) (  ','   relations += Relation  )* )? ']' )?   '}' ;
 Package :   '{'  '"__type"' ':' '"Package"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"uri"' ':' '"' uri = LANGIUM_ID '"' )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )? ( ','  '"entities"' ':' '[' ( (  entities += Entity  ) (  ','   entities += Entity  )* )? ']' )?   '}' ;
-DataTypeReference  : DataType | Enumeration | Class | Interface | PrimitiveType ;
-SlotDefiningFeature  : Property | Class | Interface ;
-AggregationType  returns string : "NONE" | "SHARED" | "COMPOSITE" ;
-ParameterDirection  returns string : "IN" | "OUT" | "INOUT" | "RETURN" ;
-EffectType  returns string : "CREATE" | "READ" | "UPDATE" | "DELETE" ;
-Concurrency  returns string : "SEQUENTIAL" | "GUARDED" | "CONCURRENT" ;
-RelationType  returns string : "ABSTRACTION" | "AGGREGATION" | "ASSOCIATION" | "COMPOSITION" | "DEPENDENCY" | "GENERALIZATION" | "INTERFACE_REALIZATION" | "PACKAGE_IMPORT" | "ELEMENT_IMPORT" | "PACKAGE_MERGE" | "REALIZATION" | "SUBSTITUTION" | "USAGE" ;
-Visibility  returns string : "PUBLIC" | "PRIVATE" | "PROTECTED" | "PACKAGE" ;
-ElementWithSizeAndPosition  : Entity ;
-Entity  : Enumeration | Class | Interface | DataType | PrimitiveType | InstanceSpecification | Package ;
-MetaInfo  : Size | Position ;
-UnionType_0  : ClassDiagram | StateMachineDiagram | PackageDiagram ;
+DataTypeReference  : DataType | Enumeration | Class | Interface | PrimitiveType ;  // TEST_CHANGE
+SlotDefiningFeature  : Property | Class | Interface ;  // TEST_CHANGE
+AggregationType  returns string : "NONE" | "SHARED" | "COMPOSITE" ;  // TEST_CHANGE
+ParameterDirection  returns string : "IN" | "OUT" | "INOUT" | "RETURN" ;  // TEST_CHANGE
+EffectType  returns string : "CREATE" | "READ" | "UPDATE" | "DELETE" ;  // TEST_CHANGE
+Concurrency  returns string : "SEQUENTIAL" | "GUARDED" | "CONCURRENT" ;  // TEST_CHANGE
+RelationType  returns string : "ABSTRACTION" | "AGGREGATION" | "ASSOCIATION" | "COMPOSITION" | "DEPENDENCY" | "GENERALIZATION" | "INTERFACE_REALIZATION" | "PACKAGE_IMPORT" | "ELEMENT_IMPORT" | "PACKAGE_MERGE" | "REALIZATION" | "SUBSTITUTION" | "USAGE" ;  // TEST_CHANGE
+Visibility  returns string : "PUBLIC" | "PRIVATE" | "PROTECTED" | "PACKAGE" ;  // TEST_CHANGE
+ElementWithSizeAndPosition  : Entity ;  // TEST_CHANGE
+Entity  : Enumeration | Class | Interface | DataType | PrimitiveType | InstanceSpecification | Package ;  // TEST_CHANGE
+MetaInfo  : Size | Position ;  // TEST_CHANGE
+UnionType_0  : ClassDiagram | StateMachineDiagram | PackageDiagram ;  // TEST_CHANGE

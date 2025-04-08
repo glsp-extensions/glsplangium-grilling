@@ -20,5 +20,9 @@ export function generateJavaScript(
     fs.mkdirSync(data.destination, { recursive: true });
   }
   fs.writeFileSync(generatedFilePath, toString(fileNode));
+
+  const testKarolFilePath = path.join(data.destination, "testkarol.ts");
+  fs.writeFileSync(testKarolFilePath, "console.log('Hello world');\n");
+
   return generatedFilePath;
 }

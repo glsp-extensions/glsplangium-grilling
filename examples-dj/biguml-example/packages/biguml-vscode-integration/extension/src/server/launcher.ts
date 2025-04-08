@@ -55,7 +55,7 @@ export abstract class UmlServerLauncher {
     async stop(): Promise<void> {}
 
     async ping(): Promise<void> {
-        const error = await checkService('[::1]', this.options.server.port, 2000);
+        const error = await checkService('localhost', this.options.server.port, 2000);
         if (error !== undefined) {
             this.outputChannel.appendLine(error);
             throw new Error(`Failed to connect to port ${this.options.server.port}`);

@@ -36,14 +36,13 @@ import {
     SourceModelStorage,
     ToolPaletteItemProvider
 } from '@eclipse-glsp/server';
-import { injectable } from 'inversify';
+import { injectable, interfaces } from 'inversify';
+import { RequestOutlineActionHandler } from '../common/handler/action/request-outline-action-handler.js';
 import { RequestPropertyPaletteActionHandler } from '../common/handler/action/request-property-palette-action-handler.js';
 import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { CreateAbstractClassOperationHandler } from '../common/handler/create-abstract-class-operation-handler.js';
-import { CreateClassOperationHandler } from '../common/handler/create-class-operation-handler.js';
 import { CreateDataTypeOperationHandler } from '../common/handler/create-datatype-operation-handler.js';
-import { CreateEnumerationOperationHandler } from '../common/handler/create-enumeration-handler.js';
 import { CreateEnumerationLiteralOperationHandler } from '../common/handler/create-enumeration-literal-handler.js';
 import { CreateInstanceSpecificationOperationHandler } from '../common/handler/create-instance-specification-operation-handler.js';
 import { CreateInterfaceOperationHandler } from '../common/handler/create-interface-operation-handler.js';
@@ -65,6 +64,7 @@ import { CreatePackageMergeOperationHandler } from '../common/handler/edges/crea
 import { CreateRealizationOperationHandler } from '../common/handler/edges/create-realization-handler.js';
 import { CreateSubstitutionOperationHandler } from '../common/handler/edges/create-substitution-handler.js';
 import { CreateUsageOperationHandler } from '../common/handler/edges/create-usage-handler.js';
+import { GenericCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
 import { ClassDiagramUpdateClientOperationHandler } from '../common/handler/update-glsp-client-handler.js';
 import { UpdateOperationHandler } from '../common/handler/update-operation-handler.js';
 import { ClassLabelEditOperationHandler } from '../common/labeledit/class-label-edit-operation-handler.js';
@@ -83,11 +83,20 @@ import { ClassDiagramModelState } from '../model/class-diagram-model-state.js';
 import { ClassDiagramModelStorage } from '../model/class-diagram-model-storage.js';
 import { ClassDiagramConfiguration } from './class-diagram-configuration.js';
 import { ClassDiagramPopupFactory } from './class-diagram-popup-factory.js';
-import { RequestOutlineActionHandler } from '../common/handler/action/request-outline-action-handler.js';
 
 @injectable()
 export class ClassDiagramModule extends DiagramModule {
     readonly diagramType = 'uml';
+
+    protected override configure(
+        bind: interfaces.Bind,
+        unbind: interfaces.Unbind,
+        isBound: interfaces.IsBound,
+        rebind: interfaces.Rebind
+    ): void {
+        super.configure(bind, unbind, isBound, rebind);
+        //bind(DefaultValueProvider).to(DefaultValueConfigurationImpl).inSingletonScope();
+    }
 
     protected bindDiagramConfiguration(): BindingTarget<DiagramConfiguration> {
         return ClassDiagramConfiguration;
@@ -108,10 +117,12 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureOperationHandlers(binding: InstanceMultiBinding<OperationHandlerConstructor>): void {
         super.configureOperationHandlers(binding);
-        binding.add(CreateClassOperationHandler);
+        //binding.add(CreateClassOperationHandler);
+        binding.add(GenericCreateNodeOperationHandler);
         binding.add(CreateClassPropertyOperationHandler);
         binding.add(CreateClassMethodOperationHandler);
-        binding.add(CreateEnumerationOperationHandler);
+        //binding.add(CreateEnumerationOperationHandler);
+
         binding.add(CreateEnumerationLiteralOperationHandler);
         binding.add(CreateInterfaceOperationHandler);
         binding.add(CreateAbstractClassOperationHandler);

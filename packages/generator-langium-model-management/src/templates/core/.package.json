@@ -14,7 +14,7 @@
     "langium:watch": "langium generate --watch"
   },
   "dependencies": {
-    "langium": "2.1.3",
+    "langium": "^2.1.3",
     "reflect-metadata": "^0.1.13",
     "generator-langium-model-management": "C:\\Users\\david\\VSCodeProjects\\master-thesis\\langium-extensions\\packages\\generator-langium-model-management",
     "model-service": "C:\\Users\\david\\VSCodeProjects\\master-thesis\\langium-extensions\\packages\\model-service"
@@ -24,7 +24,7 @@
     "@types/reflect-metadata": "^0.1.0",
     "@typescript-eslint/parser": "~6.4.1",
     "@typescript-eslint/eslint-plugin": "~6.4.1",
-    "langium-cli": "2.1.0",
+    "langium-cli": "^2.1.3",
     "eslint": "~8.47.0",
     "typescript": "~5.1.6"
   }

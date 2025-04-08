@@ -58,6 +58,7 @@ export function generateSerializer(
     }
 
       `;
+
   return prettier.format(serializerText, {
     parser: "typescript",
     trailingComma: "es5",

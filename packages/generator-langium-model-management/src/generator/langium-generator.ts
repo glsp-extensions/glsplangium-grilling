@@ -39,6 +39,10 @@ function typeRuleToLangiumText(typeRules: Array<TypeRule>) {
           .join(" | ")
       );
       text.push(";");
+      if (typeRule.extra && typeRule.extra.path) {
+        text.push(` // path: ${typeRule.extra.path}`);
+      }
+      text.push(" // TEST_CHANGE");
       return text.join(" ");
     })
     .join("\n");

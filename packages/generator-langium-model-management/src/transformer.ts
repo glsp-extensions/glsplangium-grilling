@@ -11,6 +11,17 @@ import {
 export function transformDeclaration(
   declarations: Array<Declaration>
 ): Array<LangiumDeclaration> {
+  declarations.forEach((decl) => {
+    if (decl.properties) {
+      decl.properties.forEach((prop) => {
+        console.log(
+          `DEBUG: Declaration "${decl.name}" property "${prop.name}" decorators:`,
+          prop.decorators
+        );
+      });
+    }
+  });
+
   // map all declarations to langium declarations
   // if a declaration extends another declaration, add the properties of the extended declaration to the extending declaration
   const langiumDeclarations: Array<LangiumDeclaration> = declarations.map(
@@ -28,6 +39,7 @@ export function transformDeclaration(
         isAbstract: declaration.isAbstract,
         decorators: declaration.decorators,
         properties: declaration.properties,
+        extends: declaration.extends,
         extendedBy: [],
       };
     }
@@ -46,6 +58,7 @@ export function transformDeclaration(
   // if a declaration is abstract, remove all properties
   langiumDeclarations.forEach((langiumDeclaration) => {
     if (langiumDeclaration.isAbstract && langiumDeclaration.type === "class") {
+      console.log("DEBUG LANGIUM: " + langiumDeclaration);
       langiumDeclaration.properties = [];
     }
   });
@@ -183,6 +196,7 @@ export function transformLangiumDeclarationsToLangiumGrammar(
         isAbstract: langiumDeclaration.isAbstract,
         extendedBy: langiumDeclaration.extendedBy,
         definitions: properties,
+        extra: langiumDeclaration.extra,
       };
     });
   entryRule.definitions.forEach((definition) => {

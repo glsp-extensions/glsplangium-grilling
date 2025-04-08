@@ -415,6 +415,19 @@ export function isStateMachineDiagram(item: unknown): item is StateMachineDiagra
     return reflection.isInstance(item, StateMachineDiagram);
 }
 
+export interface TestElementKarol extends AstNode {
+    readonly $type: 'TestElementKarol';
+    __id: string
+    description?: string
+    name: string
+}
+
+export const TestElementKarol = 'TestElementKarol';
+
+export function isTestElementKarol(item: unknown): item is TestElementKarol {
+    return reflection.isInstance(item, TestElementKarol);
+}
+
 export interface Abstraction extends Relation {
     readonly $type: 'Abstraction';
     __id: string
@@ -612,6 +625,7 @@ export type UmlAstType = {
     SlotDefiningFeature: SlotDefiningFeature
     StateMachineDiagram: StateMachineDiagram
     Substitution: Substitution
+    TestElementKarol: TestElementKarol
     UnionType_0: UnionType_0
     Usage: Usage
 }
@@ -619,7 +633,7 @@ export type UmlAstType = {
 export class UmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['Abstraction', 'Association', 'Class', 'ClassDiagram', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'UnionType_0', 'Usage'];
+        return ['Abstraction', 'Association', 'Class', 'ClassDiagram', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'TestElementKarol', 'UnionType_0', 'Usage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {

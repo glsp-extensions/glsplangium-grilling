@@ -15,5 +15,6 @@ export interface LangiumDeclaration {
   isAbstract?: boolean;
   decorators?: string[];
   properties?: Array<Property>;
+  extends?: string[];
   extendedBy?: string[];
 }

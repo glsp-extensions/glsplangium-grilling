@@ -1,0 +1,118 @@
+* uml Sprache in TS zu generieren/vervollstandigen 
+    - GLSP in generische Art und Weise (CRUD) zu generieren. Klassendiagramm muss fix drinnen sein, noch zwei unterschiedliche
+* bigUML Property Pallete, Outline View, (- nicht super wichtig)
+
+
+* Read Teil
+* Validation
+* "code generieren"?
+
+
+CreateOperation
+-user clickt auf Tool Pallete auf eiene Eintrag (z.B. Datatype)
+-das erzeugt, dass du einen Datatype erzeugen kannst
+--auf leeren Feld clicken -> zum Server kommt CreateNodeOp.
+-in CreateNodeOp. steht jetzt containerId (UID), z.B. root Elelement oder PackagId, oder ClassId - Id von parent element (auch Koordinate)
+-auch elementTypeId - was ich erstellen mochte - z.B. Datatype, von containerId kann ich parent Objekt rauslesen
+
+
+    ( ','  '"karolvisibility"' ':' '"' visibility=Visibility '"' )? 
+    ( ','  '"entities"' ':' '[' ( (  entities+=Entity  ) (  ','   entities+=Entity  )* )? ']' )?   '}';
+
+
+    class Package extends Entity {
+        name: string;
+        uri?: string;
+        visibility?: Visibility;
+        @path()
+        entities?: Array<Entity>;
+      }
+
+    {
+    "type": "class",
+    "isAbstract": false,
+    "decorators": [],
+    "properties": [
+      {
+        "decorators": [],
+        "isOptional": false,
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "string"
+          }
+        ],
+        "multiplicity": "1",
+        "name": "name"
+      },
+      {
+        "decorators": [],
+        "isOptional": true,
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "string"
+          }
+        ],
+        "multiplicity": "1",
+        "name": "uri"
+      },
+      {
+        "decorators": [],
+        "isOptional": true,
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "Visibility"
+          }
+        ],
+        "multiplicity": "1",
+        "name": "visibility"
+      },
+      {
+        "decorators": [path],
+        "isOptional": true,
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "Entity"
+          }
+        ],
+        "multiplicity": "*",
+        "name": "entities"
+      }
+    ],
+    "extends": [
+      "Entity"
+    ],
+    "name": "Package"
+  },
+
+ 
+
+export function getCreationPath(parentName: string, childName: string): string {
+    // Basic mapping from parent type to its extra path (extracted from def.ts)
+    switch (parentType) {
+        case 'Package': {
+            // Array von types
+            // schau nach ob der child type dort eingefuegt werden kann
+            if (['Class', 'Interface', ...].includes(childType)) { //eigentlich Zeile 78 - alle wo in extends Entity 
+                return 'entities' //Zeile 82
+            }
+        }
+        case 'Class': {
+            // Array von types
+            // schau nach ob der child type dort eingefuegt werden kann
+            if (['Operation'].includes(childType)) {
+                return 'operations'
+            } else if (['Property'].includes(childType)) {
+                return 'properties'
+            }
+        }
+    }
+}
+
+1. definieren in def.ts was wo hinzugefugt sein soll - @path
+2. richtig parsen -> Zeile 73 (root und crosreference als Beispiel nehmen)
+3. code generieren wie in generateSerialize (mit Template)
+4. 

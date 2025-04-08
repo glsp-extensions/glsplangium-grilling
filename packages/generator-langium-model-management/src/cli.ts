@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 import fs from "fs";
 import path from "path";
+import { parseEcoreDefinitionFile } from "./ecore/ecore-parser";
+import {
+  buildCreationPathMapping,
+  writeCreationPathFile,
+} from "./generator/creation-path-generator";
+import {
+  buildDefaultValueMapping,
+  writeDefaultValueFile,
+} from "./generator/default-value-generator";
 import { generateLangiumText } from "./generator/langium-generator";
 import { generateSerializer } from "./generator/serializer-generator";
 import {
@@ -17,7 +26,6 @@ import {
   checkGeneratorConfigValidity,
   checkLangiumGrammar,
 } from "./validators";
-import { parseEcoreDefinitionFile } from "./ecore/ecore-parser";
 
 /** Parse the command line */
 var args = process.argv.slice(2);
@@ -51,14 +59,31 @@ if (args[0] === "generate") {
         parseDefinitionFile(
           path.resolve(extensionPath, "definition", "def.ts")
         ).then((tsDeclarations) => {
+          console.log(
+            "DEBUG: Raw declarations from def.ts:",
+            JSON.stringify(tsDeclarations, null, 2)
+          );
           generate(tsDeclarations, generatorConfig, config, extensionPath);
         });
       });
     }
   } else {
-    parseDefinitionFile(
-      path.resolve(extensionPath, "definition", "def.ts")
-    ).then((tsDeclarations) => {
+    const defFilePath = path.resolve(extensionPath, "definition", "def.ts");
+    parseDefinitionFile(defFilePath).then((tsDeclarations) => {
+      const output = JSON.stringify(tsDeclarations, null, 2);
+
+      // Define the output folder and file path
+      const outputFolder = path.join(extensionPath, "yo-generated");
+      if (!fs.existsSync(outputFolder)) {
+        fs.mkdirSync(outputFolder, { recursive: true });
+      }
+      const testFilePath = path.join(outputFolder, "testkarol.ts");
+
+      // Write the output to testkarol.ts
+      fs.writeFileSync(testFilePath, output, { encoding: "utf8" });
+      console.log("DEBUG: Raw declarations have been written to", testFilePath);
+
+      // Continue with your generation process
       generate(tsDeclarations, generatorConfig, config, extensionPath);
     });
   }
@@ -103,6 +128,14 @@ function generate(
       text
     )
   );
+
+  const creationPathMapping = buildCreationPathMapping(langiumDeclarations);
+  console.log("Creation Path Mapping:", creationPathMapping);
+  writeCreationPathFile(extensionPath, creationPathMapping);
+
+  const defaultMapping = buildDefaultValueMapping(langiumDeclarations);
+  console.log("Default Value Mapping:", defaultMapping);
+  writeDefaultValueFile(extensionPath, defaultMapping);
 }
 
 function writeToFile(extensionPath: string, filePath: string, text: string) {

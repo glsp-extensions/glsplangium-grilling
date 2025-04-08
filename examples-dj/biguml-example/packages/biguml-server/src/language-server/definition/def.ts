@@ -1,4 +1,9 @@
-import { crossReference, root } from "generator-langium-model-management";
+import {
+  crossReference,
+  defaultValue,
+  path,
+  root,
+} from "generator-langium-model-management";
 
 /**
  * This file has been generated using the langium-model-management generator
@@ -28,6 +33,14 @@ class Position extends MetaInfo {
 }
 
 /**
+ * NEW_ELEMENT
+ */
+class TestElementKarol {
+  name: string = "defaultName";
+  description?: string;
+}
+
+/**
  * CLASS_DIAGRAM
  */
 class ClassDiagram {
@@ -44,18 +57,21 @@ class EnumerationLiteral {
   value?: string;
   visibility?: Visibility;
 }
-class Class extends Entity {
+
+export class Class extends Entity {
+  @defaultValue("Hello world")
   name: string;
-  isAbstract?: boolean;
-  properties?: Array<Property>;
-  operations?: Array<Operation>;
+  isAbstract: boolean = true;
+  @path properties?: Array<Property>;
+  @path operations?: Array<Operation>;
   isActive?: boolean;
   visibility?: Visibility;
 }
+
 class Interface extends Entity {
   name: string;
-  properties?: Array<Property>;
-  operations?: Array<Operation>;
+  @path properties?: Array<Property>;
+  @path operations?: Array<Operation>;
 }
 class Property {
   name: string;
@@ -77,7 +93,7 @@ class Operation {
   isQuery?: boolean;
   visibility?: Visibility;
   concurrency?: Concurrency;
-  parameters?: Array<Parameter>;
+  @path parameters?: Array<Parameter>;
 }
 class Parameter {
   name: string;
@@ -99,8 +115,8 @@ type DataTypeReference =
   | PrimitiveType;
 class DataType extends Entity {
   name: string;
-  properties?: Array<Property>;
-  operations?: Array<Operation>;
+  @path properties?: Array<Property>;
+  @path operations?: Array<Operation>;
   isAbstract?: boolean;
   visibility?: Visibility;
 }
@@ -110,12 +126,12 @@ class PrimitiveType extends Entity {
 class InstanceSpecification extends Entity {
   name: string;
   visibility?: Visibility;
-  slots?: Array<Slot>;
+  @path slots?: Array<Slot>;
 }
 class Slot {
   name: string;
   @crossReference definingFeature?: SlotDefiningFeature;
-  values?: Array<LiteralSpecification>;
+  @path values?: Array<LiteralSpecification>;
 }
 type SlotDefiningFeature = Property | Class | Interface;
 class LiteralSpecification {
@@ -180,15 +196,15 @@ class StateMachineDiagram {
  */
 class PackageDiagram {
   diagramType: "PACKAGE";
-  entities?: Array<Entity>;
-  relations?: Array<Relation>;
+  @path entities?: Array<Entity>;
+  @path relations?: Array<Relation>;
 }
 
 class Package extends Entity {
   name: string;
   uri?: string;
   visibility?: Visibility;
-  entities?: Array<Entity>;
+  @path entities?: Array<Entity>;
 }
 
 /**

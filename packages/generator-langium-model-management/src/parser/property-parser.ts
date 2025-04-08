@@ -8,11 +8,31 @@ export const visitPropertyDeclaration =
     if (ts.isIdentifier(node)) {
       target.name = node.text;
     } else if (ts.isDecorator(node)) {
-      ts.forEachChild(node, (child) => {
-        if (ts.isIdentifier(child)) {
-          target.decorators.push(child.text);
+      const expr = node.expression;
+      if (ts.isCallExpression(expr)) {
+        const decoratorName = expr.expression.getText();
+        if (decoratorName === "defaultValue") {
+          // Handle @defaultValue("some value")
+          if (expr.arguments.length > 0) {
+            const arg = expr.arguments[0];
+            let value: string;
+            if (ts.isStringLiteral(arg)) {
+              value = arg.text;
+            } else {
+              value = arg.getText();
+            }
+            target.decorators.push(`defaultValue:${value}`);
+          } else {
+            target.decorators.push("defaultValue:");
+          }
+        } else {
+          // For other call expressions, simply push the decorator's name.
+          target.decorators.push(decoratorName);
         }
-      });
+      } else if (ts.isIdentifier(expr)) {
+        // For simple decorators without arguments (e.g., @path, @crossReference)
+        target.decorators.push(expr.getText());
+      }
     } else if (ts.isTypeReferenceNode(node)) {
       ts.forEachChild(node, visitTypeReferenceNode(target));
     } else if (ts.isUnionTypeNode(node)) {

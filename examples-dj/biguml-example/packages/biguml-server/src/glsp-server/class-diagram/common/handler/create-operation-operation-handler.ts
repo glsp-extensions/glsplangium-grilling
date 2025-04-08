@@ -87,6 +87,7 @@ export class CreateClassMethodOperationHandler extends OperationHandler implemen
         if (operation.containerId) {
             const container = this.modelState.index.findClass(operation.containerId);
             if (isClass(container)) {
+                // /diagram/entities/ada91cc00-e046-4aca-9ef3-cd5f5256e243/operations/-
                 return this.modelState.index.findPath(operation.containerId)! + '/operations/-';
             }
         }

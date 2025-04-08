@@ -29,7 +29,7 @@ export namespace ModelTypes {
 
     // container types
     export const CLASS = representationTypeId('Class', DefaultTypes.NODE, 'Class');
-    export const ABSTRACT_CLASS = representationTypeId('Class', DefaultTypes.NODE, 'AbstractClass');
+    export const ABSTRACT_CLASS = representationTypeId('Class', DefaultTypes.NODE, 'AbstractClass'); // class die abstract ist
     export const DATA_TYPE = representationTypeId('Class', DefaultTypes.NODE, 'DataType');
     export const ENUMERATION = representationTypeId('Class', DefaultTypes.NODE, 'Enumeration');
     export const INSTANCE_SPECIFICATION = representationTypeId('Class', DefaultTypes.NODE, 'InstanceSpecification');
@@ -69,4 +69,12 @@ function representationTypeId(representation: string, type: string, name: string
 
 function representationTemplateTypeId(representation: string, type: string, template: string, name: string): string {
     return `${type}:${representation.toLowerCase()}__${template}__${name}`;
+}
+
+export namespace astTypes {
+    export function convertToAst(elementId: string): string {
+        // input ist ID von GLSP (elementTzpeId innerhalb von createnodeop) und output is id von ast
+        // alles muss hardgecodet werden
+        if (elementId === ModelTypes.CLASS) return 'Class';
+    }
 }

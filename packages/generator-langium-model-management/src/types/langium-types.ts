@@ -13,6 +13,7 @@ export interface EntryRule {
 export interface TypeRule {
   name: string;
   definitions: Array<Type>;
+  extra?: { path?: string };
 }
 export interface ParserRule {
   name: string;
