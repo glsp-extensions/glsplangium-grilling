@@ -7,7 +7,6 @@
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
 import { SetOutlineAction, SetPropertyPaletteAction } from '@biguml/biguml-protocol';
-import { IActionDispatcher } from '@eclipse-glsp/client';
 import { Container, ContainerModule } from 'inversify';
 import * as vscode from 'vscode';
 import { TYPES } from './di.types';
@@ -16,7 +15,12 @@ import { PropertyPaletteProvider } from './features/property-palette/property-pa
 import { ThemeIntegration } from './features/theme/theme-integration';
 import { UVGlspConnector } from './glsp/uv-glsp-connector';
 import { UVGlspServer } from './glsp/uv-glsp-server';
-import { ActionHandlerRegistry, VSCodeActionDispatcher, configureActionHandler } from './glsp/workaround/action-dispatcher';
+import {
+    ActionHandlerRegistry,
+    IActionDispatcher,
+    VSCodeActionDispatcher,
+    configureActionHandler
+} from './glsp/workaround/action-dispatcher';
 import { LanguageClientConfig, ModelServerOptions } from './languageclient/config';
 import { UVLanguageClient, languageClientModule } from './languageclient/uv-languageclient';
 import { GlspServerConfig, glspServerModule } from './server/glsp-server.launcher';

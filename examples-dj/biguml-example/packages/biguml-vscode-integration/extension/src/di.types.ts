@@ -7,14 +7,12 @@
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
 
-import { TYPES as GLSP_TYPES } from '@eclipse-glsp/client';
-
 // TODO: Add proper support for action handlers in VS Code
 const WORKAROUND_TYPES = {
-    IActionDispatcher: GLSP_TYPES.IActionDispatcher,
-    IActionDispatcherProvider: GLSP_TYPES.IActionDispatcherProvider,
-    ActionHandlerRegistryProvider: GLSP_TYPES.ActionHandlerRegistryProvider,
-    ActionHandlerRegistration: GLSP_TYPES.ActionHandlerRegistration
+    IActionDispatcher: Symbol('IActionDispatcher'),
+    IActionDispatcherProvider: Symbol('IActionDispatcherProvider'),
+    ActionHandlerRegistryProvider: Symbol('ActionHandlerRegistryProvider'),
+    ActionHandlerRegistration: Symbol('ActionHandlerRegistration')
 };
 
 export const TYPES = {

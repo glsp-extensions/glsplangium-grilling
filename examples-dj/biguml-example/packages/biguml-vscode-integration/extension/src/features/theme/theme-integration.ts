@@ -6,9 +6,10 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { SetUmlThemeAction, UmlTheme } from '@biguml/biguml-glsp/lib/features/theme';
+import { SetUmlThemeAction } from '@biguml/biguml-glsp/lib/features/theme/theme.actions';
 import { GlspVscodeClient } from '@eclipse-glsp/vscode-integration';
 import { inject, injectable, postConstruct } from 'inversify';
+import type { UmlTheme } from 'packages/biguml-glsp/lib/features/theme/theme.manager';
 import * as vscode from 'vscode';
 import { TYPES } from '../../di.types';
 import { UVGlspConnector } from '../../glsp/uv-glsp-connector';

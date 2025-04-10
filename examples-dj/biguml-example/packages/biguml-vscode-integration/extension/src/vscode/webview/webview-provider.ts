@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { Action, hasObjectProp, hasStringProp } from '@eclipse-glsp/client';
+import { Action, hasObjectProp, hasStringProp } from '@eclipse-glsp/protocol';
 import { GlspVscodeClient } from '@eclipse-glsp/vscode-integration';
 import { inject, postConstruct } from 'inversify';
 import * as vscode from 'vscode';

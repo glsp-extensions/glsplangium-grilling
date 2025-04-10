@@ -14,12 +14,13 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import { OutlineTreeNode, RequestOutlineAction, SetOutlineAction } from '@biguml/biguml-protocol';
-import { Action, IActionHandler, ICommand, SelectAllAction } from '@eclipse-glsp/client';
+import { Action, SelectAllAction } from '@eclipse-glsp/protocol';
 import { SelectAction } from '@eclipse-glsp/vscode-integration';
 import { inject, injectable, postConstruct } from 'inversify';
 import * as vscode from 'vscode';
 import { TYPES } from '../../di.types';
 import { UVGlspConnector } from '../../glsp/uv-glsp-connector';
+import { IActionHandler } from '../../glsp/workaround/action-dispatcher';
 import { VSCodeSettings } from '../../language';
 
 @injectable()
@@ -77,7 +78,7 @@ export class OutlineTreeProvider implements vscode.TreeDataProvider<OutlineTreeN
         );
     }
 
-    handle(action: Action): void | Action | ICommand {
+    handle(action: Action): void | Action {
         if (SetOutlineAction.is(action)) {
             this.onNodesChanged(action.outlineTreeNodes);
         }

@@ -11,7 +11,8 @@
   },
   "search.exclude": {
     "**/node_modules": true,
-    "**/lib": true
+    "**/lib": true,
+    "examples-al/**": true,
   },
   "editor.insertSpaces": true,
   "[typescript]": {
@@ -26,5 +27,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "eslint.validate": ["javascript", "javascriptreact", "html", "typescript", "typescriptreact"],
-  "bigUML.hideUnotation": false
+  "bigUML.hideUnotation": false,
+  
 }

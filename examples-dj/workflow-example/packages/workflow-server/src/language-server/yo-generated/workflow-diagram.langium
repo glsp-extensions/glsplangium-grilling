@@ -10,8 +10,8 @@ Edge :  WeightedEdge  |   '{'  '"__type"' ':' '"Edge"'   ( ','  '"__id"' ':' '"'
 WeightedEdge :   '{'  '"__type"' ':' '"WeightedEdge"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"weight"' ':' '"' weight = Weight '"' ) ( ','  '"source"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"Node"'  ','  '"__value"' ':' '"'source=[Node:LANGIUM_ID]'"' '}' ) ( ','  '"target"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"Node"'  ','  '"__value"' ':' '"'target=[Node:LANGIUM_ID]'"' '}' )   '}' ;
 Size :   '{'  '"__type"' ':' '"Size"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"height"' ':' height = LANGIUM_INT ) ( ','  '"width"' ':' width = LANGIUM_INT ) ( ','  '"node"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"Node"'  ','  '"__value"' ':' '"'node=[Node:LANGIUM_ID]'"' '}' )   '}' ;
 Position :   '{'  '"__type"' ':' '"Position"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"x"' ':' x = LANGIUM_INT ) ( ','  '"y"' ':' y = LANGIUM_INT ) ( ','  '"node"' ':' '{' '"__type"' ':' '"Reference"'  ','  '"__refType"' ':' '"Node"'  ','  '"__value"' ':' '"'node=[Node:LANGIUM_ID]'"' '}' )   '}' ;
-NodeType  returns string : "decision" | "fork" | "join" | "merge" ;
-TaskType  returns string : "manual" | "automated" ;
-Weight  returns string : "low" | "medium" | "high" ;
-Node  : TaskNode | Category | ActivityNode ;
-MetaInfo  : Size | Position ;
+NodeType  returns string : "decision" | "fork" | "join" | "merge" ;  // TEST_CHANGE
+TaskType  returns string : "manual" | "automated" ;  // TEST_CHANGE
+Weight  returns string : "low" | "medium" | "high" ;  // TEST_CHANGE
+Node  : TaskNode | Category | ActivityNode ;  // TEST_CHANGE
+MetaInfo  : Size | Position ;  // TEST_CHANGE

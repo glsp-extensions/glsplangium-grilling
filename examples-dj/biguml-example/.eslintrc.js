@@ -11,6 +11,7 @@ module.exports = {
   rules: {
       'no-null/no-null': 'off',
       'no-shadow': 'off',
+      "no-duplicate-case": 'off',
       'no-restricted-imports': [
           'error',
           {

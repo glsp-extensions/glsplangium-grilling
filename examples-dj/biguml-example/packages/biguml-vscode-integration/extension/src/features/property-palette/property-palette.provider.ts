@@ -8,10 +8,11 @@
  *********************************************************************************/
 
 import { RefreshPropertyPaletteAction, SetPropertyPaletteAction } from '@biguml/biguml-protocol';
-import { Action, IActionHandler } from '@eclipse-glsp/client';
+import type { Action } from '@eclipse-glsp/protocol';
 import { inject, injectable, postConstruct } from 'inversify';
 import { TYPES } from '../../di.types';
 import { UVGlspConnector } from '../../glsp/uv-glsp-connector';
+import { IActionHandler } from '../../glsp/workaround/action-dispatcher';
 import { VSCodeSettings } from '../../language';
 import { getBundleUri, getUri } from '../../utilities/webview';
 import { ProviderWebviewContext, UVWebviewProvider } from '../../vscode/webview/webview-provider';

@@ -81,7 +81,7 @@
     "@vscode/vsce": "^2.15.0",
     "esbuild": "~0.19.2",
     "eslint": "~8.47.0",
-    "langium-cli": "^3.3.0",
+    "langium-cli": "^2.1.0",
     "tsx": "^3.12.3",
     "typescript": "~5.1.6"
   },

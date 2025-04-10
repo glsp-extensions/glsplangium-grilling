@@ -6,8 +6,7 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { Action } from '@eclipse-glsp/client';
-import { hasObjectProp, RequestAction, ResponseAction } from '@eclipse-glsp/protocol';
+import { Action, hasObjectProp, RequestAction, ResponseAction } from '@eclipse-glsp/protocol';
 
 import { OutlineTreeNode } from './outline.model';
 

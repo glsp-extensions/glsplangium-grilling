@@ -7,19 +7,23 @@
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
 
-import {
-    Action,
-    ActionHandlerRegistration,
-    IActionDispatcher,
-    IActionHandler,
-    isInjectable,
-    MultiInstanceRegistry,
-    RequestAction,
-    ResponseAction
-} from '@eclipse-glsp/client';
+import { type ActionHandlerRegistration } from '@eclipse-glsp/client';
+import { Action, RequestAction, ResponseAction } from '@eclipse-glsp/protocol';
 import { inject, injectable, interfaces, multiInject, optional } from 'inversify';
+import { isInjectable } from 'sprotty/lib/utils/inversify';
+import { MultiInstanceRegistry } from 'sprotty/lib/utils/registry';
 import { TYPES } from '../../di.types';
 import { UVGlspConnector } from '../uv-glsp-connector';
+
+export interface IActionDispatcher {
+    dispatch(action: Action): Promise<void>;
+    dispatchAll(actions: Action[]): Promise<void>;
+    request<Res extends ResponseAction>(action: RequestAction<Res>): Promise<Res>;
+}
+
+export interface IActionHandler {
+    handle(action: Action): Action | void;
+}
 
 @injectable()
 export class VSCodeActionDispatcher implements IActionDispatcher {
@@ -83,7 +87,7 @@ export class VSCodeActionDispatcher implements IActionDispatcher {
 export class ActionHandlerRegistry extends MultiInstanceRegistry<IActionHandler> {
     constructor(@multiInject(TYPES.ActionHandlerRegistration) @optional() registrations: ActionHandlerRegistration[]) {
         super();
-        registrations.forEach(registration => this.register(registration.actionKind, registration.factory()));
+        registrations.forEach(registration => this.register(registration.actionKind, registration.factory() as IActionHandler));
     }
 }
 
