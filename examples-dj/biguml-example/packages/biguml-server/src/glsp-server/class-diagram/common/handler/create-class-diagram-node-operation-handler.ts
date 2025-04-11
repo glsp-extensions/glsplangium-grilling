@@ -37,7 +37,7 @@ export abstract class CreateClassDiagramNodeOperationHandler extends OperationHa
     override label = 'Class';
 
     @inject(ClassDiagramModelState)
-    protected override modelState: ClassDiagramModelState;
+    declare modelState: ClassDiagramModelState;
 
     override createCommand(operation: CreateNodeOperation): Command {
         const modelPatch = this.createNode(operation);

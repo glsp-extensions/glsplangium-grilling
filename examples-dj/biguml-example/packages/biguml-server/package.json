@@ -6,6 +6,7 @@
   "categories": [
     "Programming Languages"
   ],
+  "type": "module",
   "main": "./out/extension.cjs",
   "bin": {
     "uml-cli": "./bin/cli.js"
@@ -14,7 +15,7 @@
     "bin"
   ],
   "scripts": {
-    "build": "tsx esbuild.mts",
+    "build": "tsc -b && tsx esbuild.mts",
     "clean": "rimraf lib tsconfig.tsbuildinfo bundle",
     "esbuild": "tsx esbuild.mts",
     "generate": "generator-langium-model-management generate && langium generate",

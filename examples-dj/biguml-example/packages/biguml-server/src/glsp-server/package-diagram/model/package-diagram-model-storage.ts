@@ -53,7 +53,7 @@ export class PackageDiagramModelStorage implements SourceModelStorage, ClientSes
             throw new GLSPServerError('Expected BigUML Diagram Root');
         }
         this.state.setSemanticRoot(rootUri, root);
-        this.state.modelService.onUpdate(this.state.semanticUri, async (newModel: Diagram) => {
+        this.state.modelService.onUpdate(this.state.semanticUri, this.state.clientId, async (newModel: Diagram) => {
             await this.state.replaceSemanticRoot(newModel);
         });
     }

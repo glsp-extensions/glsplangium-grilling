@@ -15,8 +15,8 @@
  ********************************************************************************/
 import { GCompartment, GLabel, GModelElement, Marker, MarkerKind, ModelValidator } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import { GPackageClassNode } from '../../model/elements/class.graph-extension';
-import { PackageDiagramModelState } from '../../model/package-diagram-model-state';
+import { GPackageClassNode } from '../../model/elements/class.graph-extension.js';
+import { PackageDiagramModelState } from '../../model/package-diagram-model-state.js';
 
 @injectable()
 export class PackageDiagramModelValidator implements ModelValidator {

@@ -1,10 +1,10 @@
 /********************************************************************************
  * Copyright (c) 2023 CrossBreeze.
  ********************************************************************************/
-import { DefaultDocumentBuilder } from "langium";
-import { CancellationToken } from "vscode-languageclient";
-import { URI, Utils as UriUtils } from "vscode-uri";
-import { Utils } from "./util/uri-util.js";
+import { DefaultDocumentBuilder } from 'langium';
+import { CancellationToken } from 'vscode-languageclient';
+import { URI, Utils as UriUtils } from 'vscode-uri';
+import { Utils } from './util/uri-util.js';
 
 /**
  * A document builder that can also handle directories by flattening out directories to an array of file URIs.
@@ -16,8 +16,8 @@ export class UmlDocumentBuilder extends DefaultDocumentBuilder {
     cancelToken?: CancellationToken | undefined
   ): Promise<void> {
     return super.update(
-      changed.flatMap((uri) => this.flattenAndAdaptURI(uri)),
-      deleted.flatMap((uri) => this.collectDeletedURIs(uri)),
+      changed.flatMap(uri => this.flattenAndAdaptURI(uri)),
+      deleted.flatMap(uri => this.collectDeletedURIs(uri)),
       cancelToken
     );
   }
@@ -36,10 +36,10 @@ export class UmlDocumentBuilder extends DefaultDocumentBuilder {
       return [uri];
     }
     // potential directory delete
-    const dirPath = uri.path + "/";
+    const dirPath = uri.path + '/';
     const deletedDocuments = this.langiumDocuments.all
-      .filter((doc) => doc.uri.path.startsWith(dirPath))
-      .map((doc) => doc.uri)
+      .filter(doc => doc.uri.path.startsWith(dirPath))
+      .map(doc => doc.uri)
       .toArray();
     return deletedDocuments || [uri];
   }

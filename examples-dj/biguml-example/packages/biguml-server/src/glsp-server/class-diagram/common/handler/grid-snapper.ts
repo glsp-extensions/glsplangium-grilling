@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { Point } from "@eclipse-glsp/server";
+import { Point } from '@eclipse-glsp/server';
 
 export class GridSnapper {
   public static GRID_X = 10.0;
@@ -23,7 +23,7 @@ export class GridSnapper {
     if (originalPoint) {
       return {
         x: Math.round(originalPoint.x / this.GRID_X) * this.GRID_X,
-        y: Math.round(originalPoint.y / this.GRID_Y) * this.GRID_Y,
+        y: Math.round(originalPoint.y / this.GRID_Y) * this.GRID_Y
       };
     } else {
       return undefined;

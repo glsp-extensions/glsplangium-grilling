@@ -48,7 +48,7 @@ export class GOperationNodeBuilder<T extends GOperationNode = GOperationNode> ex
     }
 
     leftSide() {
-        let options = {
+        const options = {
             ['hGap']: 3,
             ['paddingTop']: 0,
             ['paddingBottom']: 0,

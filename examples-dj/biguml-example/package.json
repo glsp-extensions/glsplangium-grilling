@@ -22,6 +22,8 @@
     "check:headers": "glsp checkHeaders .",
     "copy:server": "tsx ./scripts/copy-server.ts",
     "depcheck": "npx depcheck --config .depcheck.yml",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint -- --fix",
     "package": "cd packages/biguml-vscode-integration/extension && yarn vscode:package && mv ./*.vsix ${INIT_CWD}/release/vsix",
     "package:zip": "yarn package && cd ${INIT_CWD} && zip -r ./release-$(date +%Y%m%d-%H%M).zip ./release",
     "prepare": "lerna run prepare",

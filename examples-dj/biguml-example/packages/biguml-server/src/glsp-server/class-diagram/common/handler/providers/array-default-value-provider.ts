@@ -1,5 +1,14 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
+/*
 import { injectable } from 'inversify';
-import { DefaultValueProvider } from './default-value-provider';
+import { DefaultValueProvider } from './default-value-provider.js';
 
 @injectable()
 export class ArrayDefaultValueProvider implements DefaultValueProvider {
@@ -14,9 +23,10 @@ export class ArrayDefaultValueProvider implements DefaultValueProvider {
                 return [];
             }
         }
-        //... other cases not needed for now (this serves as an example), will be replaced by default values from ast.ts
+        // ... other cases not needed for now (this serves as an example), will be replaced by default values from ast.ts
 
-        //as default empty array is returned
+        // as default empty array is returned
         return [];
     }
 }
+*/

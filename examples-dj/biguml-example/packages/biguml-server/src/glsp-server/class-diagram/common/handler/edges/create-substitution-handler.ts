@@ -1,9 +1,17 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { Command, CreateEdgeOperation } from '@eclipse-glsp/server';
-import { createRandomUUID } from 'model-service';
 import { injectable } from 'inversify';
-import { BigUmlCommand } from '../../../../biguml';
-import { ModelTypes } from '../../util/model-types';
-import { CreateClassDiagramEdgeOperationHandler } from './create-edge-operation-handler';
+import { createRandomUUID } from 'model-service';
+import { BigUmlCommand } from '../../../../biguml/index.js';
+import { ModelTypes } from '../../util/model-types.js';
+import { CreateClassDiagramEdgeOperationHandler } from './create-edge-operation-handler.js';
 
 @injectable()
 export class CreateSubstitutionOperationHandler extends CreateClassDiagramEdgeOperationHandler {

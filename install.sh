@@ -14,17 +14,17 @@ yarn install;
 yarn build;
 
 #install and build workflow blended modeling example
-cd ../../examples-al/workflow/server-blended-modeling;
-echo "Installing workflow blended modeling example...";
-yarn install;
-cd ../glsp-vscode-integration;
-echo "Installing workflow blended modeling example glsp-vscode-integration...";
-yarn install;
+#cd ../../examples-al/workflow/server-blended-modeling;
+#echo "Installing workflow blended modeling example...";
+#yarn install;
+#cd ../glsp-vscode-integration;
+#echo "Installing workflow blended modeling example glsp-vscode-integration...";
+#yarn install;
 
 #install and build biguml blended modeling example
-cd ../../biguml;
-echo "Installing biguml blended modeling example...";
-yarn install;
+#cd ../../biguml;
+#echo "Installing biguml blended modeling example...";
+#yarn install;
 
 #install and build workflow example
 cd ../../examples-dj/workflow-example/packages/workflow-server;

@@ -1,3 +1,11 @@
+/*********************************************************************************
+* Copyright (c) 2023 borkdominik and others.
+*
+* This program and the accompanying materials are made available under the
+* terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+*
+* SPDX-License-Identifier: MIT
+*********************************************************************************/
 import {
     AddedSharedModelServices,
     AddedSharedServices,
@@ -36,7 +44,7 @@ import { UmlWorkspaceManager } from './uml-workspace-manager.js';
 /**
  * Declaration of custom services - add your own service classes here.
  */
-export type UmlAddedSharedServices = {
+export interface UmlAddedSharedServices {
     workspace: {
         WorkspaceManager: UmlWorkspaceManager;
         PackageManager: UmlPackageManager;
@@ -44,7 +52,7 @@ export type UmlAddedSharedServices = {
     logger: {
         ClientLogger: ClientLogger;
     };
-};
+}
 
 export const UmlSharedServices = Symbol('UmlSharedServices');
 export type UmlSharedServices = SharedServices & UmlAddedSharedServices;

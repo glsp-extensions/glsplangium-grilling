@@ -95,7 +95,7 @@ export class ClassDiagramModule extends DiagramModule {
         rebind: interfaces.Rebind
     ): void {
         super.configure(bind, unbind, isBound, rebind);
-        //bind(DefaultValueProvider).to(DefaultValueConfigurationImpl).inSingletonScope();
+        // bind(DefaultValueProvider).to(DefaultValueConfigurationImpl).inSingletonScope();
     }
 
     protected bindDiagramConfiguration(): BindingTarget<DiagramConfiguration> {
@@ -117,11 +117,11 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureOperationHandlers(binding: InstanceMultiBinding<OperationHandlerConstructor>): void {
         super.configureOperationHandlers(binding);
-        //binding.add(CreateClassOperationHandler);
+        // binding.add(CreateClassOperationHandler);
         binding.add(GenericCreateNodeOperationHandler);
         binding.add(CreateClassPropertyOperationHandler);
         binding.add(CreateClassMethodOperationHandler);
-        //binding.add(CreateEnumerationOperationHandler);
+        // binding.add(CreateEnumerationOperationHandler);
 
         binding.add(CreateEnumerationLiteralOperationHandler);
         binding.add(CreateInterfaceOperationHandler);

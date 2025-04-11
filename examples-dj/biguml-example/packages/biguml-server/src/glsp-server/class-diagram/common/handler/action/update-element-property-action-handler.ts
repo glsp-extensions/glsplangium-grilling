@@ -1,8 +1,16 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { UpdateElementPropertyAction } from '@biguml/biguml-protocol';
 import { ActionHandler, MaybePromise, Operation } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import { ClassDiagramModelState } from '../../../model/class-diagram-model-state';
-import { UpdateOperation } from '../update-operation-handler';
+import { ClassDiagramModelState } from '../../../model/class-diagram-model-state.js';
+import { UpdateOperation } from '../update-operation-handler.js';
 
 @injectable()
 export class UpdateElementPropertyActionHandler implements ActionHandler {
@@ -17,7 +25,7 @@ export class UpdateElementPropertyActionHandler implements ActionHandler {
             return;
         }
 
-        var semanticElement = this.modelState.index.findIdElement(action.elementId);
+        const semanticElement = this.modelState.index.findIdElement(action.elementId);
         if (!semanticElement) {
             return;
         }

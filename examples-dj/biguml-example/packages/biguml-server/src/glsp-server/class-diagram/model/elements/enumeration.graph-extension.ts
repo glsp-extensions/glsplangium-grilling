@@ -1,5 +1,13 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { DefaultTypes, GCompartment, GLabel, GNode, GNodeBuilder } from '@eclipse-glsp/server';
-import { ModelTypes } from '../../common/util/model-types';
+import { ModelTypes } from '../../common/util/model-types.js';
 
 export class GEnumerationNode extends GNode {
     name: string = 'UNDEFINED ENUMERATION NAME';

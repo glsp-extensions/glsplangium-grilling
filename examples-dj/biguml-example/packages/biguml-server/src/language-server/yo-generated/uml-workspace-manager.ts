@@ -6,16 +6,16 @@ import {
   DefaultWorkspaceManager,
   Deferred,
   FileSystemNode,
-  LangiumDocument,
-} from "langium";
+  LangiumDocument
+} from 'langium';
 import {
   CancellationToken,
   Emitter,
   Event,
-  WorkspaceFolder,
-} from "vscode-languageserver";
-import { URI, Utils } from "vscode-uri";
-import { UmlSharedServices } from "./uml-module.js";
+  WorkspaceFolder
+} from 'vscode-languageserver';
+import { URI, Utils } from 'vscode-uri';
+import { UmlSharedServices } from './uml-module.js';
 
 /**
  * A cusotm workspace manager that:
@@ -42,9 +42,9 @@ export class UmlWorkspaceManager extends DefaultWorkspaceManager {
   ): Promise<void> {
     try {
       await super.initializeWorkspace(folders, cancelToken);
-      this.logger.info("Workspace Initialized");
+      this.logger.info('Workspace Initialized');
       const uris =
-        this.folders?.map((folder) => this.getRootFolder(folder)) || [];
+        this.folders?.map(folder => this.getRootFolder(folder)) || [];
       this.workspaceInitializedDeferred.resolve(uris);
       this.onWorkspaceInitializedEmitter.fire(uris);
     } catch (error) {
@@ -71,12 +71,12 @@ export class UmlWorkspaceManager extends DefaultWorkspaceManager {
   ): boolean {
     // Note: same as super implementation but we also allow 'node_modules' directories to be scanned
     const name = Utils.basename(entry.uri);
-    if (name.startsWith(".")) {
+    if (name.startsWith('.')) {
       return false;
     }
     if (entry.isDirectory) {
       // CHANGE: Also support 'node_modules' directory
-      return name !== "out";
+      return name !== 'out';
     } else if (entry.isFile) {
       const extname = Utils.extname(entry.uri);
       return fileExtensions.includes(extname);

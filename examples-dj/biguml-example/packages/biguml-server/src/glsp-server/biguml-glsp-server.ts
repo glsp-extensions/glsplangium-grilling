@@ -39,7 +39,7 @@ export class BigUmlGLSPServer extends DefaultGLSPServer {
     TIMESTAMP_KEY = 'timestamp';
 
     @inject(Logger)
-    protected override logger: Logger;
+    declare logger: Logger;
 
     protected override handleInitializeArgs(result: InitializeResult, args: Args | undefined): MaybePromise<InitializeResult> {
         if (!args) {

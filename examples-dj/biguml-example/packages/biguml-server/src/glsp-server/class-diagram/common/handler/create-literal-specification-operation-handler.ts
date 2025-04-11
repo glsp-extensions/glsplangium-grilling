@@ -20,8 +20,8 @@ import {
     OperationHandler,
     TriggerNodeCreationAction
 } from '@eclipse-glsp/server';
-import { createRandomUUID } from 'model-service';
 import { inject, injectable } from 'inversify';
+import { createRandomUUID } from 'model-service';
 import { findAvailableNodeName } from '../../../../language-server/yo-generated/util/name-util.js';
 import { BigUmlCommand } from '../../../biguml/index.js';
 import { ClassDiagramModelState } from '../../model/class-diagram-model-state.js';
@@ -35,7 +35,7 @@ export class CreateLiteralSpecificationOperationHandler extends OperationHandler
     elementTypeIds = [ModelTypes.LITERAL_SPECIFICATION];
 
     @inject(ClassDiagramModelState)
-    protected override modelState: ClassDiagramModelState;
+    declare modelState: ClassDiagramModelState;
 
     override createCommand(operation: CreateNodeOperation): Command {
         const modelPatch = this.createNode(operation);

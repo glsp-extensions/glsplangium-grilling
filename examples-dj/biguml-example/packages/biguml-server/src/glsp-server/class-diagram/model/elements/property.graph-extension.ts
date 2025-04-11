@@ -48,7 +48,7 @@ export class GPropertyNodeBuilder<T extends GPropertyNode = GPropertyNode> exten
     }
 
     leftSide() {
-        let options = {
+        const options = {
             ['hGap']: 3,
             ['paddingTop']: 0,
             ['paddingBottom']: 0,
@@ -127,6 +127,6 @@ export function typeBuilder(text, id) {
     return GLabel.builder().type(ModelTypes.LABEL_TEXT).text(text);
 }
 export function multiplicityBuilder(text = '1', id) {
-    if (text === '1') return GLabel.builder();
+    if (text === '1') {return GLabel.builder();}
     return GLabel.builder().type(ModelTypes.LABEL_TEXT).text(text);
 }

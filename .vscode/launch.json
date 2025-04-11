@@ -114,7 +114,16 @@
         "--extensionDevelopmentPath=${workspaceFolder}/examples-dj/biguml-example/packages/biguml-vscode-integration/extension"
       ],
       "outFiles": [
-        "${workspaceFolder}/examples-dj/biguml-example/packages/biguml-vscode-integration/extension/lib/*.js"
+        "${workspaceFolder}/examples-dj/biguml-example/packages/biguml-vscode-integration/extension/lib/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-vscode-integration/extension/out/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-vscode-integration/extension/node_modules/@eclipse-glsp/vscode-integration/lib/**/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/out/**/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/src/**/*.ts",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/src/*.ts",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/node_modules/langium/**/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/node_modules/vscode-languageclient/**/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/node_modules/vscode-jsonrpc/**/*.js",
+        "${workspaceFolder}/examples-dj/biguml/packages/biguml-server/node_modules/@eclipse-glsp/**/*.js"
       ],
       "sourceMaps": true,
       "env": {

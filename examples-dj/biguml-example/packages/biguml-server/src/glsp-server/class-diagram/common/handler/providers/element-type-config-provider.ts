@@ -1,7 +1,15 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { injectable } from 'inversify';
-import { defaultGetContainerPath } from '../../util/default-container-path';
-import { ModelTypes } from '../../util/model-types';
-import { ElementTypeConfig } from '../types';
+import { defaultGetContainerPath } from '../../util/default-container-path.js';
+import { ModelTypes } from '../../util/model-types.js';
+import { ElementTypeConfig } from '../types.js';
 
 @injectable()
 export class ElementTypeConfigProvider {

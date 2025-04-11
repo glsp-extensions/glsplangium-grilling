@@ -34,7 +34,7 @@ import { ModelTypes } from '../util/model-types.js';
 @injectable()
 export class ClassDiagramCommandPaletteActionProvider extends CommandPaletteActionProvider {
     @inject(ClassDiagramModelState)
-    protected override modelState: ClassDiagramModelState;
+    declare modelState: ClassDiagramModelState;
 
     @inject(ClassDiagramModelIndex)
     protected modelIndex: ClassDiagramModelIndex;

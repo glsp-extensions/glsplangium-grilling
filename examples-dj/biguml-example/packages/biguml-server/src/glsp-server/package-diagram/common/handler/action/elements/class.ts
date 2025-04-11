@@ -1,3 +1,11 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import {
     ElementBoolProperty,
     ElementChoiceProperty,
@@ -5,11 +13,11 @@ import {
     ElementTextProperty,
     SetPropertyPaletteAction
 } from '@biguml/biguml-protocol';
-import { Class } from '../../../../../../language-server/generated/ast';
+import { Class } from '../../../../../../language-server/generated/ast.js';
 
 export namespace ClassPropertyPaletteHandler {
     export function getPropertyPalette(semanticElement: Class): SetPropertyPaletteAction[] {
-        let propertyPalette: { elementId: string; palette?: ElementProperties; responseId?: string } = {
+        const propertyPalette: { elementId: string; palette?: ElementProperties; responseId?: string } = {
             elementId: semanticElement.__id,
             palette: {
                 elementId: semanticElement.__id,

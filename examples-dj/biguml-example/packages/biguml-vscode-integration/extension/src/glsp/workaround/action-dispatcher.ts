@@ -43,7 +43,7 @@ export class VSCodeActionDispatcher implements IActionDispatcher {
         return this.initialized;
     }
 
-    connect(connector: UVGlspConnector) {
+    connect(connector: UVGlspConnector): void {
         this.connector = connector;
     }
 

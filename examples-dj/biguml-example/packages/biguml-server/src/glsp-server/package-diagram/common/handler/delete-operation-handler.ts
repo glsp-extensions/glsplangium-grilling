@@ -27,7 +27,7 @@ export class PackageDiagramDeleteOperationHandler extends OperationHandler {
     }
 
     protected deleteElements(operation: DeleteElementOperation) {
-        let patch: any[] = [];
+        const patch: any[] = [];
         const patchDetails: any[] = [];
         for (const elementId of operation.elementIds) {
             const element = this.state.index.findSemanticElement(elementId, isDiagramElement);

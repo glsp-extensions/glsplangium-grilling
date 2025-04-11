@@ -5,14 +5,14 @@
 import { AstNode, CstNode, findNodeForProperty, getDocument, isNamed, NameProvider } from 'langium';
 import { UmlServices } from './uml-module.js';
 import { UNKNOWN_PROJECT_REFERENCE } from './uml-package-manager.js';
-import { properties } from "../../../generator-config.js";
+import { properties } from '../../../generator-config.js';
 
 export interface IdAstNode extends AstNode {
    __id: string;
  }
- 
+
  export function isIdAstNode(node: AstNode): node is IdAstNode {
-   return typeof (node as IdAstNode)[properties.referenceProperty] === "string";
+   return typeof (node as IdAstNode)[properties.referenceProperty] === 'string';
  }
 
 /**
@@ -51,7 +51,7 @@ export class QualifiedNameProvider implements NameProvider {
       if (!node) {
         return undefined;
       }
-      let name = this.getLocalName(node);
+      const name = this.getLocalName(node);
       // let parent = node.$container;
       // while (parent && isIdAstNode(parent)) {
       //   name = concat(parent[properties.referenceProperty], name);

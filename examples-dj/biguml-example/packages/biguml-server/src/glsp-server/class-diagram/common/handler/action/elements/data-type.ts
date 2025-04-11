@@ -1,8 +1,16 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { SetPropertyPaletteAction } from '@biguml/biguml-protocol';
 import { CreateNodeOperation, DeleteElementOperation } from '@eclipse-glsp/server';
-import { DataType } from '../../../../../../language-server/generated/ast';
-import { ModelTypes } from '../../../util/model-types';
-import { PropertyPalette } from './util';
+import { DataType } from '../../../../../../language-server/generated/ast.js';
+import { ModelTypes } from '../../../util/model-types.js';
+import { PropertyPalette } from './util.js';
 
 export namespace DataTypePropertyPaletteHandler {
     export function getPropertyPalette(semanticElement: DataType, dataTypeChoices): SetPropertyPaletteAction[] {

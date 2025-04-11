@@ -54,7 +54,7 @@ export function isExternalDescriptionForLocalPackage(description: AstNodeDescrip
  * - Export nodes twice: Once for external usage with the fully-qualified name and once for package-local usage.
  */
 export class <%= LanguageName %>ScopeComputation extends DefaultScopeComputation {
-   protected override nameProvider: QualifiedNameProvider;
+   declare nameProvider: QualifiedNameProvider;
    protected packageManager: <%= LanguageName %>PackageManager;
 
    constructor(services: <%= LanguageName %>Services) {

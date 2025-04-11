@@ -1,11 +1,11 @@
 /********************************************************************************
  * Copyright (c) 2023 CrossBreeze.
  ********************************************************************************/
-import chalk from "chalk";
-import fs from "fs";
-import { AstNode, LangiumDocument, LangiumServices } from "langium";
-import path from "path";
-import { URI } from "vscode-uri";
+import chalk from 'chalk';
+import fs from 'fs';
+import { AstNode, LangiumDocument, LangiumServices } from 'langium';
+import path from 'path';
+import { URI } from 'vscode-uri';
 
 export async function extractDocument(
   fileName: string,
@@ -31,14 +31,14 @@ export async function extractDocument(
       URI.file(path.resolve(fileName))
     );
   await services.shared.workspace.DocumentBuilder.build([document], {
-    validation: true,
+    validation: true
   });
 
   const validationErrors = (document.diagnostics ?? []).filter(
-    (e) => e.severity === 1
+    e => e.severity === 1
   );
   if (validationErrors.length > 0) {
-    console.error(chalk.red("There are validation errors:"));
+    console.error(chalk.red('There are validation errors:'));
     for (const validationError of validationErrors) {
       console.error(
         chalk.red(
@@ -73,9 +73,9 @@ export function extractDestinationAndName(
 ): FilePathData {
   filePath = path
     .basename(filePath, path.extname(filePath))
-    .replace(/[.-]/g, "");
+    .replace(/[.-]/g, '');
   return {
-    destination: destination ?? path.join(path.dirname(filePath), "generated"),
-    name: path.basename(filePath),
+    destination: destination ?? path.join(path.dirname(filePath), 'generated'),
+    name: path.basename(filePath)
   };
 }

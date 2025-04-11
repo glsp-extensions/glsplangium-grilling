@@ -1,3 +1,11 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import {
     Command,
     CreateNodeOperation,
@@ -20,23 +28,25 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     readonly operationType = CreateNodeOperation.KIND;
 
     @inject(ClassDiagramModelState)
-    protected override modelState: ClassDiagramModelState;
+    declare modelState: ClassDiagramModelState;
 
     get elementTypeIds(): string[] {
-        //return Object.keys(this.elementTypeConfigProvider.getElementTypeConfigs());
-        return [ModelTypes.CLASS, ModelTypes.ENUMERATION]; //alle hinzufugen von Node
+        // return Object.keys(this.elementTypeConfigProvider.getElementTypeConfigs());
+        return [ModelTypes.CLASS, ModelTypes.ENUMERATION]; // alle hinzufugen von Node
     }
 
     override label: string = '';
 
     override createCommand(operation: CreateNodeOperation): Command {
-        /**const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
+        /** const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
         const elementTypeId = operation.elementTypeId;
         const config = elementTypeConfigs[elementTypeId];
         if (!config) {
             throw new Error(`No configuration found for elementTypeId ${elementTypeId}`);
         }
 **/
+        // VS Code Extension => Output => bigUML Modeling Tool (Dropdown)
+        console.log('===== operation =====: ', operation);
         const modelPatch = this.createNode(operation);
         const nodeId = JSON.parse(modelPatch).value.__id;
         const modelDetailsPatch = this.createNodeDetails(operation, nodeId, URI.parse(this.modelState.semanticUri).path);
@@ -45,7 +55,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     }
 
     createNodeDetails(operation: CreateNodeOperation, id: string, nodeDocumentUri: string): string {
-        /**const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
+        /** const elementTypeConfigs = this.elementTypeConfigProvider.getElementTypeConfigs();
         const elementTypeId = operation.elementTypeId;
         const config = elementTypeConfigs[elementTypeId];
 
@@ -93,15 +103,15 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     }
 
     createNode(operation: CreateNodeOperation): string {
-        //const modelType = config.modelType || config.label;
-        const newName = findAvailableNodeName(this.modelState.semanticRoot, `Newtest`);
+        // const modelType = config.modelType || config.label;
+        const newName = findAvailableNodeName(this.modelState.semanticRoot, 'Newtest');
         const id = createRandomUUID();
 
         const containerPath = this.resolveContainerPath(operation);
 
-        //const defaults = this.collectDefaultValues(modelType);
+        // const defaults = this.collectDefaultValues(modelType);
 
-        //ich kann auf ast file zugreifen
+        // ich kann auf ast file zugreifen
         const astType = astTypes.convertToAst(operation.elementTypeId);
 
         // alles soll von ast file rausgelesen werden
@@ -109,8 +119,8 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
             $type: 'Class',
             __id: id,
             name: newName
-            //...defaults,
-            //...(config.additionalProperties || {})
+            // ...defaults,
+            // ...(config.additionalProperties || {})
         };
 
         const patch = JSON.stringify({
@@ -124,7 +134,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     resolveContainerPath(operation: CreateNodeOperation): string {
         const defaultContainerPath = '/diagram/entities/-';
 
-        /**if (config.getContainerPath) {
+        /** if (config.getContainerPath) {
             return config.getContainerPath(operation, this.modelState, defaultContainerPath) || defaultContainerPath;
         }
 
@@ -132,7 +142,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
         return defaultContainerPath;
     }
     /**
-    //Beispiel, füge beim containerId-ada91cc00-e046-4aca-9ef3-cd5f5256e243 (UID) (Class), den elementTypeId: Class Operation hinzu 
+    //Beispiel, füge beim containerId-ada91cc00-e046-4aca-9ef3-cd5f5256e243 (UID) (Class), den elementTypeId: Class Operation hinzu
     resolveContainerPath(operation: CreateNodeOperation, config: ElementTypeConfig): string {
     if (operation.containerId)
         const container = this.modelState.index.find(operation.containerId);
@@ -145,9 +155,8 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
                 // /diagram/entities/ada91cc00-e046-4aca-9ef3-cd5f5256e243/operations/-
                 return containerPath + path.path;
             }
-            
+
         }
-        
 
         // Pseudocode, bekomme irgendwie die paths zurück //• container.type === Class, operation.elementTypeId === Operation
         const path = astReflection.getMetadataPath(container.type, operation.elementTypeId) ;
@@ -157,9 +166,6 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     }
     }
         return• '/diagram/entities/-';
-
-    
-
 
     collectDefaultValues(type: string): any {
         const defaults: any = {};

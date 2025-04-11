@@ -1,3 +1,11 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import {
     Args,
     MaybePromise,
@@ -6,7 +14,7 @@ import {
     TriggerEdgeCreationAction,
     TriggerNodeCreationAction
 } from '@eclipse-glsp/server';
-import { ModelTypes } from '../util/model-types';
+import { ModelTypes } from '../util/model-types.js';
 
 export class PackageDiagramToolPaletteItemProvider extends ToolPaletteItemProvider {
     override getItems(args?: Args): MaybePromise<PaletteItem[]> {

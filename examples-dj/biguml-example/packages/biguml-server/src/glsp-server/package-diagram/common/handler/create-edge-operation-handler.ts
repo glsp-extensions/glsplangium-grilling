@@ -20,8 +20,8 @@ import {
     OperationHandler,
     TriggerEdgeCreationAction
 } from '@eclipse-glsp/server';
-import { createRandomUUID } from 'model-service';
 import { inject, injectable } from 'inversify';
+import { createRandomUUID } from 'model-service';
 import { BigUmlCommand } from '../../../biguml/common/handler/big-uml-command.js';
 import { PackageDiagramModelState } from '../../model/package-diagram-model-state.js';
 import { ModelTypes } from '../util/model-types.js';
@@ -42,7 +42,7 @@ export class CreatePackageDiagramEdgeOperationHandler extends OperationHandler i
     override label = 'Relation';
 
     @inject(PackageDiagramModelState)
-    protected override modelState: PackageDiagramModelState;
+    declare modelState: PackageDiagramModelState;
 
     override createCommand(operation: CreateEdgeOperation): Command {
         return new BigUmlCommand(this.modelState, this.createEdge(operation, this.getRelationTypeFromElementId(operation.elementTypeId)));

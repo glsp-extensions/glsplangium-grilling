@@ -16,8 +16,8 @@
 import { NavigationTarget } from '@eclipse-glsp/protocol';
 import { NavigationTargetResolution, NavigationTargetResolver } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import { GPackageClassNode } from '../../model/elements/class.graph-extension';
-import { PackageDiagramModelState } from '../../model/package-diagram-model-state';
+import { GPackageClassNode } from '../../model/elements/class.graph-extension.js';
+import { PackageDiagramModelState } from '../../model/package-diagram-model-state.js';
 
 @injectable()
 export class PackageDiagramNavigationTargetResolver extends NavigationTargetResolver {

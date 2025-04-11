@@ -1,9 +1,17 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { ElementChoiceProperty, ElementProperties, ElementTextProperty, SetPropertyPaletteAction } from '@biguml/biguml-protocol';
-import { Package } from '../../../../../../language-server/generated/ast';
+import { Package } from '../../../../../../language-server/generated/ast.js';
 
 export namespace PackagePropertyPaletteHandler {
     export function getPropertyPalette(semanticElement: Package): SetPropertyPaletteAction[] {
-        let propertyPalette: { elementId: string; palette?: ElementProperties; responseId?: string } = {
+        const propertyPalette: { elementId: string; palette?: ElementProperties; responseId?: string } = {
             elementId: semanticElement.__id,
             palette: {
                 elementId: semanticElement.__id,

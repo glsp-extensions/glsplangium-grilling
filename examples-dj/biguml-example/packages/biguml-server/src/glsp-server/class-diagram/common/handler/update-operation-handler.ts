@@ -11,7 +11,7 @@ import { ClassDiagramModelState } from '../../model/class-diagram-model-state.js
 export class UpdateOperationHandler extends OperationHandler {
     override operationType = UpdateOperation.KIND;
 
-    @inject(ClassDiagramModelState) protected override modelState: ClassDiagramModelState;
+    @inject(ClassDiagramModelState) declare modelState: ClassDiagramModelState;
 
     createCommand(_operation: UpdateOperation): Command {
         return new BigUmlCommand(this.modelState, JSON.stringify([JSON.parse(this.createUpdate(_operation))]));
@@ -21,7 +21,7 @@ export class UpdateOperationHandler extends OperationHandler {
         const path = this.modelState.index.findPath(operation.elementId);
         let value: any = operation.value;
         if (value && typeof value === 'string' && value.endsWith('_refValue')) {
-            let element = this.modelState.index.findIdElement(value.substring(0, value.length - 9));
+            const element = this.modelState.index.findIdElement(value.substring(0, value.length - 9));
             value = {
                 ref: {
                     __id: element.__id,
@@ -29,7 +29,7 @@ export class UpdateOperationHandler extends OperationHandler {
                 }
             };
         }
-        let elementToBeUpdated = this.modelState.index.findIdElement(operation.elementId);
+        const elementToBeUpdated = this.modelState.index.findIdElement(operation.elementId);
         const op = elementToBeUpdated && elementToBeUpdated[operation.property] ? 'replace' : 'add';
 
         return JSON.stringify({

@@ -1,3 +1,11 @@
+/*********************************************************************************
+* Copyright (c) 2023 borkdominik and others.
+*
+* This program and the accompanying materials are made available under the
+* terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+*
+* SPDX-License-Identifier: MIT
+*********************************************************************************/
 import chalk from 'chalk';
 import { Command } from 'commander';
 import { UmlLanguageMetaData } from '../generated/module.js';
@@ -13,9 +21,9 @@ export const generateAction = async (fileName: string, opts: GenerateOptions): P
     console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
 };
 
-export type GenerateOptions = {
+export interface GenerateOptions {
     destination?: string;
-};
+}
 
 export default function (): void {
     const program = new Command();

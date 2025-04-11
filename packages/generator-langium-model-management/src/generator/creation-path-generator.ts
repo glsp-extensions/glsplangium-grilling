@@ -45,7 +45,7 @@ export function writeCreationPathFile(
   >
 ): void {
   const content = `
-//THIS FILE IS GENERATED
+// THIS FILE IS GENERATED - TEST
 
   const mapping: Record<string, Array<{ property: string; allowedChildTypes?: string[] }>> = ${JSON.stringify(mapping, null, 2)};
   

@@ -14,8 +14,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import { DefaultModelState, JsonModelState } from '@eclipse-glsp/server';
-import { DiagramSerializer, ModelService } from 'model-service';
 import { inject, injectable } from 'inversify';
+import { DiagramSerializer, ModelService } from 'model-service';
 import { URI } from 'vscode-uri';
 import { BigUmlLSPServices } from '../../../integration.js';
 import { Diagram } from '../../../language-server/generated/ast.js';
@@ -33,7 +33,7 @@ export interface ClassDiagramSourceModel {
 @injectable()
 export class ClassDiagramModelState extends DefaultModelState implements JsonModelState<ClassDiagramSourceModel> {
     @inject(ClassDiagramModelIndex)
-    override readonly index: ClassDiagramModelIndex;
+    declare index: ClassDiagramModelIndex;
     @inject(BigUmlLSPServices)
     readonly services: BigUmlLSPServices;
 

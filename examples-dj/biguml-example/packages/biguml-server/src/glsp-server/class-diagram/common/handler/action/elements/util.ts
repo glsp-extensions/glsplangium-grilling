@@ -1,13 +1,22 @@
+/*********************************************************************************
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import {
     ElementBoolProperty,
     ElementChoiceProperty,
+    ElementProperties,
     ElementProperty,
     ElementReferenceProperty,
     ElementTextProperty
 } from '@biguml/biguml-protocol';
 
 export class PropertyPalette {
-    static builder() {
+    static builder(): PropetyPaletteBuilder {
         return new PropetyPaletteBuilder();
     }
     static DEFAULT_VISIBILITY_CHOICES = [
@@ -30,16 +39,16 @@ export class PropetyPaletteBuilder {
         items: Array<ElementProperty>;
     } = { items: [] };
 
-    elementId(elementId: string) {
+    elementId(elementId: string): PropetyPaletteBuilder {
         this.proxy.elementId = elementId;
         return this;
     }
-    label(label: string) {
+    label(label: string): PropetyPaletteBuilder {
         this.proxy.label = label;
         return this;
     }
 
-    text(elementId: string, propertyId: string, text: string, label: string) {
+    text(elementId: string, propertyId: string, text: string, label: string): PropetyPaletteBuilder {
         this.proxy.items.push({
             elementId,
             propertyId,
@@ -51,7 +60,7 @@ export class PropetyPaletteBuilder {
         return this;
     }
 
-    bool(elementId: string, propertyId: string, value: boolean, label: string) {
+    bool(elementId: string, propertyId: string, value: boolean, label: string): PropetyPaletteBuilder {
         this.proxy.items.push({
             elementId,
             propertyId,
@@ -62,7 +71,13 @@ export class PropetyPaletteBuilder {
         return this;
     }
 
-    choice(elementId: string, propertyId: string, choices: Array<{ label: string; value: string }>, choice: string, label: string) {
+    choice(
+        elementId: string,
+        propertyId: string,
+        choices: Array<{ label: string; value: string }>,
+        choice: string,
+        label: string
+    ): PropetyPaletteBuilder {
         this.proxy.items.push({
             elementId,
             propertyId,
@@ -80,7 +95,7 @@ export class PropetyPaletteBuilder {
         label: string,
         references: ElementReferenceProperty.Reference[],
         creates: ElementReferenceProperty.CreateReference[]
-    ) {
+    ): PropetyPaletteBuilder {
         this.proxy.items.push({
             elementId,
             propertyId,
@@ -95,7 +110,7 @@ export class PropetyPaletteBuilder {
         return this;
     }
 
-    build() {
+    build(): { elementId: string; palette?: ElementProperties } {
         return {
             elementId: this.proxy.elementId,
             palette: {

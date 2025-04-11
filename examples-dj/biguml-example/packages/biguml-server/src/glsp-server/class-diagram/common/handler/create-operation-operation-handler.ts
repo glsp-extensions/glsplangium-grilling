@@ -21,8 +21,8 @@ import {
     Point,
     TriggerNodeCreationAction
 } from '@eclipse-glsp/server';
-import { createRandomUUID } from 'model-service';
 import { inject, injectable } from 'inversify';
+import { createRandomUUID } from 'model-service';
 import { Class, isClass } from '../../../../language-server/generated/ast.js';
 import { findAvailableNodeName } from '../../../../language-server/yo-generated/util/name-util.js';
 import { BigUmlCommand } from '../../../biguml/index.js';
@@ -39,7 +39,7 @@ export class CreateClassMethodOperationHandler extends OperationHandler implemen
     override label = 'Operation';
 
     @inject(ClassDiagramModelState)
-    protected override modelState: ClassDiagramModelState;
+    declare modelState: ClassDiagramModelState;
 
     override createCommand(operation: CreateNodeOperation): Command {
         const patch = this.createMethod(operation);

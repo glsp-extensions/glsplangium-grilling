@@ -18,7 +18,7 @@ export class UpdateOperationHandler extends OperationHandler {
     }
 
     @inject(PackageDiagramModelState)
-    protected override modelState: PackageDiagramModelState;
+    declare modelState: PackageDiagramModelState;
 
     createUpdate(operation: UpdateOperation): string {
         const path = this.state.index.findPath(operation.elementId);

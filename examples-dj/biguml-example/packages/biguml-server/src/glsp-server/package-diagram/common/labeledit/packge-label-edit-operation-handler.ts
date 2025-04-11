@@ -32,9 +32,9 @@ export class PackageLabelEditOperationHandler extends OperationHandler {
     protected editLabel(operation: ApplyLabelEditOperation): string | undefined {
         const labelId = operation.labelId.split('_')[0];
         const node = this.state.index.findSemanticElement(labelId, isAstNode);
-        if (!node) return undefined;
+        if (!node) {return undefined;}
 
-        let path = this.state.index.findPath(labelId) + '/' + 'name';
+        const path = this.state.index.findPath(labelId) + '/' + 'name';
 
         return JSON.stringify([{ op: 'replace', path, value: operation.text }]);
     }

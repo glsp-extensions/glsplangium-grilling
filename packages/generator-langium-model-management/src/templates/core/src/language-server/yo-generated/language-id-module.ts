@@ -94,6 +94,9 @@ export interface <%= LanguageName %>AddedServices {
   serializer: {
     Serializer: <%= LanguageName %>Serializer;
   };
+  validation: {
+    <%= LanguageName %>Validator: any;
+  }
 }
 
 /**

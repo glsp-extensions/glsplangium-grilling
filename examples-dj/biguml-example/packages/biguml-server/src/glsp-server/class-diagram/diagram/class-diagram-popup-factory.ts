@@ -26,7 +26,7 @@ export class ClassDiagramPopupFactory implements PopupModelFactory {
                 .code(`<div class="sprotty-popup-title">${element.name}</div>`)
                 .build();
 
-            const popupBody = GPreRenderedElement.builder().id('popup-body').code(`<div class="sprotty-popup-body"></div>`).build();
+            const popupBody = GPreRenderedElement.builder().id('popup-body').code('<div class="sprotty-popup-body"></div>').build();
 
             return GModelRoot.builder().type('html').canvasBounds(action.bounds).id('sprotty-popup').add(popupTitle).add(popupBody).build();
         }

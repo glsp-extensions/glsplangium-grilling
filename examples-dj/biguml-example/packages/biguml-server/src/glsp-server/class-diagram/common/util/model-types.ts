@@ -75,6 +75,6 @@ export namespace astTypes {
     export function convertToAst(elementId: string): string {
         // input ist ID von GLSP (elementTzpeId innerhalb von createnodeop) und output is id von ast
         // alles muss hardgecodet werden
-        if (elementId === ModelTypes.CLASS) return 'Class';
+        if (elementId === ModelTypes.CLASS) {return 'Class';}
     }
 }

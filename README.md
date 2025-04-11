@@ -15,7 +15,7 @@ In the blended modeling examples, to open the text editor right klick on a model
 
 ## Packages
 
-The `packages` folder contains the created model service and generator. To generate a new build run `yarn install` and `yarn build` in the appropriate service folder. To update the dependencies in the examples go to the corresponding server folder of the example and run `yard upgrade model-service` or `yard upgrade generator-langium-model-management`.
+The `packages` folder contains the created model service and generator. To generate a new build run `yarn install` and `yarn build` in the appropriate service folder. To update the dependencies in the examples go to the corresponding server folder of the example and run `yarn upgrade model-service` or `yarn upgrade generator-langium-model-management`.
 
 ## Examples - AL
 
