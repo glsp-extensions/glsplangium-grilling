@@ -6,20 +6,15 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import {
-  crossReference,
-  defaultValue,
-  path,
-  root,
-} from "generator-langium-model-management";
+import { crossReference, path, root } from 'generator-langium-model-management';
 
 /**
  * This file has been generated using the langium-model-management generator
  */
 @root
 class Diagram {
-  diagram: ClassDiagram | StateMachineDiagram | PackageDiagram;
-  metaInfos?: Array<MetaInfo>;
+    diagram: ClassDiagram | StateMachineDiagram | PackageDiagram;
+    metaInfos?: Array<MetaInfo>;
 }
 
 /**
@@ -29,212 +24,216 @@ abstract class ElementWithSizeAndPosition {}
 abstract class Entity extends ElementWithSizeAndPosition {}
 
 abstract class MetaInfo {
-  @crossReference element: ElementWithSizeAndPosition;
+    @crossReference element: ElementWithSizeAndPosition;
 }
 class Size extends MetaInfo {
-  height: number;
-  width: number;
+    height: number;
+    width: number;
 }
 class Position extends MetaInfo {
-  x: number;
-  y: number;
+    x: number;
+    y: number;
 }
 
 /**
  * NEW_ELEMENT
  */
 class TestElementKarol {
-  name: string = "defaultName";
-  description?: string;
+    name: string = 'defaultName';
+    description?: string;
 }
 
 /**
  * CLASS_DIAGRAM
  */
 class ClassDiagram {
-  diagramType: "CLASS";
-  entities?: Array<Entity>;
-  relations?: Array<Relation>;
+    diagramType: 'CLASS';
+    entities?: Array<Entity>;
+    relations?: Array<Relation>;
 }
 class Enumeration extends Entity {
-  name: string;
-  values?: Array<EnumerationLiteral>;
+    name: string;
+    values?: Array<EnumerationLiteral>;
 }
 class EnumerationLiteral {
-  name: string;
-  value?: string;
-  visibility?: Visibility;
+    name: string;
+    value?: string;
+    visibility?: Visibility;
 }
 
 export class Class extends Entity {
-  @defaultValue("Hello world")
-  name: string;
-  isAbstract: boolean = true;
-  @path properties?: Array<Property>;
-  @path operations?: Array<Operation>;
-  isActive?: boolean;
-  visibility?: Visibility;
+    name: string = 'Karol';
+    isAbstract: boolean = false;
+    @path properties?: Array<Property>;
+    @path operations?: Array<Operation>;
+    isActive?: boolean;
+    visibility?: Visibility = 'PUBLIC';
+}
+
+export class AbstractClass extends Class {
+    override isAbstract: boolean = true;
+    override visibility?: Visibility = 'PUBLIC';
 }
 
 class Interface extends Entity {
-  name: string;
-  @path properties?: Array<Property>;
-  @path operations?: Array<Operation>;
+    name: string;
+    @path properties?: Array<Property>;
+    @path operations?: Array<Operation>;
 }
 class Property {
-  name: string;
-  isDerived?: boolean;
-  isOrdered?: boolean;
-  isStatic?: boolean;
-  isDerivedUnion?: boolean;
-  isReadOnly?: boolean;
-  isUnique?: boolean;
-  visibility?: Visibility;
-  multiplicity?: string;
-  @crossReference propertyType?: DataTypeReference;
-  aggregation?: AggregationType;
+    name: string;
+    isDerived?: boolean;
+    isOrdered?: boolean;
+    isStatic?: boolean;
+    isDerivedUnion?: boolean;
+    isReadOnly?: boolean;
+    isUnique?: boolean;
+    visibility?: Visibility;
+    multiplicity?: string;
+    @crossReference propertyType?: DataTypeReference;
+    aggregation?: AggregationType;
 }
 class Operation {
-  name: string;
-  isAbstract?: boolean;
-  isStatic?: boolean;
-  isQuery?: boolean;
-  visibility?: Visibility;
-  concurrency?: Concurrency;
-  @path parameters?: Array<Parameter>;
+    name: string;
+    isAbstract?: boolean;
+    isStatic?: boolean;
+    isQuery?: boolean;
+    visibility?: Visibility;
+    concurrency?: Concurrency;
+    @path parameters?: Array<Parameter>;
 }
 class Parameter {
-  name: string;
-  isException?: boolean;
-  isStream?: boolean;
-  isOrdered?: boolean;
-  isUnique?: boolean;
-  direction?: ParameterDirection;
-  effect?: EffectType;
-  visibility?: Visibility;
-  @crossReference parameterType?: DataTypeReference;
-  multiplicity?: string;
+    name: string;
+    isException?: boolean;
+    isStream?: boolean;
+    isOrdered?: boolean;
+    isUnique?: boolean;
+    direction?: ParameterDirection;
+    effect?: EffectType;
+    visibility?: Visibility;
+    @crossReference parameterType?: DataTypeReference;
+    multiplicity?: string;
 }
-type DataTypeReference =
-  | DataType
-  | Enumeration
-  | Class
-  | Interface
-  | PrimitiveType;
+type DataTypeReference = DataType | Enumeration | Class | Interface | PrimitiveType;
 class DataType extends Entity {
-  name: string;
-  @path properties?: Array<Property>;
-  @path operations?: Array<Operation>;
-  isAbstract?: boolean;
-  visibility?: Visibility;
+    name: string;
+    @path properties?: Array<Property>;
+    @path operations?: Array<Operation>;
+    isAbstract?: boolean;
+    visibility?: Visibility;
 }
 class PrimitiveType extends Entity {
-  name: string;
+    name: string;
 }
 class InstanceSpecification extends Entity {
-  name: string;
-  visibility?: Visibility;
-  @path slots?: Array<Slot>;
+    name: string;
+    visibility?: Visibility;
+    @path slots?: Array<Slot>;
 }
 class Slot {
-  name: string;
-  @crossReference definingFeature?: SlotDefiningFeature;
-  @path values?: Array<LiteralSpecification>;
+    name: string;
+    @crossReference definingFeature?: SlotDefiningFeature;
+    @path values?: Array<LiteralSpecification>;
 }
 type SlotDefiningFeature = Property | Class | Interface;
 class LiteralSpecification {
-  name: string;
-  value: string;
+    name: string;
+    value: string;
 }
 class Relation {
-  @crossReference source: Entity;
-  @crossReference target: Entity;
-  relationType: RelationType;
+    @crossReference source: Entity;
+    @crossReference target: Entity;
+    relationType: RelationType;
 }
 class Abstraction extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 class Dependency extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 class Association extends Relation {
-  name?: string;
-  sourceMultiplicity?: string;
-  targetMultiplicity?: string;
-  sourceName?: string;
-  targetName?: string;
-  sourceAggregation?: AggregationType;
-  targetAggregation?: AggregationType;
-  visibility?: Visibility;
+    name?: string;
+    sourceMultiplicity?: string;
+    targetMultiplicity?: string;
+    sourceName?: string;
+    targetName?: string;
+    sourceAggregation?: AggregationType;
+    targetAggregation?: AggregationType;
+    visibility?: Visibility;
 }
 class InterfaceRealization extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 class Generalization extends Relation {
-  isSubstitutable: boolean;
+    isSubstitutable: boolean;
 }
 class PackageImport extends Relation {
-  visibility?: Visibility;
+    visibility?: Visibility;
 }
 class PackageMerge extends Relation {}
 class Realization extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 class Substitution extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 class Usage extends Relation {
-  name?: string;
-  visibility?: Visibility;
+    name?: string;
+    visibility?: Visibility;
 }
 /**
  * STATE_MACHINE
  */
 class StateMachineDiagram {
-  diagramType: "STATE_MACHINE";
+    diagramType: 'STATE_MACHINE';
 }
 
 /**
  * PACKAGE_DIAGRAM
  */
 class PackageDiagram {
-  diagramType: "PACKAGE";
-  @path entities?: Array<Entity>;
-  @path relations?: Array<Relation>;
+    diagramType: 'PACKAGE';
+    @path entities?: Array<Entity>;
+    @path relations?: Array<Relation>;
 }
 
 class Package extends Entity {
-  name: string;
-  uri?: string;
-  visibility?: Visibility;
-  @path entities?: Array<Entity>;
+    name: string = 'Hello'; //hello irgendiwie in testkarol.ts bringen
+    uri?: string;
+    visibility?: Visibility;
+    test: test;
+    @path entities?: Array<Entity>;
+}
+
+interface test {
+    name: string;
 }
 
 /**
  * TYPES
  */
-type AggregationType = "NONE" | "SHARED" | "COMPOSITE";
-type ParameterDirection = "IN" | "OUT" | "INOUT" | "RETURN";
-type EffectType = "CREATE" | "READ" | "UPDATE" | "DELETE";
+type AggregationType = 'NONE' | 'SHARED' | 'COMPOSITE';
+type ParameterDirection = 'IN' | 'OUT' | 'INOUT' | 'RETURN';
+type EffectType = 'CREATE' | 'READ' | 'UPDATE' | 'DELETE';
 
-type Concurrency = "SEQUENTIAL" | "GUARDED" | "CONCURRENT";
+type Concurrency = 'SEQUENTIAL' | 'GUARDED' | 'CONCURRENT';
 type RelationType =
-  | "ABSTRACTION"
-  | "AGGREGATION"
-  | "ASSOCIATION"
-  | "COMPOSITION"
-  | "DEPENDENCY"
-  | "GENERALIZATION"
-  | "INTERFACE_REALIZATION"
-  | "PACKAGE_IMPORT"
-  | "ELEMENT_IMPORT"
-  | "PACKAGE_MERGE"
-  | "REALIZATION"
-  | "SUBSTITUTION"
-  | "USAGE";
-type Visibility = "PUBLIC" | "PRIVATE" | "PROTECTED" | "PACKAGE";
+    | 'ABSTRACTION'
+    | 'AGGREGATION'
+    | 'ASSOCIATION'
+    | 'COMPOSITION'
+    | 'DEPENDENCY'
+    | 'GENERALIZATION'
+    | 'INTERFACE_REALIZATION'
+    | 'PACKAGE_IMPORT'
+    | 'ELEMENT_IMPORT'
+    | 'PACKAGE_MERGE'
+    | 'REALIZATION'
+    | 'SUBSTITUTION'
+    | 'USAGE';
+type Visibility = 'PUBLIC' | 'PRIVATE' | 'PROTECTED' | 'PACKAGE';

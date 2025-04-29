@@ -7,4 +7,5 @@ export interface Property {
   decorators: string[];
   types: Type[];
   multiplicity: Multiplicity;
+  defaultValue?: any;
 }

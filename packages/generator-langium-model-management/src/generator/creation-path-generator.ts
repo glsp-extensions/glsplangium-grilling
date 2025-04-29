@@ -45,7 +45,7 @@ export function writeCreationPathFile(
   >
 ): void {
   const content = `
-// THIS FILE IS GENERATED - TEST
+// THIS FILE IS GENERATED
 
   const mapping: Record<string, Array<{ property: string; allowedChildTypes?: string[] }>> = ${JSON.stringify(mapping, null, 2)};
   
@@ -57,7 +57,7 @@ export function writeCreationPathFile(
         }
       }
     }
-    return "";
+    return undefined;
   }
   `;
   const outputFolder = path.join(extensionPath, "yo-generated");

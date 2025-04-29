@@ -14,8 +14,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 import { CreateNodeOperation } from '@eclipse-glsp/server';
-import { createRandomUUID } from 'model-service';
 import { injectable } from 'inversify';
+import { createRandomUUID } from 'model-service';
 import { findAvailableNodeName } from '../../../../language-server/yo-generated/util/name-util.js';
 import { ModelTypes } from '../util/model-types.js';
 import { CreateClassDiagramNodeOperationHandler } from './create-class-diagram-node-operation-handler.js';
@@ -34,6 +34,7 @@ export class CreateClassOperationHandler extends CreateClassDiagramNodeOperation
     override getContainerPath(operation: CreateNodeOperation): string | undefined {
         if (operation.containerId) {
             const containerPath = this.modelState.index.findPath(operation.containerId);
+            console.log('ContainerPath ', containerPath);
             if (containerPath) {
                 return containerPath + '/entities/-';
             }
@@ -42,6 +43,7 @@ export class CreateClassOperationHandler extends CreateClassDiagramNodeOperation
     }
 
     createClass(operation: CreateNodeOperation): string {
+        console.log('CREATE CLASS>');
         const containerPath = this.getContainerPath(operation);
         const newName = findAvailableNodeName(this.modelState.semanticRoot, 'NewClass');
         const patch = JSON.stringify({
@@ -57,6 +59,7 @@ export class CreateClassOperationHandler extends CreateClassDiagramNodeOperation
                 visibility: 'PUBLIC'
             }
         });
+        console.log('PATCH T: ', patch);
         return patch;
     }
 }

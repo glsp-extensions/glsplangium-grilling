@@ -1,5 +1,5 @@
 
-//THIS FILE IS GENERATED
+// THIS FILE IS GENERATED - TEST
 
   const mapping: Record<string, Array<{ property: string; allowedChildTypes?: string[] }>> = {};
   

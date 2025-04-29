@@ -20,6 +20,8 @@ import {
   isEnumerationLiteral,
   Class,
   isClass,
+  AbstractClass,
+  isAbstractClass,
   Interface,
   isInterface,
   Property,
@@ -66,6 +68,8 @@ import {
   isPackageDiagram,
   Package,
   isPackage,
+  test,
+  istest,
   DataTypeReference,
   isDataTypeReference,
   SlotDefiningFeature,
@@ -250,9 +254,57 @@ export class UmlSerializer
 
   serializeClass(element: Class): string {
     let str: Array<string> = [];
+    if (isAbstractClass(element)) {
+      return this.serializeAbstractClass(element);
+    }
     str.push('"__type": "Class"');
     if (element.__id !== undefined && element.__id !== null) {
       str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
+    }
+    if (element.isAbstract !== undefined && element.isAbstract !== null) {
+      str.push('"isAbstract": ' + element.isAbstract + "");
+    }
+    if (element.properties !== undefined && element.properties !== null) {
+      str.push(
+        '"properties": [' +
+          element.properties
+            .map((property) => this.serializeProperty(property))
+            .join(",") +
+          "]"
+      );
+    }
+    if (element.operations !== undefined && element.operations !== null) {
+      str.push(
+        '"operations": [' +
+          element.operations
+            .map((property) => this.serializeOperation(property))
+            .join(",") +
+          "]"
+      );
+    }
+    if (element.isActive !== undefined && element.isActive !== null) {
+      str.push('"isActive": ' + element.isActive + "");
+    }
+    if (element.visibility !== undefined && element.visibility !== null) {
+      str.push('"visibility": ' + this.serializeVisibility(element.visibility));
+    }
+    return "{" + str.join(",\n") + "}";
+  }
+
+  serializeAbstractClass(element: AbstractClass): string {
+    let str: Array<string> = [];
+    str.push('"__type": "AbstractClass"');
+    if (element.__id !== undefined && element.__id !== null) {
+      str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.isAbstract !== undefined && element.isAbstract !== null) {
+      str.push('"isAbstract": ' + element.isAbstract + "");
+    }
+    if (element.visibility !== undefined && element.visibility !== null) {
+      str.push('"visibility": ' + this.serializeVisibility(element.visibility));
     }
     if (element.name !== undefined && element.name !== null) {
       str.push('"name": ' + '"' + element.name + '"');
@@ -1105,6 +1157,9 @@ export class UmlSerializer
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
     }
+    if (element.test !== undefined && element.test !== null) {
+      str.push('"test": ' + this.serializetest(element.test));
+    }
     if (element.entities !== undefined && element.entities !== null) {
       str.push(
         '"entities": [' +
@@ -1113,6 +1168,18 @@ export class UmlSerializer
             .join(",") +
           "]"
       );
+    }
+    return "{" + str.join(",\n") + "}";
+  }
+
+  serializetest(element: test): string {
+    let str: Array<string> = [];
+    str.push('"__type": "test"');
+    if (element.__id !== undefined && element.__id !== null) {
+      str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
     }
     return "{" + str.join(",\n") + "}";
   }

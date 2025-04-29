@@ -16,6 +16,20 @@
       ]
     }
   ],
+  "AbstractClass": [
+    {
+      "property": "properties",
+      "allowedChildTypes": [
+        "Property"
+      ]
+    },
+    {
+      "property": "operations",
+      "allowedChildTypes": [
+        "Operation"
+      ]
+    }
+  ],
   "Interface": [
     {
       "property": "properties",
@@ -121,6 +135,6 @@
         }
       }
     }
-    return "";
+    return undefined;
   }
   

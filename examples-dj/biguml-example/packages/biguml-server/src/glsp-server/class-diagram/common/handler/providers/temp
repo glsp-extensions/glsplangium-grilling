@@ -5,7 +5,6 @@
 
 * Read Teil
 * Validation
-* "code generieren"?
 
 
 CreateOperation
@@ -116,3 +115,27 @@ export function getCreationPath(parentName: string, childName: string): string {
 2. richtig parsen -> Zeile 73 (root und crosreference als Beispiel nehmen)
 3. code generieren wie in generateSerialize (mit Template)
 4. 
+GENERIC
+{"op":"add",
+  "path":"/diagram/entities/-",
+  "value":
+    {"$type":"Class",
+      "__id":"af764a791-6aff-4ebe-a9fe-6545e18afc71",
+      "name":"Newnode:class__Class1",
+      "isAbstract":true,
+      "isActive":true,
+      "operations":[],
+      "properties":[]}
+}
+CLASS
+{"op":"add",
+  "path":"/diagram/entities/-",
+  "value":
+    {"$type":"Class",
+      "__id":"ab113f291-f158-4316-888c-022c2933ea31",
+      "name":"NewClass1",
+      "isAbstract":false,
+      "properties":[],
+      "operations":[],
+      "visibility":"PUBLIC"}
+    }

@@ -41,7 +41,6 @@ import { RequestOutlineActionHandler } from '../common/handler/action/request-ou
 import { RequestPropertyPaletteActionHandler } from '../common/handler/action/request-property-palette-action-handler.js';
 import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
-import { CreateAbstractClassOperationHandler } from '../common/handler/create-abstract-class-operation-handler.js';
 import { CreateDataTypeOperationHandler } from '../common/handler/create-datatype-operation-handler.js';
 import { CreateEnumerationLiteralOperationHandler } from '../common/handler/create-enumeration-literal-handler.js';
 import { CreateInstanceSpecificationOperationHandler } from '../common/handler/create-instance-specification-operation-handler.js';
@@ -117,7 +116,7 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureOperationHandlers(binding: InstanceMultiBinding<OperationHandlerConstructor>): void {
         super.configureOperationHandlers(binding);
-        // binding.add(CreateClassOperationHandler);
+        //binding.add(CreateClassOperationHandler);
         binding.add(GenericCreateNodeOperationHandler);
         binding.add(CreateClassPropertyOperationHandler);
         binding.add(CreateClassMethodOperationHandler);
@@ -125,7 +124,7 @@ export class ClassDiagramModule extends DiagramModule {
 
         binding.add(CreateEnumerationLiteralOperationHandler);
         binding.add(CreateInterfaceOperationHandler);
-        binding.add(CreateAbstractClassOperationHandler);
+        //binding.add(CreateAbstractClassOperationHandler);
         binding.add(CreateParameterOperationHandler);
         binding.add(CreatePackageOperationHandler);
         binding.add(CreateDataTypeOperationHandler);

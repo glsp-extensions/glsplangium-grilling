@@ -7,8 +7,9 @@
     ],
     "properties": [
       {
-        "decorators": [],
+        "name": "diagram",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
@@ -23,20 +24,19 @@
             "typeName": "PackageDiagram"
           }
         ],
-        "multiplicity": "1",
-        "name": "diagram"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "metaInfos",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "MetaInfo"
           }
         ],
-        "multiplicity": "*",
-        "name": "metaInfos"
+        "multiplicity": "*"
       }
     ],
     "extends": [],
@@ -66,18 +66,18 @@
     "decorators": [],
     "properties": [
       {
+        "name": "element",
+        "isOptional": false,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": false,
         "types": [
           {
             "type": "complex",
             "typeName": "ElementWithSizeAndPosition"
           }
         ],
-        "multiplicity": "1",
-        "name": "element"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -89,28 +89,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "height",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "number"
           }
         ],
-        "multiplicity": "1",
-        "name": "height"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "width",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "number"
           }
         ],
-        "multiplicity": "1",
-        "name": "width"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -124,28 +124,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "x",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "number"
           }
         ],
-        "multiplicity": "1",
-        "name": "x"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "y",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "number"
           }
         ],
-        "multiplicity": "1",
-        "name": "y"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -159,8 +159,9 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
@@ -168,19 +169,19 @@
           }
         ],
         "multiplicity": "1",
-        "name": "name"
+        "defaultValue": "defaultName"
       },
       {
-        "decorators": [],
+        "name": "description",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "description"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -192,40 +193,40 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "diagramType",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "constant",
             "typeName": "\"\\\"CLASS\\\"\""
           }
         ],
-        "multiplicity": "1",
-        "name": "diagramType"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "entities",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Entity"
           }
         ],
-        "multiplicity": "*",
-        "name": "entities"
+        "multiplicity": "*"
       },
       {
-        "decorators": [],
+        "name": "relations",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Relation"
           }
         ],
-        "multiplicity": "*",
-        "name": "relations"
+        "multiplicity": "*"
       }
     ],
     "extends": [],
@@ -237,28 +238,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "values",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "EnumerationLiteral"
           }
         ],
-        "multiplicity": "*",
-        "name": "values"
+        "multiplicity": "*"
       }
     ],
     "extends": [
@@ -272,40 +273,40 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "value",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "value"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -317,10 +318,9 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [
-          "defaultValue:Hello world"
-        ],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
@@ -328,11 +328,12 @@
           }
         ],
         "multiplicity": "1",
-        "name": "name"
+        "defaultValue": "Karol"
       },
       {
-        "decorators": [],
+        "name": "isAbstract",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
@@ -340,51 +341,52 @@
           }
         ],
         "multiplicity": "1",
-        "name": "isAbstract"
+        "defaultValue": false
       },
       {
+        "name": "properties",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Property"
           }
         ],
-        "multiplicity": "*",
-        "name": "properties"
+        "multiplicity": "*"
       },
       {
+        "name": "operations",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Operation"
           }
         ],
-        "multiplicity": "*",
-        "name": "operations"
+        "multiplicity": "*"
       },
       {
-        "decorators": [],
+        "name": "isActive",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isActive"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
@@ -392,7 +394,7 @@
           }
         ],
         "multiplicity": "1",
-        "name": "visibility"
+        "defaultValue": "PUBLIC"
       }
     ],
     "extends": [
@@ -406,44 +408,81 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "isAbstract",
         "isOptional": false,
+        "decorators": [],
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "boolean"
+          }
+        ],
+        "multiplicity": "1",
+        "defaultValue": true
+      },
+      {
+        "name": "visibility",
+        "isOptional": true,
+        "decorators": [],
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "Visibility"
+          }
+        ],
+        "multiplicity": "1",
+        "defaultValue": "PUBLIC"
+      }
+    ],
+    "extends": [
+      "Class"
+    ],
+    "name": "AbstractClass"
+  },
+  {
+    "type": "class",
+    "isAbstract": false,
+    "decorators": [],
+    "properties": [
+      {
+        "name": "name",
+        "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
+        "name": "properties",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Property"
           }
         ],
-        "multiplicity": "*",
-        "name": "properties"
+        "multiplicity": "*"
       },
       {
+        "name": "operations",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Operation"
           }
         ],
-        "multiplicity": "*",
-        "name": "operations"
+        "multiplicity": "*"
       }
     ],
     "extends": [
@@ -457,138 +496,138 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isDerived",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isDerived"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isOrdered",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isOrdered"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isStatic",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isStatic"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isDerivedUnion",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isDerivedUnion"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isReadOnly",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isReadOnly"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isUnique",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isUnique"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "multiplicity",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "multiplicity"
+        "multiplicity": "1"
       },
       {
+        "name": "propertyType",
+        "isOptional": true,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "DataTypeReference"
           }
         ],
-        "multiplicity": "1",
-        "name": "propertyType"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "aggregation",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "AggregationType"
           }
         ],
-        "multiplicity": "1",
-        "name": "aggregation"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -600,90 +639,90 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isAbstract",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isAbstract"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isStatic",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isStatic"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isQuery",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isQuery"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "concurrency",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Concurrency"
           }
         ],
-        "multiplicity": "1",
-        "name": "concurrency"
+        "multiplicity": "1"
       },
       {
+        "name": "parameters",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Parameter"
           }
         ],
-        "multiplicity": "*",
-        "name": "parameters"
+        "multiplicity": "*"
       }
     ],
     "extends": [],
@@ -695,126 +734,126 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isException",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isException"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isStream",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isStream"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isOrdered",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isOrdered"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "isUnique",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isUnique"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "direction",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "ParameterDirection"
           }
         ],
-        "multiplicity": "1",
-        "name": "direction"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "effect",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "EffectType"
           }
         ],
-        "multiplicity": "1",
-        "name": "effect"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       },
       {
+        "name": "parameterType",
+        "isOptional": true,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "DataTypeReference"
           }
         ],
-        "multiplicity": "1",
-        "name": "parameterType"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "multiplicity",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "multiplicity"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -862,68 +901,68 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
+        "name": "properties",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Property"
           }
         ],
-        "multiplicity": "*",
-        "name": "properties"
+        "multiplicity": "*"
       },
       {
+        "name": "operations",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Operation"
           }
         ],
-        "multiplicity": "*",
-        "name": "operations"
+        "multiplicity": "*"
       },
       {
-        "decorators": [],
+        "name": "isAbstract",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isAbstract"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -937,16 +976,16 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -960,42 +999,42 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       },
       {
+        "name": "slots",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Slot"
           }
         ],
-        "multiplicity": "*",
-        "name": "slots"
+        "multiplicity": "*"
       }
     ],
     "extends": [
@@ -1009,44 +1048,44 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
+        "name": "definingFeature",
+        "isOptional": true,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "SlotDefiningFeature"
           }
         ],
-        "multiplicity": "1",
-        "name": "definingFeature"
+        "multiplicity": "1"
       },
       {
+        "name": "values",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "LiteralSpecification"
           }
         ],
-        "multiplicity": "*",
-        "name": "values"
+        "multiplicity": "*"
       }
     ],
     "extends": [],
@@ -1086,28 +1125,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "value",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "value"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -1119,44 +1158,44 @@
     "decorators": [],
     "properties": [
       {
+        "name": "source",
+        "isOptional": false,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": false,
         "types": [
           {
             "type": "complex",
             "typeName": "Entity"
           }
         ],
-        "multiplicity": "1",
-        "name": "source"
+        "multiplicity": "1"
       },
       {
+        "name": "target",
+        "isOptional": false,
         "decorators": [
           "crossReference"
         ],
-        "isOptional": false,
         "types": [
           {
             "type": "complex",
             "typeName": "Entity"
           }
         ],
-        "multiplicity": "1",
-        "name": "target"
+        "multiplicity": "1"
       },
       {
+        "name": "relationType",
+        "isOptional": false,
         "decorators": [],
-        "isOptional": false,
         "types": [
           {
             "type": "complex",
             "typeName": "RelationType"
           }
         ],
-        "multiplicity": "1",
-        "name": "relationType"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -1168,28 +1207,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1203,28 +1242,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1238,100 +1277,100 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "sourceMultiplicity",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "sourceMultiplicity"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "targetMultiplicity",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "targetMultiplicity"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "sourceName",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "sourceName"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "targetName",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "targetName"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "sourceAggregation",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "AggregationType"
           }
         ],
-        "multiplicity": "1",
-        "name": "sourceAggregation"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "targetAggregation",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "AggregationType"
           }
         ],
-        "multiplicity": "1",
-        "name": "targetAggregation"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1345,28 +1384,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1380,16 +1419,16 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "isSubstitutable",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "boolean"
           }
         ],
-        "multiplicity": "1",
-        "name": "isSubstitutable"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1403,16 +1442,16 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1436,28 +1475,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1471,28 +1510,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1506,28 +1545,28 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "name",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "simple",
             "typeName": "string"
           }
         ],
-        "multiplicity": "1",
-        "name": "name"
+        "multiplicity": "1"
       },
       {
-        "decorators": [],
+        "name": "visibility",
         "isOptional": true,
+        "decorators": [],
         "types": [
           {
             "type": "complex",
             "typeName": "Visibility"
           }
         ],
-        "multiplicity": "1",
-        "name": "visibility"
+        "multiplicity": "1"
       }
     ],
     "extends": [
@@ -1541,16 +1580,16 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "diagramType",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "constant",
             "typeName": "\"\\\"STATE_MACHINE\\\"\""
           }
         ],
-        "multiplicity": "1",
-        "name": "diagramType"
+        "multiplicity": "1"
       }
     ],
     "extends": [],
@@ -1562,48 +1601,122 @@
     "decorators": [],
     "properties": [
       {
-        "decorators": [],
+        "name": "diagramType",
         "isOptional": false,
+        "decorators": [],
         "types": [
           {
             "type": "constant",
             "typeName": "\"\\\"PACKAGE\\\"\""
           }
         ],
-        "multiplicity": "1",
-        "name": "diagramType"
+        "multiplicity": "1"
       },
       {
+        "name": "entities",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Entity"
           }
         ],
-        "multiplicity": "*",
-        "name": "entities"
+        "multiplicity": "*"
       },
       {
+        "name": "relations",
+        "isOptional": true,
         "decorators": [
           "path"
         ],
-        "isOptional": true,
         "types": [
           {
             "type": "complex",
             "typeName": "Relation"
           }
         ],
-        "multiplicity": "*",
-        "name": "relations"
+        "multiplicity": "*"
       }
     ],
     "extends": [],
     "name": "PackageDiagram"
+  },
+  {
+    "type": "class",
+    "isAbstract": false,
+    "decorators": [],
+    "properties": [
+      {
+        "name": "name",
+        "isOptional": false,
+        "decorators": [],
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "string"
+          }
+        ],
+        "multiplicity": "1",
+        "defaultValue": "Hello"
+      },
+      {
+        "name": "uri",
+        "isOptional": true,
+        "decorators": [],
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "string"
+          }
+        ],
+        "multiplicity": "1"
+      },
+      {
+        "name": "visibility",
+        "isOptional": true,
+        "decorators": [],
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "Visibility"
+          }
+        ],
+        "multiplicity": "1"
+      },
+      {
+        "name": "test",
+        "isOptional": false,
+        "decorators": [],
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "test"
+          }
+        ],
+        "multiplicity": "1"
+      },
+      {
+        "name": "entities",
+        "isOptional": true,
+        "decorators": [
+          "path"
+        ],
+        "types": [
+          {
+            "type": "complex",
+            "typeName": "Entity"
+          }
+        ],
+        "multiplicity": "*"
+      }
+    ],
+    "extends": [
+      "Entity"
+    ],
+    "name": "Package"
   },
   {
     "type": "class",
@@ -1621,50 +1734,10 @@
         ],
         "multiplicity": "1",
         "name": "name"
-      },
-      {
-        "decorators": [],
-        "isOptional": true,
-        "types": [
-          {
-            "type": "simple",
-            "typeName": "string"
-          }
-        ],
-        "multiplicity": "1",
-        "name": "uri"
-      },
-      {
-        "decorators": [],
-        "isOptional": true,
-        "types": [
-          {
-            "type": "complex",
-            "typeName": "Visibility"
-          }
-        ],
-        "multiplicity": "1",
-        "name": "visibility"
-      },
-      {
-        "decorators": [
-          "path"
-        ],
-        "isOptional": true,
-        "types": [
-          {
-            "type": "complex",
-            "typeName": "Entity"
-          }
-        ],
-        "multiplicity": "*",
-        "name": "entities"
       }
     ],
-    "extends": [
-      "Entity"
-    ],
-    "name": "Package"
+    "extends": [],
+    "name": "test"
   },
   {
     "type": "type",

@@ -101,15 +101,14 @@ export function isVisibility(item: unknown): item is Visibility {
 }
 
 export interface Class extends AstNode {
-    readonly $container: ClassDiagram | Package | PackageDiagram;
-    readonly $type: 'Class';
+    readonly $type: 'AbstractClass' | 'Class';
     __id: string
     isAbstract: boolean
     isActive: boolean
     name: string
     operations: Array<Operation>
     properties: Array<Property>
-    visibility?: Visibility
+    visibility: Visibility
 }
 
 export const Class = 'Class';
@@ -236,7 +235,7 @@ export function isLiteralSpecification(item: unknown): item is LiteralSpecificat
 }
 
 export interface Operation extends AstNode {
-    readonly $container: Class | DataType | Interface;
+    readonly $container: AbstractClass | Class | DataType | Interface;
     readonly $type: 'Operation';
     __id: string
     concurrency?: Concurrency
@@ -260,6 +259,7 @@ export interface Package extends AstNode {
     __id: string
     entities: Array<Entity>
     name: string
+    test: test
     uri?: string
     visibility?: Visibility
 }
@@ -336,7 +336,7 @@ export function isPrimitiveType(item: unknown): item is PrimitiveType {
 }
 
 export interface Property extends AstNode {
-    readonly $container: Class | DataType | Interface;
+    readonly $container: AbstractClass | Class | DataType | Interface;
     readonly $type: 'Property';
     __id: string
     aggregation?: AggregationType
@@ -415,6 +415,19 @@ export function isStateMachineDiagram(item: unknown): item is StateMachineDiagra
     return reflection.isInstance(item, StateMachineDiagram);
 }
 
+export interface test extends AstNode {
+    readonly $container: Package;
+    readonly $type: 'test';
+    __id: string
+    name: string
+}
+
+export const test = 'test';
+
+export function istest(item: unknown): item is test {
+    return reflection.isInstance(item, test);
+}
+
 export interface TestElementKarol extends AstNode {
     readonly $type: 'TestElementKarol';
     __id: string
@@ -426,6 +439,23 @@ export const TestElementKarol = 'TestElementKarol';
 
 export function isTestElementKarol(item: unknown): item is TestElementKarol {
     return reflection.isInstance(item, TestElementKarol);
+}
+
+export interface AbstractClass extends Class {
+    readonly $type: 'AbstractClass';
+    __id: string
+    isAbstract: boolean
+    isActive: boolean
+    name: string
+    operations: Array<Operation>
+    properties: Array<Property>
+    visibility: Visibility
+}
+
+export const AbstractClass = 'AbstractClass';
+
+export function isAbstractClass(item: unknown): item is AbstractClass {
+    return reflection.isInstance(item, AbstractClass);
 }
 
 export interface Abstraction extends Relation {
@@ -591,6 +621,7 @@ export function isUsage(item: unknown): item is Usage {
 }
 
 export type UmlAstType = {
+    AbstractClass: AbstractClass
     Abstraction: Abstraction
     Association: Association
     Class: Class
@@ -628,16 +659,20 @@ export type UmlAstType = {
     TestElementKarol: TestElementKarol
     UnionType_0: UnionType_0
     Usage: Usage
+    test: test
 }
 
 export class UmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['Abstraction', 'Association', 'Class', 'ClassDiagram', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'TestElementKarol', 'UnionType_0', 'Usage'];
+        return ['AbstractClass', 'Abstraction', 'Association', 'Class', 'ClassDiagram', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'TestElementKarol', 'UnionType_0', 'Usage', 'test'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
         switch (subtype) {
+            case AbstractClass: {
+                return this.isSubtype(Class, supertype);
+            }
             case Abstraction:
             case Association:
             case Dependency:
@@ -870,6 +905,17 @@ export class UmlAstReflection extends AbstractAstReflection {
                     name: 'Slot',
                     mandatory: [
                         { name: 'values', type: 'array' }
+                    ]
+                };
+            }
+            case 'AbstractClass': {
+                return {
+                    name: 'AbstractClass',
+                    mandatory: [
+                        { name: 'isAbstract', type: 'boolean' },
+                        { name: 'isActive', type: 'boolean' },
+                        { name: 'operations', type: 'array' },
+                        { name: 'properties', type: 'array' }
                     ]
                 };
             }

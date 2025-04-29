@@ -8,23 +8,54 @@ export const visitClassDeclaration =
       target.name = node.text;
     } else if (ts.isPropertyDeclaration(node)) {
       const property: Property = {
-        decorators: [],
+        name: "",
         isOptional: false,
+        decorators: [],
         types: [],
         multiplicity: Multiplicity.ONE_TO_ONE,
-      } as Property;
-      target.properties.push(property);
+        defaultValue: undefined,
+      };
+      if (node.initializer) {
+        const init = node.initializer;
+        let dv: any;
+        if (ts.isStringLiteral(init)) {
+          dv = init.text;
+        } else if (ts.isNumericLiteral(init)) {
+          dv = Number(init.text);
+        } else if (init.kind === SyntaxKind.TrueKeyword) {
+          dv = true;
+        } else if (init.kind === SyntaxKind.FalseKeyword) {
+          dv = false;
+        } else if (ts.isObjectLiteralExpression(init)) {
+          dv = {};
+          init.properties.forEach((p) => {
+            if (ts.isPropertyAssignment(p) && ts.isIdentifier(p.name)) {
+              const key = p.name.text;
+              const valNode = p.initializer;
+              if (ts.isStringLiteral(valNode)) dv[key] = valNode.text;
+              else if (ts.isNumericLiteral(valNode))
+                dv[key] = Number(valNode.text);
+              else if (valNode.kind === SyntaxKind.TrueKeyword) dv[key] = true;
+              else if (valNode.kind === SyntaxKind.FalseKeyword)
+                dv[key] = false;
+              else dv[key] = valNode.getText();
+            }
+          });
+        } else {
+          dv = init.getText();
+        }
+        property.defaultValue = dv;
+      }
+      target.properties!.push(property);
       ts.forEachChild(node, visitPropertyDeclaration(property));
     } else if (ts.isHeritageClause(node)) {
       ts.forEachChild(node, (child) => {
         if (ts.isExpressionWithTypeArguments(child)) {
-          ts.forEachChild(child, (child) => {
-            if (ts.isIdentifier(child)) {
-              if (
-                child.getText() !== "ABSTRACT_ELEMENT" &&
-                child.getText() !== "ROOT_ELEMENT"
-              ) {
-                target.extends.push(child.getText());
+          ts.forEachChild(child, (expr) => {
+            if (ts.isIdentifier(expr)) {
+              const name = expr.getText();
+              if (name !== "ABSTRACT_ELEMENT" && name !== "ROOT_ELEMENT") {
+                target.extends!.push(name);
               }
             }
           });
@@ -35,7 +66,7 @@ export const visitClassDeclaration =
     } else if (ts.isDecorator(node)) {
       ts.forEachChild(node, (child) => {
         if (ts.isIdentifier(child)) {
-          target.decorators.push(child.getText());
+          target.decorators!.push(child.getText());
         }
       });
     }
