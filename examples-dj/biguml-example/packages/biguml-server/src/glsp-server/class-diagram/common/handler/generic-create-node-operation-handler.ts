@@ -24,7 +24,7 @@ import { ModelTypes, astTypes } from '../util/model-types.js';
 import { GridSnapper } from './grid-snapper.js';
 
 import { getCreationPath } from '../../../../language-server/yo-generated/getCreationPath.js';
-import { getProperties } from '../../../../language-server/yo-generated/getDefaultValue.js';
+import { getProperties, isNoBounds } from '../../../../language-server/yo-generated/getDefaultValue.js';
 
 @injectable()
 export class GenericCreateNodeOperationHandler extends OperationHandler implements CreateNodeOperationHandler {
@@ -34,7 +34,22 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     declare modelState: ClassDiagramModelState;
 
     get elementTypeIds(): string[] {
-        return [ModelTypes.CLASS, ModelTypes.ABSTRACT_CLASS, ModelTypes.ENUMERATION];
+        return [
+            ModelTypes.ABSTRACT_CLASS,
+            ModelTypes.CLASS,
+            ModelTypes.DATA_TYPE,
+            ModelTypes.ENUMERATION,
+            ModelTypes.ENUMERATION_LITERAL,
+            ModelTypes.INSTANCE_SPECIFICATION,
+            ModelTypes.INTERFACE,
+            ModelTypes.LITERAL_SPECIFICATION,
+            ModelTypes.OPERATION,
+            ModelTypes.PACKAGE,
+            ModelTypes.PARAMETER,
+            ModelTypes.PRIMITIVE_TYPE,
+            ModelTypes.PROPERTY,
+            ModelTypes.SLOT
+        ];
     }
 
     override label: string = '';
@@ -76,7 +91,8 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
                 }
             }
         ];
-        return JSON.stringify(patch);
+        console.log('ISNOBOUNDS ', operation.elementTypeId, isNoBounds(operation.elementTypeId));
+        return isNoBounds(operation.elementTypeId) ? '[]' : JSON.stringify(patch);
     }
 
     getLocation(operation: CreateNodeOperation): Point | undefined {
@@ -107,6 +123,7 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
         };
 
         const allProps = getProperties(operation.elementTypeId);
+        console.log('allProps: ', allProps);
         for (const { property, defaultValue } of allProps) {
             if (property !== 'name' && nodeValue[property] === undefined) {
                 console.log('Property: ', property, defaultValue);
@@ -135,8 +152,12 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
             }
 
             if (container && container.type) {
+                console.log('TYPE: ', container.type);
+                console.log('ELEMENTTYPEID ', operation.elementTypeId);
                 const creationProperty = getCreationPath(container.type, operation.elementTypeId);
+                console.log('CREATION PROPERTY ', creationProperty);
                 if (creationProperty) {
+                    console.log('RETURNED ', containerPath + '/' + creationProperty + '/-');
                     return containerPath + '/' + creationProperty + '/-';
                 }
             }

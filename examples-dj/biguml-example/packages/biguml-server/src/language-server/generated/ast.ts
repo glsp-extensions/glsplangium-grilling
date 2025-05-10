@@ -259,7 +259,6 @@ export interface Package extends AstNode {
     __id: string
     entities: Array<Entity>
     name: string
-    test: test
     uri?: string
     visibility?: Visibility
 }
@@ -359,7 +358,7 @@ export function isProperty(item: unknown): item is Property {
 }
 
 export interface Relation extends AstNode {
-    readonly $type: 'Abstraction' | 'Association' | 'Dependency' | 'Generalization' | 'InterfaceRealization' | 'PackageImport' | 'PackageMerge' | 'Realization' | 'Relation' | 'Substitution' | 'Usage';
+    readonly $type: 'Abstraction' | 'Aggregation' | 'Association' | 'Composition' | 'Dependency' | 'Generalization' | 'InterfaceRealization' | 'PackageImport' | 'PackageMerge' | 'Realization' | 'Relation' | 'Substitution' | 'Usage';
     __id: string
     relationType: RelationType
     source: Reference<Entity>
@@ -415,17 +414,16 @@ export function isStateMachineDiagram(item: unknown): item is StateMachineDiagra
     return reflection.isInstance(item, StateMachineDiagram);
 }
 
-export interface test extends AstNode {
-    readonly $container: Package;
-    readonly $type: 'test';
+export interface Test extends AstNode {
+    readonly $type: 'Test';
     __id: string
     name: string
 }
 
-export const test = 'test';
+export const Test = 'Test';
 
-export function istest(item: unknown): item is test {
-    return reflection.isInstance(item, test);
+export function isTest(item: unknown): item is Test {
+    return reflection.isInstance(item, Test);
 }
 
 export interface TestElementKarol extends AstNode {
@@ -475,19 +473,19 @@ export function isAbstraction(item: unknown): item is Abstraction {
 }
 
 export interface Association extends Relation {
-    readonly $type: 'Association';
+    readonly $type: 'Aggregation' | 'Association' | 'Composition';
     __id: string
-    name?: string
+    name: string
     relationType: RelationType
     source: Reference<Entity>
-    sourceAggregation?: AggregationType
-    sourceMultiplicity?: string
-    sourceName?: string
+    sourceAggregation: AggregationType
+    sourceMultiplicity: string
+    sourceName: string
     target: Reference<Entity>
-    targetAggregation?: AggregationType
-    targetMultiplicity?: string
-    targetName?: string
-    visibility?: Visibility
+    targetAggregation: AggregationType
+    targetMultiplicity: string
+    targetName: string
+    visibility: Visibility
 }
 
 export const Association = 'Association';
@@ -620,12 +618,58 @@ export function isUsage(item: unknown): item is Usage {
     return reflection.isInstance(item, Usage);
 }
 
+export interface Aggregation extends Association {
+    readonly $type: 'Aggregation';
+    __id: string
+    name: string
+    relationType: RelationType
+    source: Reference<Entity>
+    sourceAggregation: AggregationType
+    sourceMultiplicity?: string
+    sourceName?: string
+    target: Reference<Entity>
+    targetAggregation?: AggregationType
+    targetMultiplicity?: string
+    targetName?: string
+    visibility?: Visibility
+}
+
+export const Aggregation = 'Aggregation';
+
+export function isAggregation(item: unknown): item is Aggregation {
+    return reflection.isInstance(item, Aggregation);
+}
+
+export interface Composition extends Association {
+    readonly $type: 'Composition';
+    __id: string
+    name: string
+    relationType: RelationType
+    source: Reference<Entity>
+    sourceAggregation: AggregationType
+    sourceMultiplicity?: string
+    sourceName?: string
+    target: Reference<Entity>
+    targetAggregation?: AggregationType
+    targetMultiplicity?: string
+    targetName?: string
+    visibility?: Visibility
+}
+
+export const Composition = 'Composition';
+
+export function isComposition(item: unknown): item is Composition {
+    return reflection.isInstance(item, Composition);
+}
+
 export type UmlAstType = {
     AbstractClass: AbstractClass
     Abstraction: Abstraction
+    Aggregation: Aggregation
     Association: Association
     Class: Class
     ClassDiagram: ClassDiagram
+    Composition: Composition
     DataType: DataType
     DataTypeReference: DataTypeReference
     Dependency: Dependency
@@ -656,16 +700,16 @@ export type UmlAstType = {
     SlotDefiningFeature: SlotDefiningFeature
     StateMachineDiagram: StateMachineDiagram
     Substitution: Substitution
+    Test: Test
     TestElementKarol: TestElementKarol
     UnionType_0: UnionType_0
     Usage: Usage
-    test: test
 }
 
 export class UmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AbstractClass', 'Abstraction', 'Association', 'Class', 'ClassDiagram', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'TestElementKarol', 'UnionType_0', 'Usage', 'test'];
+        return ['AbstractClass', 'Abstraction', 'Aggregation', 'Association', 'Class', 'ClassDiagram', 'Composition', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'Test', 'TestElementKarol', 'UnionType_0', 'Usage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -684,6 +728,10 @@ export class UmlAstReflection extends AbstractAstReflection {
             case Substitution:
             case Usage: {
                 return this.isSubtype(Relation, supertype);
+            }
+            case Aggregation:
+            case Composition: {
+                return this.isSubtype(Association, supertype);
             }
             case Class:
             case Interface: {
@@ -726,10 +774,22 @@ export class UmlAstReflection extends AbstractAstReflection {
             case 'Abstraction:target':
             case 'Abstraction:source':
             case 'Abstraction:target':
+            case 'Aggregation:source':
+            case 'Aggregation:target':
+            case 'Aggregation:source':
+            case 'Aggregation:target':
+            case 'Aggregation:source':
+            case 'Aggregation:target':
             case 'Association:source':
             case 'Association:target':
             case 'Association:source':
             case 'Association:target':
+            case 'Composition:source':
+            case 'Composition:target':
+            case 'Composition:source':
+            case 'Composition:target':
+            case 'Composition:source':
+            case 'Composition:target':
             case 'Dependency:source':
             case 'Dependency:target':
             case 'Dependency:source':

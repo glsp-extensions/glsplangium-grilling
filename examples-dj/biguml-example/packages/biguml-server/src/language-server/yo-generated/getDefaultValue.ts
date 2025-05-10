@@ -100,8 +100,7 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
   "Class": [
     {
       "property": "name",
-      "propertyType": "string",
-      "defaultValue": "Karol"
+      "propertyType": "string"
     },
     {
       "property": "isAbstract",
@@ -122,8 +121,13 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "visibility",
-      "propertyType": "Visibility",
-      "defaultValue": "PUBLIC"
+      "propertyType": "Visibility"
+    }
+  ],
+  "Test": [
+    {
+      "property": "name",
+      "propertyType": "string"
     }
   ],
   "AbstractClass": [
@@ -134,13 +138,11 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "visibility",
-      "propertyType": "Visibility",
-      "defaultValue": "PUBLIC"
+      "propertyType": "Visibility"
     },
     {
       "property": "name",
-      "propertyType": "string",
-      "defaultValue": "Karol"
+      "propertyType": "string"
     },
     {
       "property": "properties",
@@ -209,10 +211,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "propertyType",
       "propertyType": "DataTypeReference"
-    },
-    {
-      "property": "aggregation",
-      "propertyType": "AggregationType"
     }
   ],
   "Operation": [
@@ -335,10 +333,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       "propertyType": "string"
     },
     {
-      "property": "definingFeature",
-      "propertyType": "SlotDefiningFeature"
-    },
-    {
       "property": "values",
       "propertyType": "LiteralSpecification"
     }
@@ -418,11 +412,13 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "sourceMultiplicity",
-      "propertyType": "string"
+      "propertyType": "string",
+      "defaultValue": "*"
     },
     {
       "property": "targetMultiplicity",
-      "propertyType": "string"
+      "propertyType": "string",
+      "defaultValue": "*"
     },
     {
       "property": "sourceName",
@@ -434,11 +430,113 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "sourceAggregation",
-      "propertyType": "AggregationType"
+      "propertyType": "AggregationType",
+      "defaultValue": "NONE"
     },
     {
       "property": "targetAggregation",
-      "propertyType": "AggregationType"
+      "propertyType": "AggregationType",
+      "defaultValue": "NONE"
+    },
+    {
+      "property": "visibility",
+      "propertyType": "Visibility"
+    },
+    {
+      "property": "source",
+      "propertyType": "Entity"
+    },
+    {
+      "property": "target",
+      "propertyType": "Entity"
+    },
+    {
+      "property": "relationType",
+      "propertyType": "RelationType"
+    }
+  ],
+  "Aggregation": [
+    {
+      "property": "name",
+      "propertyType": "string"
+    },
+    {
+      "property": "sourceAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "SHARED"
+    },
+    {
+      "property": "sourceMultiplicity",
+      "propertyType": "string",
+      "defaultValue": "*"
+    },
+    {
+      "property": "targetMultiplicity",
+      "propertyType": "string",
+      "defaultValue": "*"
+    },
+    {
+      "property": "sourceName",
+      "propertyType": "string"
+    },
+    {
+      "property": "targetName",
+      "propertyType": "string"
+    },
+    {
+      "property": "targetAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "NONE"
+    },
+    {
+      "property": "visibility",
+      "propertyType": "Visibility"
+    },
+    {
+      "property": "source",
+      "propertyType": "Entity"
+    },
+    {
+      "property": "target",
+      "propertyType": "Entity"
+    },
+    {
+      "property": "relationType",
+      "propertyType": "RelationType"
+    }
+  ],
+  "Composition": [
+    {
+      "property": "name",
+      "propertyType": "string"
+    },
+    {
+      "property": "sourceAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "COMPOSITE"
+    },
+    {
+      "property": "sourceMultiplicity",
+      "propertyType": "string",
+      "defaultValue": "*"
+    },
+    {
+      "property": "targetMultiplicity",
+      "propertyType": "string",
+      "defaultValue": "*"
+    },
+    {
+      "property": "sourceName",
+      "propertyType": "string"
+    },
+    {
+      "property": "targetName",
+      "propertyType": "string"
+    },
+    {
+      "property": "targetAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "NONE"
     },
     {
       "property": "visibility",
@@ -618,8 +716,7 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
   "Package": [
     {
       "property": "name",
-      "propertyType": "string",
-      "defaultValue": "Hello"
+      "propertyType": "string"
     },
     {
       "property": "uri",
@@ -630,42 +727,60 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       "propertyType": "Visibility"
     },
     {
-      "property": "test",
-      "propertyType": "test"
-    },
-    {
       "property": "entities",
       "propertyType": "Entity"
-    }
-  ],
-  "test": [
-    {
-      "property": "name",
-      "propertyType": "string"
     }
   ]
 };
 
-/**
- * Return all properties for a given type,
- * filling in primitive defaults when none explicit.
- */
-export function getProperties(
-  elementTypeId: string
-): DefaultMappingEntry[] {
+export const noBoundsClasses = new Set<string>(
+  [
+  "EnumerationLiteral",
+  "Property",
+  "Operation",
+  "Parameter",
+  "Slot"
+]
+);
+
+export function isNoBounds(typeId: string): boolean {
+  return noBoundsClasses.has(stripPrefix(typeId));
+}
+
+export function getProperties(elementTypeId: string): DefaultMappingEntry[] {
   const parentType = stripPrefix(elementTypeId);
   const entries = defaultMapping[parentType] || [];
-  return entries.map(e => {
+  return entries.reduce((acc, e) => {
     if (e.defaultValue !== undefined) {
-      return e;
+      acc.push(e);
+      return acc;
     }
+
     switch (e.propertyType) {
-      case 'string':  return { ...e, defaultValue: '' };
-      case 'boolean': return { ...e, defaultValue: false };
-      case 'number':  return { ...e, defaultValue: 0 };
-      default:        return { ...e, defaultValue: [] };
+      case 'string':
+        return acc;
+
+      case 'boolean':
+        acc.push({ ...e, defaultValue: false });
+        return acc;
+
+      case 'number':
+        acc.push({ ...e, defaultValue: 0 });
+        return acc;
+
+      case 'Visibility':
+        acc.push({ ...e, defaultValue: 'PUBLIC' });
+        return acc;
+
+      case 'Concurrency':
+        acc.push({ ...e, defaultValue: 'SEQUENTIAL' });
+        return acc;
+
+      default:
+        acc.push({ ...e, defaultValue: [] });
+        return acc;
     }
-  });
+  }, [] as typeof entries);
 }
 
 function stripPrefix(name: string): string {

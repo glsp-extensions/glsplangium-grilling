@@ -49,6 +49,8 @@ export class CreateClassPropertyOperationHandler extends OperationHandler implem
     createProperty(operation: CreateNodeOperation): string {
         const patch: any[] = [];
         const container = this.getContainer(operation) ?? undefined;
+        console.log('CONTAINER: ', container);
+        console.log('CONTAINER PATH: ', this.getContainerPath(operation));
         const name = findAvailableNodeName(this.modelState.semanticRoot, 'newProperty');
         if (container) {
             patch.push({

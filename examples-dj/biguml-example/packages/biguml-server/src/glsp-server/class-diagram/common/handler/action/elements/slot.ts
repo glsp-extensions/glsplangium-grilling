@@ -15,6 +15,7 @@ import { PropertyPalette } from './util.js';
 export namespace SlotPropertyPaletteHandler {
     export function getPropertyPalette(semanticElement: Slot, featureOptions): SetPropertyPaletteAction[] {
         const propertyPalette = PropertyPalette.builder().elementId(semanticElement.__id).label(semanticElement.$type);
+        console.log('HERE!!!');
         propertyPalette.choice(
             semanticElement.__id,
             'definingFeature',

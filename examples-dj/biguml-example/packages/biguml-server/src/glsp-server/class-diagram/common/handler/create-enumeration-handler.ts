@@ -103,7 +103,7 @@ export class CreateEnumerationOperationHandler extends OperationHandler implemen
         const newName = findAvailableNodeName(this.modelState.semanticRoot, 'NewEnumeration');
         const patch = JSON.stringify({
             op: 'add',
-            path: '/diagram/enumerations/-',
+            path: '/diagram/entities/-',
             value: {
                 $type: 'Enumeration',
                 __id: createRandomUUID(),

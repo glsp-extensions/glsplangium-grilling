@@ -139,3 +139,30 @@ CLASS
       "operations":[],
       "visibility":"PUBLIC"}
     }
+
+
+    statt @noDefault, @withDefault
+
+    class Operation {
+      name: string;
+      isAbstract?: boolean;
+      isStatic?: boolean;
+      isQuery?: boolean = false;
+      visibility?: Visibility;
+      concurrency?: Concurrency;
+      @path parameters?: Array<Parameter>;
+    }
+
+    //wenn kein withDefault, dann default nur fur die werte die nicht optional sind und die die Wert haben (nur name und isQuery ubernehmen)
+   
+    @withDefault
+    class Operation {
+      name: string;
+      isAbstract?: boolean;
+      isStatic?: boolean;
+      isQuery?: boolean = false;
+      visibility?: Visibility;
+      concurrency?: Concurrency;
+      @path parameters?: Array<Parameter>;
+    }
+    //wenn @withDefault - nimmt alle wie jetzt

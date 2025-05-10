@@ -20,6 +20,8 @@ import {
   isEnumerationLiteral,
   Class,
   isClass,
+  Test,
+  isTest,
   AbstractClass,
   isAbstractClass,
   Interface,
@@ -48,6 +50,10 @@ import {
   isDependency,
   Association,
   isAssociation,
+  Aggregation,
+  isAggregation,
+  Composition,
+  isComposition,
   InterfaceRealization,
   isInterfaceRealization,
   Generalization,
@@ -68,8 +74,6 @@ import {
   isPackageDiagram,
   Package,
   isPackage,
-  test,
-  istest,
   DataTypeReference,
   isDataTypeReference,
   SlotDefiningFeature,
@@ -290,6 +294,18 @@ export class UmlSerializer
     }
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
+    }
+    return "{" + str.join(",\n") + "}";
+  }
+
+  serializeTest(element: Test): string {
+    let str: Array<string> = [];
+    str.push('"__type": "Test"');
+    if (element.__id !== undefined && element.__id !== null) {
+      str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
     }
     return "{" + str.join(",\n") + "}";
   }
@@ -767,9 +783,195 @@ export class UmlSerializer
 
   serializeAssociation(element: Association): string {
     let str: Array<string> = [];
+    if (isAggregation(element)) {
+      return this.serializeAggregation(element);
+    }
+    if (isComposition(element)) {
+      return this.serializeComposition(element);
+    }
     str.push('"__type": "Association"');
     if (element.__id !== undefined && element.__id !== null) {
       str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
+    }
+    if (
+      element.sourceMultiplicity !== undefined &&
+      element.sourceMultiplicity !== null
+    ) {
+      str.push(
+        '"sourceMultiplicity": ' + '"' + element.sourceMultiplicity + '"'
+      );
+    }
+    if (
+      element.targetMultiplicity !== undefined &&
+      element.targetMultiplicity !== null
+    ) {
+      str.push(
+        '"targetMultiplicity": ' + '"' + element.targetMultiplicity + '"'
+      );
+    }
+    if (element.sourceName !== undefined && element.sourceName !== null) {
+      str.push('"sourceName": ' + '"' + element.sourceName + '"');
+    }
+    if (element.targetName !== undefined && element.targetName !== null) {
+      str.push('"targetName": ' + '"' + element.targetName + '"');
+    }
+    if (
+      element.sourceAggregation !== undefined &&
+      element.sourceAggregation !== null
+    ) {
+      str.push(
+        '"sourceAggregation": ' +
+          this.serializeAggregationType(element.sourceAggregation)
+      );
+    }
+    if (
+      element.targetAggregation !== undefined &&
+      element.targetAggregation !== null
+    ) {
+      str.push(
+        '"targetAggregation": ' +
+          this.serializeAggregationType(element.targetAggregation)
+      );
+    }
+    if (element.visibility !== undefined && element.visibility !== null) {
+      str.push('"visibility": ' + this.serializeVisibility(element.visibility));
+    }
+    if (element.source !== undefined && element.source !== null) {
+      str.push(
+        '"source": ' +
+          "{" +
+          ' "__type": "Reference", "__refType": "Entity", "__value": "' +
+          (element.source.ref?.__id ?? "undefined") +
+          '"}'
+      );
+    }
+    if (element.target !== undefined && element.target !== null) {
+      str.push(
+        '"target": ' +
+          "{" +
+          ' "__type": "Reference", "__refType": "Entity", "__value": "' +
+          (element.target.ref?.__id ?? "undefined") +
+          '"}'
+      );
+    }
+    if (element.relationType !== undefined && element.relationType !== null) {
+      str.push(
+        '"relationType": ' + this.serializeRelationType(element.relationType)
+      );
+    }
+    return "{" + str.join(",\n") + "}";
+  }
+
+  serializeAggregation(element: Aggregation): string {
+    let str: Array<string> = [];
+    str.push('"__type": "Aggregation"');
+    if (element.__id !== undefined && element.__id !== null) {
+      str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
+    }
+    if (
+      element.sourceAggregation !== undefined &&
+      element.sourceAggregation !== null
+    ) {
+      str.push(
+        '"sourceAggregation": ' +
+          this.serializeAggregationType(element.sourceAggregation)
+      );
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
+    }
+    if (
+      element.sourceMultiplicity !== undefined &&
+      element.sourceMultiplicity !== null
+    ) {
+      str.push(
+        '"sourceMultiplicity": ' + '"' + element.sourceMultiplicity + '"'
+      );
+    }
+    if (
+      element.targetMultiplicity !== undefined &&
+      element.targetMultiplicity !== null
+    ) {
+      str.push(
+        '"targetMultiplicity": ' + '"' + element.targetMultiplicity + '"'
+      );
+    }
+    if (element.sourceName !== undefined && element.sourceName !== null) {
+      str.push('"sourceName": ' + '"' + element.sourceName + '"');
+    }
+    if (element.targetName !== undefined && element.targetName !== null) {
+      str.push('"targetName": ' + '"' + element.targetName + '"');
+    }
+    if (
+      element.sourceAggregation !== undefined &&
+      element.sourceAggregation !== null
+    ) {
+      str.push(
+        '"sourceAggregation": ' +
+          this.serializeAggregationType(element.sourceAggregation)
+      );
+    }
+    if (
+      element.targetAggregation !== undefined &&
+      element.targetAggregation !== null
+    ) {
+      str.push(
+        '"targetAggregation": ' +
+          this.serializeAggregationType(element.targetAggregation)
+      );
+    }
+    if (element.visibility !== undefined && element.visibility !== null) {
+      str.push('"visibility": ' + this.serializeVisibility(element.visibility));
+    }
+    if (element.source !== undefined && element.source !== null) {
+      str.push(
+        '"source": ' +
+          "{" +
+          ' "__type": "Reference", "__refType": "Entity", "__value": "' +
+          (element.source.ref?.__id ?? "undefined") +
+          '"}'
+      );
+    }
+    if (element.target !== undefined && element.target !== null) {
+      str.push(
+        '"target": ' +
+          "{" +
+          ' "__type": "Reference", "__refType": "Entity", "__value": "' +
+          (element.target.ref?.__id ?? "undefined") +
+          '"}'
+      );
+    }
+    if (element.relationType !== undefined && element.relationType !== null) {
+      str.push(
+        '"relationType": ' + this.serializeRelationType(element.relationType)
+      );
+    }
+    return "{" + str.join(",\n") + "}";
+  }
+
+  serializeComposition(element: Composition): string {
+    let str: Array<string> = [];
+    str.push('"__type": "Composition"');
+    if (element.__id !== undefined && element.__id !== null) {
+      str.push('"__id": ' + '"' + element.__id + '"');
+    }
+    if (element.name !== undefined && element.name !== null) {
+      str.push('"name": ' + '"' + element.name + '"');
+    }
+    if (
+      element.sourceAggregation !== undefined &&
+      element.sourceAggregation !== null
+    ) {
+      str.push(
+        '"sourceAggregation": ' +
+          this.serializeAggregationType(element.sourceAggregation)
+      );
     }
     if (element.name !== undefined && element.name !== null) {
       str.push('"name": ' + '"' + element.name + '"');
@@ -1157,9 +1359,6 @@ export class UmlSerializer
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
     }
-    if (element.test !== undefined && element.test !== null) {
-      str.push('"test": ' + this.serializetest(element.test));
-    }
     if (element.entities !== undefined && element.entities !== null) {
       str.push(
         '"entities": [' +
@@ -1168,18 +1367,6 @@ export class UmlSerializer
             .join(",") +
           "]"
       );
-    }
-    return "{" + str.join(",\n") + "}";
-  }
-
-  serializetest(element: test): string {
-    let str: Array<string> = [];
-    str.push('"__type": "test"');
-    if (element.__id !== undefined && element.__id !== null) {
-      str.push('"__id": ' + '"' + element.__id + '"');
-    }
-    if (element.name !== undefined && element.name !== null) {
-      str.push('"name": ' + '"' + element.name + '"');
     }
     return "{" + str.join(",\n") + "}";
   }

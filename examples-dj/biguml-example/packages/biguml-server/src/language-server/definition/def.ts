@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { crossReference, path, root } from 'generator-langium-model-management';
+import { crossReference, noBounds, noDefault, path, root } from 'generator-langium-model-management';
 
 /**
  * This file has been generated using the langium-model-management generator
@@ -53,8 +53,10 @@ class ClassDiagram {
 }
 class Enumeration extends Entity {
     name: string;
-    values?: Array<EnumerationLiteral>;
+    @path values?: Array<EnumerationLiteral>;
 }
+
+@noBounds
 class EnumerationLiteral {
     name: string;
     value?: string;
@@ -62,17 +64,23 @@ class EnumerationLiteral {
 }
 
 export class Class extends Entity {
-    name: string = 'Karol';
+    name: string;
     isAbstract: boolean = false;
     @path properties?: Array<Property>;
     @path operations?: Array<Operation>;
     isActive?: boolean;
-    visibility?: Visibility = 'PUBLIC';
+    visibility?: Visibility;
+    @minLength(3) test: string = 'abc';
+    //test: Test = { name: "Karol" };
+}
+
+interface Test {
+    name: string;
 }
 
 export class AbstractClass extends Class {
     override isAbstract: boolean = true;
-    override visibility?: Visibility = 'PUBLIC';
+    declare visibility?: Visibility;
 }
 
 class Interface extends Entity {
@@ -80,6 +88,9 @@ class Interface extends Entity {
     @path properties?: Array<Property>;
     @path operations?: Array<Operation>;
 }
+
+@noBounds
+@withDefaults
 class Property {
     name: string;
     isDerived?: boolean;
@@ -91,8 +102,10 @@ class Property {
     visibility?: Visibility;
     multiplicity?: string;
     @crossReference propertyType?: DataTypeReference;
-    aggregation?: AggregationType;
+    @noDefault aggregation?: AggregationType;
 }
+
+@noBounds
 class Operation {
     name: string;
     isAbstract?: boolean;
@@ -102,6 +115,8 @@ class Operation {
     concurrency?: Concurrency;
     @path parameters?: Array<Parameter>;
 }
+
+@noBounds
 class Parameter {
     name: string;
     isException?: boolean;
@@ -130,9 +145,11 @@ class InstanceSpecification extends Entity {
     visibility?: Visibility;
     @path slots?: Array<Slot>;
 }
+
+@noBounds
 class Slot {
     name: string;
-    @crossReference definingFeature?: SlotDefiningFeature;
+    @crossReference @noDefault definingFeature?: SlotDefiningFeature;
     @path values?: Array<LiteralSpecification>;
 }
 type SlotDefiningFeature = Property | Class | Interface;
@@ -155,14 +172,37 @@ class Dependency extends Relation {
 }
 class Association extends Relation {
     name?: string;
-    sourceMultiplicity?: string;
-    targetMultiplicity?: string;
+    sourceMultiplicity?: string = '*';
+    targetMultiplicity?: string = '*';
     sourceName?: string;
     targetName?: string;
-    sourceAggregation?: AggregationType;
-    targetAggregation?: AggregationType;
+    sourceAggregation?: AggregationType = 'NONE';
+    targetAggregation?: AggregationType = 'NONE';
     visibility?: Visibility;
 }
+@ASTType('Association')
+class Aggregation extends Relation {
+    name?: string;
+    sourceMultiplicity?: string = '*';
+    targetMultiplicity?: string = '*';
+    sourceName?: string;
+    targetName?: string;
+    sourceAggregation?: AggregationType = 'SHARED';
+    targetAggregation?: AggregationType = 'NONE';
+    visibility?: Visibility;
+}
+
+class Composition extends Relation {
+    name?: string;
+    sourceMultiplicity?: string = '*';
+    targetMultiplicity?: string = '*';
+    sourceName?: string;
+    targetName?: string;
+    sourceAggregation?: AggregationType = 'COMPOSITE';
+    targetAggregation?: AggregationType = 'NONE';
+    visibility?: Visibility;
+}
+
 class InterfaceRealization extends Relation {
     name?: string;
     visibility?: Visibility;
@@ -203,15 +243,10 @@ class PackageDiagram {
 }
 
 class Package extends Entity {
-    name: string = 'Hello'; //hello irgendiwie in testkarol.ts bringen
+    name: string;
     uri?: string;
     visibility?: Visibility;
-    test: test;
     @path entities?: Array<Entity>;
-}
-
-interface test {
-    name: string;
 }
 
 /**

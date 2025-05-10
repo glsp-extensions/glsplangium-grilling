@@ -86,35 +86,10 @@ export class CreateClassDiagramEdgeOperationHandler extends OperationHandler imp
         return patch;
     }
 
-    getRelationTypeFromElementId(elementTypeId: string): string {
-        switch (elementTypeId) {
-            case ModelTypes.ABSTRACTION:
-                return 'ABSTRACTION';
-            case ModelTypes.AGGREGATION:
-                return 'AGGREGATION';
-            case ModelTypes.ASSOCIATION:
-                return 'ASSOCIATION';
-            case ModelTypes.COMPOSITION:
-                return 'COMPOSITION';
-            case ModelTypes.DEPENDENCY:
-                return 'DEPENDENCY';
-            case ModelTypes.GENERALIZATION:
-                return 'GENERALIZATION';
-            case ModelTypes.INTERFACE_REALIZATION:
-                return 'INTERFACE_REALIZATION';
-            case ModelTypes.PACKAGE_IMPORT:
-                return 'PACKAGE_IMPORT';
-            case ModelTypes.PACKAGE_MERGE:
-                return 'PACKAGE_MERGE';
-            case ModelTypes.REALIZATION:
-                return 'REALIZATION';
-            case ModelTypes.SUBSTITUTION:
-                return 'SUBSTITUTION';
-            case ModelTypes.USAGE:
-                return 'USAGE';
-            default:
-                return 'ASSOCIATION';
-        }
+    protected getRelationTypeFromElementId(elementTypeId: string): string {
+        const withoutPrefix = elementTypeId.replace(/^.*?__/, '');
+        const head = withoutPrefix.split('__')[0];
+        return head.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase();
     }
 
     getTriggerActions(): TriggerEdgeCreationAction[] {

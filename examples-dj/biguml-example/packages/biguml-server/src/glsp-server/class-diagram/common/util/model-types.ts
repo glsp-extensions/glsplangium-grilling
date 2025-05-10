@@ -73,14 +73,13 @@ function representationTemplateTypeId(representation: string, type: string, temp
 
 export namespace astTypes {
     export function convertToAst(elementId: string): string {
-        // input ist ID von GLSP (elementTzpeId innerhalb von createnodeop) und output is id von ast
-        // alles muss hardgecodet werden
-        console.log('ELEMENT TYPE ID: ' + elementId);
-        if (elementId === ModelTypes.CLASS) {
+        if (elementId === ModelTypes.CLASS || elementId === ModelTypes.ABSTRACT_CLASS) {
             return 'Class';
         }
-        if (elementId === ModelTypes.ABSTRACT_CLASS) {
-            return 'Class';
-        }
+        return stripPrefix(elementId);
+    }
+
+    function stripPrefix(name: string): string {
+        return name.replace(/^.*?__/, '');
     }
 }

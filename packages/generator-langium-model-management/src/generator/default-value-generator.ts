@@ -12,15 +12,24 @@ type DefaultMapping = Record<string, DefaultMappingEntry[]>;
 
 export function buildDefaultValueMapping(
   langiumDeclarations: LangiumDeclaration[]
-): DefaultMapping {
+): { defaultMapping: DefaultMapping; noBoundsClasses: string[] } {
   const mapping: DefaultMapping = {};
+  const noBoundsClasses: string[] = [];
+
   for (const decl of langiumDeclarations) {
+    if (decl.decorators?.includes("noBounds")) {
+      noBoundsClasses.push(decl.name);
+    }
     if (decl.type !== "class" || !decl.name || !decl.properties) {
       continue;
     }
     const seen = new Set<string>();
     const entries: DefaultMappingEntry[] = [];
     for (const prop of decl.properties) {
+      if (prop.decorators?.includes("noDefault")) {
+        continue;
+      }
+
       if (seen.has(prop.name)) {
         continue;
       }
@@ -40,12 +49,12 @@ export function buildDefaultValueMapping(
     }
     mapping[decl.name] = entries;
   }
-  return mapping;
+  return { defaultMapping: mapping, noBoundsClasses };
 }
 
 export function writeDefaultValueFile(
   extensionPath: string,
-  mapping: DefaultMapping
+  payload: { defaultMapping: DefaultMapping; noBoundsClasses: string[] }
 ) {
   const content = `// THIS FILE IS GENERATED — DO NOT EDIT
 
@@ -56,31 +65,53 @@ interface DefaultMappingEntry {
 }
 
 const defaultMapping: Record<string, DefaultMappingEntry[]> = ${JSON.stringify(
-    mapping,
+    payload.defaultMapping,
     null,
     2
   )};
 
-/**
- * Return all properties for a given type,
- * filling in primitive defaults when none explicit.
- */
-export function getProperties(
-  elementTypeId: string
-): DefaultMappingEntry[] {
+export const noBoundsClasses = new Set<string>(
+  ${JSON.stringify(payload.noBoundsClasses, null, 2)}
+);
+
+export function isNoBounds(typeId: string): boolean {
+  return noBoundsClasses.has(stripPrefix(typeId));
+}
+
+export function getProperties(elementTypeId: string): DefaultMappingEntry[] {
   const parentType = stripPrefix(elementTypeId);
   const entries = defaultMapping[parentType] || [];
-  return entries.map(e => {
+  return entries.reduce((acc, e) => {
     if (e.defaultValue !== undefined) {
-      return e;
+      acc.push(e);
+      return acc;
     }
+
     switch (e.propertyType) {
-      case 'string':  return { ...e, defaultValue: '' };
-      case 'boolean': return { ...e, defaultValue: false };
-      case 'number':  return { ...e, defaultValue: 0 };
-      default:        return { ...e, defaultValue: [] };
+      case 'string':
+        return acc;
+
+      case 'boolean':
+        acc.push({ ...e, defaultValue: false });
+        return acc;
+
+      case 'number':
+        acc.push({ ...e, defaultValue: 0 });
+        return acc;
+
+      case 'Visibility':
+        acc.push({ ...e, defaultValue: 'PUBLIC' });
+        return acc;
+
+      case 'Concurrency':
+        acc.push({ ...e, defaultValue: 'SEQUENTIAL' });
+        return acc;
+
+      default:
+        acc.push({ ...e, defaultValue: [] });
+        return acc;
     }
-  });
+  }, [] as typeof entries);
 }
 
 function stripPrefix(name: string): string {

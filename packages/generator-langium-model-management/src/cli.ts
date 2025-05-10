@@ -130,11 +130,9 @@ function generate(
   );
 
   const creationPathMapping = buildCreationPathMapping(langiumDeclarations);
-  console.log("Creation Path Mapping:", creationPathMapping);
   writeCreationPathFile(extensionPath, creationPathMapping);
 
   const defaultMapping = buildDefaultValueMapping(langiumDeclarations);
-  console.log("Default Value Mapping:", defaultMapping);
   writeDefaultValueFile(extensionPath, defaultMapping);
 }
 
