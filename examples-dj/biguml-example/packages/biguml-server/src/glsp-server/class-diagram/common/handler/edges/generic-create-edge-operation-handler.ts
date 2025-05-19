@@ -15,7 +15,7 @@ import {
 } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 import { createRandomUUID } from 'model-service';
-import { getProperties } from '../../../../../language-server/yo-generated/getDefaultValue.js';
+import { getProperties, getRelationTypeFromElementId } from '../../../../../language-server/yo-generated/getDefaultValue.js';
 import { BigUmlCommand } from '../../../../biguml/index.js';
 import { ClassDiagramModelState } from '../../../model/class-diagram-model-state.js';
 import { ModelTypes } from '../../util/model-types.js';
@@ -63,10 +63,10 @@ export class GenericCreateEdgeOperationHandler extends OperationHandler implemen
 
         const id = createRandomUUID();
 
-        const astType = this.getRelationTypeFromElementId(operation.elementTypeId, false);
-        console.log('elementTypeID', operation.elementTypeId);
+        const astType = getRelationTypeFromElementId(operation.elementTypeId, false);
+        console.log('KOKOT', operation.elementTypeId);
         console.log('ASTTYPE: ', astType);
-        const relationType = this.getRelationTypeFromElementId(operation.elementTypeId, true);
+        const relationType = getRelationTypeFromElementId(operation.elementTypeId, true);
 
         const value: any = {
             $type: astType,
@@ -87,7 +87,6 @@ export class GenericCreateEdgeOperationHandler extends OperationHandler implemen
                 value[property] = defaultValue;
             }
         }
-
         const patch = {
             op: 'add' as const,
             path: '/diagram/relations/-',
@@ -97,7 +96,7 @@ export class GenericCreateEdgeOperationHandler extends OperationHandler implemen
         return JSON.stringify(patch);
     }
 
-    protected getRelationTypeFromElementId(elementTypeId: string, upperCase: boolean): string {
+    /*protected getRelationTypeFromElementId(elementTypeId: string, upperCase: boolean): string {
         console.log('ELEMENTTYPEID: ', elementTypeId);
         const withoutPrefix = elementTypeId.replace(/^.*?__/, '');
         const head = withoutPrefix.split('__')[0];
@@ -108,5 +107,5 @@ export class GenericCreateEdgeOperationHandler extends OperationHandler implemen
         } else {
             return head.charAt(0).toUpperCase() + head.slice(1);
         }
-    }
+    }*/
 }

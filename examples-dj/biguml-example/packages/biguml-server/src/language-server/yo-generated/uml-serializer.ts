@@ -10,8 +10,6 @@ import {
   isSize,
   Position,
   isPosition,
-  TestElementKarol,
-  isTestElementKarol,
   ClassDiagram,
   isClassDiagram,
   Enumeration,
@@ -168,21 +166,6 @@ export class UmlSerializer
           (element.element.ref?.__id ?? "undefined") +
           '"}'
       );
-    }
-    return "{" + str.join(",\n") + "}";
-  }
-
-  serializeTestElementKarol(element: TestElementKarol): string {
-    let str: Array<string> = [];
-    str.push('"__type": "TestElementKarol"');
-    if (element.__id !== undefined && element.__id !== null) {
-      str.push('"__id": ' + '"' + element.__id + '"');
-    }
-    if (element.name !== undefined && element.name !== null) {
-      str.push('"name": ' + '"' + element.name + '"');
-    }
-    if (element.description !== undefined && element.description !== null) {
-      str.push('"description": ' + '"' + element.description + '"');
     }
     return "{" + str.join(",\n") + "}";
   }
@@ -654,6 +637,12 @@ export class UmlSerializer
     if (isAssociation(element)) {
       return this.serializeAssociation(element);
     }
+    if (isAggregation(element)) {
+      return this.serializeAggregation(element);
+    }
+    if (isComposition(element)) {
+      return this.serializeComposition(element);
+    }
     if (isInterfaceRealization(element)) {
       return this.serializeInterfaceRealization(element);
     }
@@ -783,12 +772,6 @@ export class UmlSerializer
 
   serializeAssociation(element: Association): string {
     let str: Array<string> = [];
-    if (isAggregation(element)) {
-      return this.serializeAggregation(element);
-    }
-    if (isComposition(element)) {
-      return this.serializeComposition(element);
-    }
     str.push('"__type": "Association"');
     if (element.__id !== undefined && element.__id !== null) {
       str.push('"__id": ' + '"' + element.__id + '"');
@@ -875,18 +858,6 @@ export class UmlSerializer
       str.push('"name": ' + '"' + element.name + '"');
     }
     if (
-      element.sourceAggregation !== undefined &&
-      element.sourceAggregation !== null
-    ) {
-      str.push(
-        '"sourceAggregation": ' +
-          this.serializeAggregationType(element.sourceAggregation)
-      );
-    }
-    if (element.name !== undefined && element.name !== null) {
-      str.push('"name": ' + '"' + element.name + '"');
-    }
-    if (
       element.sourceMultiplicity !== undefined &&
       element.sourceMultiplicity !== null
     ) {
@@ -960,18 +931,6 @@ export class UmlSerializer
     str.push('"__type": "Composition"');
     if (element.__id !== undefined && element.__id !== null) {
       str.push('"__id": ' + '"' + element.__id + '"');
-    }
-    if (element.name !== undefined && element.name !== null) {
-      str.push('"name": ' + '"' + element.name + '"');
-    }
-    if (
-      element.sourceAggregation !== undefined &&
-      element.sourceAggregation !== null
-    ) {
-      str.push(
-        '"sourceAggregation": ' +
-          this.serializeAggregationType(element.sourceAggregation)
-      );
     }
     if (element.name !== undefined && element.name !== null) {
       str.push('"name": ' + '"' + element.name + '"');

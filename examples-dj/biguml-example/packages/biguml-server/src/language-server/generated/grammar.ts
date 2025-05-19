@@ -42,7 +42,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@46"
+                    "$ref": "#/rules@45"
                   },
                   "arguments": []
                 }
@@ -78,7 +78,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@45"
+                        "$ref": "#/rules@44"
                       },
                       "arguments": []
                     }
@@ -97,7 +97,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@45"
+                            "$ref": "#/rules@44"
                           },
                           "arguments": []
                         }
@@ -175,7 +175,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -208,7 +208,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@49"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -237,7 +237,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@49"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -314,12 +314,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@43"
+                    "$ref": "#/rules@42"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -397,7 +397,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -430,7 +430,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@49"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -459,7 +459,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@49"
+                    "$ref": "#/rules@48"
                   },
                   "arguments": []
                 }
@@ -536,12 +536,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@43"
+                    "$ref": "#/rules@42"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -557,153 +557,6 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "value": "}"
               }
             ]
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "TestElementKarol",
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Keyword",
-            "value": "\\"__type\\""
-          },
-          {
-            "$type": "Keyword",
-            "value": ":"
-          },
-          {
-            "$type": "Keyword",
-            "value": "\\"TestElementKarol\\""
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"__id\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "__id",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@50"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ]
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"name\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "name",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@50"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ]
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"description\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "description",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@50"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ],
-            "cardinality": "?"
           },
           {
             "$type": "Keyword",
@@ -766,7 +619,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -840,7 +693,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@43"
                       },
                       "arguments": []
                     }
@@ -859,7 +712,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@44"
+                            "$ref": "#/rules@43"
                           },
                           "arguments": []
                         }
@@ -906,7 +759,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@19"
+                        "$ref": "#/rules@18"
                       },
                       "arguments": []
                     }
@@ -925,7 +778,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@19"
+                            "$ref": "#/rules@18"
                           },
                           "arguments": []
                         }
@@ -1004,7 +857,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1041,7 +894,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1081,7 +934,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@6"
+                        "$ref": "#/rules@5"
                       },
                       "arguments": []
                     }
@@ -1100,7 +953,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@6"
+                            "$ref": "#/rules@5"
                           },
                           "arguments": []
                         }
@@ -1179,7 +1032,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1216,7 +1069,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1253,7 +1106,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1291,7 +1144,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -1325,7 +1178,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@9"
+              "$ref": "#/rules@8"
             },
             "arguments": []
           },
@@ -1374,7 +1227,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@50"
+                        "$ref": "#/rules@49"
                       },
                       "arguments": []
                     }
@@ -1411,7 +1264,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@50"
+                        "$ref": "#/rules@49"
                       },
                       "arguments": []
                     }
@@ -1444,7 +1297,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@48"
+                        "$ref": "#/rules@47"
                       },
                       "arguments": []
                     }
@@ -1480,7 +1333,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@11"
+                            "$ref": "#/rules@10"
                           },
                           "arguments": []
                         }
@@ -1499,7 +1352,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@11"
+                                "$ref": "#/rules@10"
                               },
                               "arguments": []
                             }
@@ -1546,7 +1399,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@12"
+                            "$ref": "#/rules@11"
                           },
                           "arguments": []
                         }
@@ -1565,7 +1418,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@12"
+                                "$ref": "#/rules@11"
                               },
                               "arguments": []
                             }
@@ -1605,7 +1458,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@48"
+                        "$ref": "#/rules@47"
                       },
                       "arguments": []
                     }
@@ -1639,7 +1492,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@42"
+                        "$ref": "#/rules@41"
                       },
                       "arguments": []
                     }
@@ -1714,7 +1567,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1751,7 +1604,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1823,7 +1676,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1856,7 +1709,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -1889,7 +1742,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -1927,7 +1780,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -1960,7 +1813,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -1996,7 +1849,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@11"
+                        "$ref": "#/rules@10"
                       },
                       "arguments": []
                     }
@@ -2015,7 +1868,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@11"
+                            "$ref": "#/rules@10"
                           },
                           "arguments": []
                         }
@@ -2062,7 +1915,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@12"
+                        "$ref": "#/rules@11"
                       },
                       "arguments": []
                     }
@@ -2081,7 +1934,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@12"
+                            "$ref": "#/rules@11"
                           },
                           "arguments": []
                         }
@@ -2121,7 +1974,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2155,7 +2008,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -2228,7 +2081,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -2265,7 +2118,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -2305,7 +2158,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@11"
+                        "$ref": "#/rules@10"
                       },
                       "arguments": []
                     }
@@ -2324,7 +2177,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@11"
+                            "$ref": "#/rules@10"
                           },
                           "arguments": []
                         }
@@ -2371,7 +2224,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@12"
+                        "$ref": "#/rules@11"
                       },
                       "arguments": []
                     }
@@ -2390,7 +2243,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@12"
+                            "$ref": "#/rules@11"
                           },
                           "arguments": []
                         }
@@ -2469,7 +2322,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -2506,7 +2359,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -2539,7 +2392,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2569,7 +2422,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2599,7 +2452,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2629,7 +2482,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2659,7 +2512,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2689,7 +2542,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -2723,7 +2576,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -2761,7 +2614,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -2843,12 +2696,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@35"
+                    "$ref": "#/rules@34"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -2892,7 +2745,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@36"
                   },
                   "arguments": []
                 }
@@ -2965,7 +2818,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3002,7 +2855,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3035,7 +2888,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3065,7 +2918,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3095,7 +2948,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3129,7 +2982,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -3167,7 +3020,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@40"
+                    "$ref": "#/rules@39"
                   },
                   "arguments": []
                 }
@@ -3208,7 +3061,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@13"
+                        "$ref": "#/rules@12"
                       },
                       "arguments": []
                     }
@@ -3227,7 +3080,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@13"
+                            "$ref": "#/rules@12"
                           },
                           "arguments": []
                         }
@@ -3306,7 +3159,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3343,7 +3196,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3376,7 +3229,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3406,7 +3259,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3436,7 +3289,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3466,7 +3319,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -3500,7 +3353,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@38"
+                    "$ref": "#/rules@37"
                   },
                   "arguments": []
                 }
@@ -3538,7 +3391,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@38"
                   },
                   "arguments": []
                 }
@@ -3576,7 +3429,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -3658,12 +3511,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@35"
+                    "$ref": "#/rules@34"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -3707,7 +3560,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3780,7 +3633,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3817,7 +3670,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -3857,7 +3710,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@11"
+                        "$ref": "#/rules@10"
                       },
                       "arguments": []
                     }
@@ -3876,7 +3729,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@11"
+                            "$ref": "#/rules@10"
                           },
                           "arguments": []
                         }
@@ -3923,7 +3776,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@12"
+                        "$ref": "#/rules@11"
                       },
                       "arguments": []
                     }
@@ -3942,7 +3795,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@12"
+                            "$ref": "#/rules@11"
                           },
                           "arguments": []
                         }
@@ -3982,7 +3835,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -4016,7 +3869,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -4089,7 +3942,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4126,7 +3979,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4198,7 +4051,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4235,7 +4088,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4272,7 +4125,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -4313,7 +4166,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@17"
+                        "$ref": "#/rules@16"
                       },
                       "arguments": []
                     }
@@ -4332,7 +4185,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@17"
+                            "$ref": "#/rules@16"
                           },
                           "arguments": []
                         }
@@ -4411,7 +4264,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4448,7 +4301,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4529,12 +4382,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@35"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -4581,7 +4434,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@18"
+                        "$ref": "#/rules@17"
                       },
                       "arguments": []
                     }
@@ -4600,7 +4453,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@18"
+                            "$ref": "#/rules@17"
                           },
                           "arguments": []
                         }
@@ -4679,7 +4532,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4716,7 +4569,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4753,7 +4606,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -4786,6 +4639,13 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@19"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@20"
             },
             "arguments": []
@@ -4801,6 +4661,20 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@22"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@23"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@24"
             },
             "arguments": []
           },
@@ -4843,13 +4717,6 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@30"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@31"
             },
             "arguments": []
           },
@@ -4898,7 +4765,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@50"
+                        "$ref": "#/rules@49"
                       },
                       "arguments": []
                     }
@@ -4979,12 +4846,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "CrossReference",
                       "type": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@43"
                       },
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@50"
+                          "$ref": "#/rules@49"
                         },
                         "arguments": []
                       },
@@ -5071,12 +4938,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "CrossReference",
                       "type": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@43"
                       },
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@50"
+                          "$ref": "#/rules@49"
                         },
                         "arguments": []
                       },
@@ -5119,7 +4986,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@41"
+                        "$ref": "#/rules@40"
                       },
                       "arguments": []
                     }
@@ -5193,7 +5060,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -5230,7 +5097,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -5268,7 +5135,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -5350,12 +5217,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -5442,12 +5309,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -5490,7 +5357,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -5562,7 +5429,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -5599,7 +5466,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -5637,7 +5504,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -5719,12 +5586,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -5811,12 +5678,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -5859,7 +5726,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -5887,25 +5754,380 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
       "$type": "ParserRule",
       "name": "Association",
       "definition": {
-        "$type": "Alternatives",
+        "$type": "Group",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@23"
-            },
-            "arguments": []
+            "$type": "Keyword",
+            "value": "{"
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@24"
-            },
-            "arguments": []
+            "$type": "Keyword",
+            "value": "\\"__type\\""
+          },
+          {
+            "$type": "Keyword",
+            "value": ":"
+          },
+          {
+            "$type": "Keyword",
+            "value": "\\"Association\\""
           },
           {
             "$type": "Group",
             "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"__id\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "__id",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"name\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"sourceMultiplicity\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "sourceMultiplicity",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"targetMultiplicity\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "targetMultiplicity",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"sourceName\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "sourceName",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"targetName\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "targetName",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@49"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"sourceAggregation\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "sourceAggregation",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@36"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"targetAggregation\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "targetAggregation",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@36"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"visibility\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "visibility",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@41"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"source\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
               {
                 "$type": "Keyword",
                 "value": "{"
@@ -5920,575 +6142,201 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
               },
               {
                 "$type": "Keyword",
-                "value": "\\"Association\\""
+                "value": "\\"Reference\\""
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__id\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "__id",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ]
+                "$type": "Keyword",
+                "value": ","
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"name\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "name",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": "\\"__refType\\""
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"sourceMultiplicity\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "sourceMultiplicity",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": ":"
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"targetMultiplicity\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "targetMultiplicity",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": "\\"Entity\\""
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"sourceName\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "sourceName",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": ","
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"targetName\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "targetName",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@50"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": "\\"__value\\""
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"sourceAggregation\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "sourceAggregation",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@37"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": ":"
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"targetAggregation\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "targetAggregation",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@37"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                "$type": "Keyword",
+                "value": "\\""
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
+                "$type": "Assignment",
+                "feature": "source",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/rules@43"
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"visibility\\""
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@49"
+                    },
+                    "arguments": []
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "visibility",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@42"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ],
-                "cardinality": "?"
+                  "deprecatedSyntax": false
+                }
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"source\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "{"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__type\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"Reference\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__refType\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"Entity\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__value\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "source",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/rules@44"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@50"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "}"
-                  }
-                ]
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"target\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "{"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__type\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"Reference\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__refType\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"Entity\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"__value\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "target",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/rules@44"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@50"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "}"
-                  }
-                ]
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\"relationType\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "relationType",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@41"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "\\""
-                  }
-                ]
+                "$type": "Keyword",
+                "value": "\\""
               },
               {
                 "$type": "Keyword",
                 "value": "}"
               }
             ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"target\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "{"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"__type\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"Reference\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"__refType\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"Entity\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"__value\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "target",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/rules@43"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@49"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": "}"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"relationType\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              },
+              {
+                "$type": "Assignment",
+                "feature": "relationType",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@40"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\""
+              }
+            ]
+          },
+          {
+            "$type": "Keyword",
+            "value": "}"
           }
         ]
       },
@@ -6547,7 +6395,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6584,83 +6432,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"sourceAggregation\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "sourceAggregation",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@37"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"name\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "name",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6698,7 +6470,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6736,7 +6508,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6774,7 +6546,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6812,7 +6584,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -6850,7 +6622,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@36"
                   },
                   "arguments": []
                 }
@@ -6888,7 +6660,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@36"
                   },
                   "arguments": []
                 }
@@ -6926,7 +6698,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -7008,12 +6780,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -7100,12 +6872,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -7148,7 +6920,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -7220,7 +6992,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7257,83 +7029,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"sourceAggregation\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "sourceAggregation",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@37"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"name\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\""
-              },
-              {
-                "$type": "Assignment",
-                "feature": "name",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7371,7 +7067,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7409,7 +7105,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7447,7 +7143,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7485,7 +7181,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7523,7 +7219,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@36"
                   },
                   "arguments": []
                 }
@@ -7561,7 +7257,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@37"
+                    "$ref": "#/rules@36"
                   },
                   "arguments": []
                 }
@@ -7599,7 +7295,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -7681,12 +7377,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -7773,12 +7469,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -7821,7 +7517,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -7893,7 +7589,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7930,7 +7626,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -7968,7 +7664,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -8050,12 +7746,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8142,12 +7838,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8190,7 +7886,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -8262,7 +7958,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -8295,7 +7991,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@48"
+                    "$ref": "#/rules@47"
                   },
                   "arguments": []
                 }
@@ -8372,12 +8068,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8464,12 +8160,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8512,7 +8208,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -8584,7 +8280,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -8621,7 +8317,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -8703,12 +8399,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8795,12 +8491,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -8843,7 +8539,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -8915,7 +8611,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -8996,12 +8692,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9088,12 +8784,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9136,7 +8832,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -9208,7 +8904,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -9245,7 +8941,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -9283,7 +8979,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -9365,12 +9061,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9457,12 +9153,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9505,7 +9201,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -9577,7 +9273,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -9614,7 +9310,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -9652,7 +9348,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -9734,12 +9430,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9826,12 +9522,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -9874,7 +9570,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -9946,7 +9642,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -9983,7 +9679,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10021,7 +9717,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -10103,12 +9799,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -10195,12 +9891,12 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/rules@44"
+                    "$ref": "#/rules@43"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@50"
+                      "$ref": "#/rules@49"
                     },
                     "arguments": []
                   },
@@ -10243,7 +9939,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@41"
+                    "$ref": "#/rules@40"
                   },
                   "arguments": []
                 }
@@ -10315,7 +10011,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10421,7 +10117,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10495,7 +10191,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@43"
                       },
                       "arguments": []
                     }
@@ -10514,7 +10210,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@44"
+                            "$ref": "#/rules@43"
                           },
                           "arguments": []
                         }
@@ -10561,7 +10257,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@19"
+                        "$ref": "#/rules@18"
                       },
                       "arguments": []
                     }
@@ -10580,7 +10276,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@19"
+                            "$ref": "#/rules@18"
                           },
                           "arguments": []
                         }
@@ -10659,7 +10355,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10696,7 +10392,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10733,7 +10429,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@50"
+                    "$ref": "#/rules@49"
                   },
                   "arguments": []
                 }
@@ -10771,7 +10467,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@41"
                   },
                   "arguments": []
                 }
@@ -10812,7 +10508,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@44"
+                        "$ref": "#/rules@43"
                       },
                       "arguments": []
                     }
@@ -10831,7 +10527,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@44"
+                            "$ref": "#/rules@43"
                           },
                           "arguments": []
                         }
@@ -10871,35 +10567,35 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@13"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@4"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@6"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@9"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@14"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@5"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@7"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@10"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@15"
             },
             "arguments": []
           }
@@ -10921,21 +10617,21 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@11"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@7"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@10"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@6"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@9"
             },
             "arguments": []
           }
@@ -11174,7 +10870,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
       "definition": {
         "$type": "RuleCall",
         "rule": {
-          "$ref": "#/rules@44"
+          "$ref": "#/rules@43"
         },
         "arguments": []
       },
@@ -11194,21 +10890,28 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@5"
+              "$ref": "#/rules@4"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@7"
+              "$ref": "#/rules@6"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@10"
+              "$ref": "#/rules@9"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@13"
             },
             "arguments": []
           },
@@ -11229,14 +10932,7 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@16"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@34"
+              "$ref": "#/rules@33"
             },
             "arguments": []
           }
@@ -11287,7 +10983,14 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@4"
+              "$ref": "#/rules@3"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@31"
             },
             "arguments": []
           },
@@ -11295,13 +10998,6 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@32"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@33"
             },
             "arguments": []
           }

@@ -11,10 +11,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "diagram",
       "propertyType": "UnionType_0"
-    },
-    {
-      "property": "metaInfos",
-      "propertyType": "MetaInfo"
     }
   ],
   "ElementWithSizeAndPosition": [],
@@ -46,17 +42,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "element",
       "propertyType": "ElementWithSizeAndPosition"
-    }
-  ],
-  "TestElementKarol": [
-    {
-      "property": "name",
-      "propertyType": "string",
-      "defaultValue": "defaultName"
-    },
-    {
-      "property": "description",
-      "propertyType": "string"
     }
   ],
   "ClassDiagram": [
@@ -178,39 +163,38 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "isDerived",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "isOrdered",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "isStatic",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "isDerivedUnion",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "isReadOnly",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "isUnique",
-      "propertyType": "boolean"
+      "propertyType": "boolean",
+      "defaultValue": false
     },
     {
       "property": "visibility",
-      "propertyType": "Visibility"
-    },
-    {
-      "property": "multiplicity",
-      "propertyType": "string"
-    },
-    {
-      "property": "propertyType",
-      "propertyType": "DataTypeReference"
+      "propertyType": "Visibility",
+      "defaultValue": "PUBLIC"
     }
   ],
   "Operation": [
@@ -334,7 +318,8 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     },
     {
       "property": "values",
-      "propertyType": "LiteralSpecification"
+      "propertyType": "LiteralSpecification",
+      "defaultValue": "[]"
     }
   ],
   "LiteralSpecification": [
@@ -461,11 +446,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       "propertyType": "string"
     },
     {
-      "property": "sourceAggregation",
-      "propertyType": "AggregationType",
-      "defaultValue": "SHARED"
-    },
-    {
       "property": "sourceMultiplicity",
       "propertyType": "string",
       "defaultValue": "*"
@@ -482,6 +462,11 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "targetName",
       "propertyType": "string"
+    },
+    {
+      "property": "sourceAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "SHARED"
     },
     {
       "property": "targetAggregation",
@@ -511,11 +496,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       "propertyType": "string"
     },
     {
-      "property": "sourceAggregation",
-      "propertyType": "AggregationType",
-      "defaultValue": "COMPOSITE"
-    },
-    {
       "property": "sourceMultiplicity",
       "propertyType": "string",
       "defaultValue": "*"
@@ -532,6 +512,11 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "targetName",
       "propertyType": "string"
+    },
+    {
+      "property": "sourceAggregation",
+      "propertyType": "AggregationType",
+      "defaultValue": "COMPOSITE"
     },
     {
       "property": "targetAggregation",
@@ -628,14 +613,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     }
   ],
   "Realization": [
-    {
-      "property": "name",
-      "propertyType": "string"
-    },
-    {
-      "property": "visibility",
-      "propertyType": "Visibility"
-    },
     {
       "property": "source",
       "propertyType": "Entity"
@@ -743,46 +720,79 @@ export const noBoundsClasses = new Set<string>(
 ]
 );
 
+export const astTypeMapping: Record<string, string> = {
+  "aggregation": "Association",
+  "composition": "Association"
+};
+
 export function isNoBounds(typeId: string): boolean {
   return noBoundsClasses.has(stripPrefix(typeId));
 }
 
 export function getProperties(elementTypeId: string): DefaultMappingEntry[] {
-  const parentType = stripPrefix(elementTypeId);
-  const entries = defaultMapping[parentType] || [];
-  return entries.reduce((acc, e) => {
-    if (e.defaultValue !== undefined) {
-      acc.push(e);
-      return acc;
-    }
+    const parentType = elementTypeId.startsWith('edge')
+        ? (() => {
+              const s = getRelationTypeFromElementId(elementTypeId, true).toLowerCase();
+              return s.charAt(0).toUpperCase() + s.slice(1);
+          })()
+        : stripPrefix(elementTypeId);
+    const entries = defaultMapping[parentType] || [];
+    return entries.reduce((acc, e) => {
+        if (e.defaultValue !== undefined) {
+            if (e.defaultValue === '[]') {
+                acc.push({ ...e, defaultValue: [] });
+            } else {
+                acc.push(e);
+            }
+            return acc;
+        }
 
     switch (e.propertyType) {
       case 'string':
         return acc;
-
       case 'boolean':
         acc.push({ ...e, defaultValue: false });
         return acc;
-
       case 'number':
         acc.push({ ...e, defaultValue: 0 });
         return acc;
-
       case 'Visibility':
         acc.push({ ...e, defaultValue: 'PUBLIC' });
         return acc;
-
       case 'Concurrency':
         acc.push({ ...e, defaultValue: 'SEQUENTIAL' });
         return acc;
-
       default:
         acc.push({ ...e, defaultValue: [] });
         return acc;
     }
-  }, [] as typeof entries);
+  }, [] as DefaultMappingEntry[]);
 }
 
 function stripPrefix(name: string): string {
   return name.replace(/^.*?__/, '');
+}
+
+/**
+ * Returns the UPPER_CASE relation type identifier when upperCase is true,
+ * otherwise returns the AST edge type name for use in the model.
+ */
+export function getRelationTypeFromElementId(
+  elementTypeId: string,
+  upperCase: boolean
+): string {
+  const withoutPrefix = elementTypeId.replace(/^.*?__/, '');
+  const head = withoutPrefix.split('__')[0];
+
+  if (upperCase) {
+    const withUnderscore = head.replace(/([a-z])([A-Z])/g, '$1_$2');
+    return withUnderscore.toUpperCase();
+  } else {
+    const candidate = head.charAt(0).toUpperCase() + head.slice(1);
+    const lookup = candidate.toLowerCase();
+    if (astTypeMapping[lookup]) {
+      return astTypeMapping[lookup];
+    }
+    return candidate;
+  }
 }

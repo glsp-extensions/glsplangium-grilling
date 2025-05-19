@@ -107,6 +107,8 @@ const mapping: Record<string, Array<{ property: string; allowedChildTypes?: stri
         "Abstraction",
         "Dependency",
         "Association",
+        "Aggregation",
+        "Composition",
         "InterfaceRealization",
         "Generalization",
         "PackageImport",

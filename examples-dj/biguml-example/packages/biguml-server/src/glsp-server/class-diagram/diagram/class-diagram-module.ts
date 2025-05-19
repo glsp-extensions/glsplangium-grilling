@@ -42,7 +42,6 @@ import { RequestPropertyPaletteActionHandler } from '../common/handler/action/re
 import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { ClassDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';
-import { CreateAssociationOperationHandler } from '../common/handler/edges/create-association-handler.js';
 import { GenericCreateEdgeOperationHandler } from '../common/handler/edges/generic-create-edge-operation-handler.js';
 import { GenericCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
 import { ClassDiagramUpdateClientOperationHandler } from '../common/handler/update-glsp-client-handler.js';
@@ -116,7 +115,7 @@ export class ClassDiagramModule extends DiagramModule {
         binding.add(GenericCreateEdgeOperationHandler);
 
         //binding.add(CreateAbstractionOperationHandler);
-        binding.add(CreateAssociationOperationHandler);
+        //binding.add(CreateAssociationOperationHandler);
         //binding.add(CreateDependencyOperationHandler);
         //binding.add(CreateGeneralizationOperationHandler);
         //binding.add(CreateInterfaceRealizationOperationHandler);

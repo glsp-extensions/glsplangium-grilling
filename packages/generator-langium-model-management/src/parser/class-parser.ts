@@ -64,10 +64,15 @@ export const visitClassDeclaration =
     } else if (node.kind === SyntaxKind.AbstractKeyword) {
       target.isAbstract = true;
     } else if (ts.isDecorator(node)) {
-      ts.forEachChild(node, (child) => {
-        if (ts.isIdentifier(child)) {
-          target.decorators!.push(child.getText());
-        }
-      });
+      const expr = node.expression;
+      if (ts.isCallExpression(expr)) {
+        const decoratorName = expr.expression.getText();
+        const args = expr.arguments.map((arg) =>
+          ts.isStringLiteral(arg) ? arg.text : arg.getText()
+        );
+        target.decorators!.push(`${decoratorName}:${args.join(",")}`);
+      } else if (ts.isIdentifier(expr)) {
+        target.decorators!.push(expr.getText());
+      }
     }
   };

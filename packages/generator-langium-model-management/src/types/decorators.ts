@@ -4,4 +4,12 @@ export function root(_target: any, _propertyKey?: any) {}
 export function crossReference(_target: any, _propertyKey?: any) {}
 export function path(_target: any, _propertyKey?: any) {}
 export function noBounds(_target: any, _propertyKey?: any) {}
-export function noDefault(_target: any, _propertyKey?: any) {}
+export function withDefaults(_target: any, _propertyKey?: any) {}
+export function astType(value: any): ClassDecorator {
+  return (constructor: Function) => {
+    Reflect.defineMetadata("astType", value, constructor);
+    const existing = (constructor as any).__customDecorators || [];
+    existing.push(`astType:${value}`);
+    (constructor as any).__customDecorators = existing;
+  };
+}

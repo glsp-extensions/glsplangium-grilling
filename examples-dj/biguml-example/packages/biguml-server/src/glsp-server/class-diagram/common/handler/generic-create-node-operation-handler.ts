@@ -105,16 +105,10 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
 
     createNode(operation: CreateNodeOperation): string {
         const newName = findAvailableNodeName(this.modelState.semanticRoot, 'New' + this.stripPrefix(operation.elementTypeId));
-        console.log(operation.elementTypeId);
-        console.log('newName: ' + newName);
         const id = createRandomUUID();
-
         const containerPath = this.resolveContainerPath(operation);
-        console.log('ContainerPath: ' + containerPath);
         //this could be redone later (convertToAst)
         const astType = astTypes.convertToAst(operation.elementTypeId);
-        console.log('elementtypeid: ', operation.elementTypeId);
-        console.log('asttype: ' + astType);
 
         let nodeValue: any = {
             $type: astType,
@@ -123,14 +117,11 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
         };
 
         const allProps = getProperties(operation.elementTypeId);
-        console.log('allProps: ', allProps);
         for (const { property, defaultValue } of allProps) {
             if (property !== 'name' && nodeValue[property] === undefined) {
-                console.log('Property: ', property, defaultValue);
                 nodeValue[property] = defaultValue;
             }
         }
-        console.log('nodevalue: ', nodeValue);
         const patch = JSON.stringify({
             op: 'add',
             path: containerPath,
@@ -142,22 +133,14 @@ export class GenericCreateNodeOperationHandler extends OperationHandler implemen
     resolveContainerPath(operation: CreateNodeOperation): string {
         if (operation.containerId) {
             const container = this.modelState.index.find(operation.containerId);
-            console.log('container: ', container);
-
             const containerPath = this.modelState.index.findPath(operation.containerId);
-            console.log('container path: ', containerPath);
-            console.log('container type: ', container.type);
             if (container && container.type === 'graph') {
                 return '/diagram/entities/-';
             }
 
             if (container && container.type) {
-                console.log('TYPE: ', container.type);
-                console.log('ELEMENTTYPEID ', operation.elementTypeId);
                 const creationProperty = getCreationPath(container.type, operation.elementTypeId);
-                console.log('CREATION PROPERTY ', creationProperty);
                 if (creationProperty) {
-                    console.log('RETURNED ', containerPath + '/' + creationProperty + '/-');
                     return containerPath + '/' + creationProperty + '/-';
                 }
             }

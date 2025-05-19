@@ -426,19 +426,6 @@ export function isTest(item: unknown): item is Test {
     return reflection.isInstance(item, Test);
 }
 
-export interface TestElementKarol extends AstNode {
-    readonly $type: 'TestElementKarol';
-    __id: string
-    description?: string
-    name: string
-}
-
-export const TestElementKarol = 'TestElementKarol';
-
-export function isTestElementKarol(item: unknown): item is TestElementKarol {
-    return reflection.isInstance(item, TestElementKarol);
-}
-
 export interface AbstractClass extends Class {
     readonly $type: 'AbstractClass';
     __id: string
@@ -472,26 +459,70 @@ export function isAbstraction(item: unknown): item is Abstraction {
     return reflection.isInstance(item, Abstraction);
 }
 
-export interface Association extends Relation {
-    readonly $type: 'Aggregation' | 'Association' | 'Composition';
+export interface Aggregation extends Relation {
+    readonly $type: 'Aggregation';
     __id: string
-    name: string
+    name?: string
     relationType: RelationType
     source: Reference<Entity>
-    sourceAggregation: AggregationType
-    sourceMultiplicity: string
-    sourceName: string
+    sourceAggregation?: AggregationType
+    sourceMultiplicity?: string
+    sourceName?: string
     target: Reference<Entity>
-    targetAggregation: AggregationType
-    targetMultiplicity: string
-    targetName: string
-    visibility: Visibility
+    targetAggregation?: AggregationType
+    targetMultiplicity?: string
+    targetName?: string
+    visibility?: Visibility
+}
+
+export const Aggregation = 'Aggregation';
+
+export function isAggregation(item: unknown): item is Aggregation {
+    return reflection.isInstance(item, Aggregation);
+}
+
+export interface Association extends Relation {
+    readonly $type: 'Association';
+    __id: string
+    name?: string
+    relationType: RelationType
+    source: Reference<Entity>
+    sourceAggregation?: AggregationType
+    sourceMultiplicity?: string
+    sourceName?: string
+    target: Reference<Entity>
+    targetAggregation?: AggregationType
+    targetMultiplicity?: string
+    targetName?: string
+    visibility?: Visibility
 }
 
 export const Association = 'Association';
 
 export function isAssociation(item: unknown): item is Association {
     return reflection.isInstance(item, Association);
+}
+
+export interface Composition extends Relation {
+    readonly $type: 'Composition';
+    __id: string
+    name?: string
+    relationType: RelationType
+    source: Reference<Entity>
+    sourceAggregation?: AggregationType
+    sourceMultiplicity?: string
+    sourceName?: string
+    target: Reference<Entity>
+    targetAggregation?: AggregationType
+    targetMultiplicity?: string
+    targetName?: string
+    visibility?: Visibility
+}
+
+export const Composition = 'Composition';
+
+export function isComposition(item: unknown): item is Composition {
+    return reflection.isInstance(item, Composition);
 }
 
 export interface Dependency extends Relation {
@@ -618,50 +649,6 @@ export function isUsage(item: unknown): item is Usage {
     return reflection.isInstance(item, Usage);
 }
 
-export interface Aggregation extends Association {
-    readonly $type: 'Aggregation';
-    __id: string
-    name: string
-    relationType: RelationType
-    source: Reference<Entity>
-    sourceAggregation: AggregationType
-    sourceMultiplicity?: string
-    sourceName?: string
-    target: Reference<Entity>
-    targetAggregation?: AggregationType
-    targetMultiplicity?: string
-    targetName?: string
-    visibility?: Visibility
-}
-
-export const Aggregation = 'Aggregation';
-
-export function isAggregation(item: unknown): item is Aggregation {
-    return reflection.isInstance(item, Aggregation);
-}
-
-export interface Composition extends Association {
-    readonly $type: 'Composition';
-    __id: string
-    name: string
-    relationType: RelationType
-    source: Reference<Entity>
-    sourceAggregation: AggregationType
-    sourceMultiplicity?: string
-    sourceName?: string
-    target: Reference<Entity>
-    targetAggregation?: AggregationType
-    targetMultiplicity?: string
-    targetName?: string
-    visibility?: Visibility
-}
-
-export const Composition = 'Composition';
-
-export function isComposition(item: unknown): item is Composition {
-    return reflection.isInstance(item, Composition);
-}
-
 export type UmlAstType = {
     AbstractClass: AbstractClass
     Abstraction: Abstraction
@@ -701,7 +688,6 @@ export type UmlAstType = {
     StateMachineDiagram: StateMachineDiagram
     Substitution: Substitution
     Test: Test
-    TestElementKarol: TestElementKarol
     UnionType_0: UnionType_0
     Usage: Usage
 }
@@ -709,7 +695,7 @@ export type UmlAstType = {
 export class UmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AbstractClass', 'Abstraction', 'Aggregation', 'Association', 'Class', 'ClassDiagram', 'Composition', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'Test', 'TestElementKarol', 'UnionType_0', 'Usage'];
+        return ['AbstractClass', 'Abstraction', 'Aggregation', 'Association', 'Class', 'ClassDiagram', 'Composition', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'Test', 'UnionType_0', 'Usage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -718,7 +704,9 @@ export class UmlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(Class, supertype);
             }
             case Abstraction:
+            case Aggregation:
             case Association:
+            case Composition:
             case Dependency:
             case Generalization:
             case InterfaceRealization:
@@ -728,10 +716,6 @@ export class UmlAstReflection extends AbstractAstReflection {
             case Substitution:
             case Usage: {
                 return this.isSubtype(Relation, supertype);
-            }
-            case Aggregation:
-            case Composition: {
-                return this.isSubtype(Association, supertype);
             }
             case Class:
             case Interface: {
@@ -778,14 +762,10 @@ export class UmlAstReflection extends AbstractAstReflection {
             case 'Aggregation:target':
             case 'Aggregation:source':
             case 'Aggregation:target':
-            case 'Aggregation:source':
-            case 'Aggregation:target':
             case 'Association:source':
             case 'Association:target':
             case 'Association:source':
             case 'Association:target':
-            case 'Composition:source':
-            case 'Composition:target':
             case 'Composition:source':
             case 'Composition:target':
             case 'Composition:source':
