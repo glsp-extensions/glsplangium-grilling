@@ -22,6 +22,7 @@ export namespace ClassPropertyPaletteHandler {
                     .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
                     .bool(semanticElement.__id, 'isAbstract', semanticElement.isAbstract, 'isAbstract')
                     .bool(semanticElement.__id, 'isActive', semanticElement.isActive, 'isActive')
+                    .bool(semanticElement.__id, 'temp', semanticElement.temp, 'temp')
                     .choice(
                         semanticElement.__id,
                         'visibility',

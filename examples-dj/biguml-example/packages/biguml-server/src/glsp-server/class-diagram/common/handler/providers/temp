@@ -166,3 +166,43 @@ CLASS
       @path parameters?: Array<Parameter>;
     }
     //wenn @withDefault - nimmt alle wie jetzt
+
+
+    @withDefaults
+    export class Class extends Entity {
+        @MinLength(5, { message: 'Class.name must be at least 5 characters long' })
+        name: string;
+        isAbstract: boolean = false;
+        @path properties?: Array<Property>;
+        @path operations?: Array<Operation>;
+        isActive?: boolean;
+        visibility?: Visibility;
+        ///**@minLength(3)**/ test: string = "abc";
+        //test: Test = { name: "Karol" };
+        temp?: boolean;
+    }
+
+
+    //alle Types von ast.ts
+    export class ClassValdiationElement {
+
+      constructor (name: string) {this.name = name}
+        @MinLength(5, { message: 'Class.name must be at least 5 characters long' })
+        name: string;
+    }
+
+    
+
+    function validateX (element: AstNode): boolean {
+        if (element.$type === 'Class') {
+          const validationElement = new ClassValdiationElement(element.name);
+          validate
+        }
+    }
+
+    export class ClassValdiationElement extends Class {
+
+      constructor (name: string) {this.name = name}
+        @MinLength(5, { message: 'Class.name must be at least 5 characters long' })
+        override name: string;
+    }

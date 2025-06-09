@@ -278,6 +278,9 @@ export class UmlSerializer
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
     }
+    if (element.temp !== undefined && element.temp !== null) {
+      str.push('"temp": ' + element.temp + "");
+    }
     return "{" + str.join(",\n") + "}";
   }
 
@@ -301,6 +304,9 @@ export class UmlSerializer
     }
     if (element.isAbstract !== undefined && element.isAbstract !== null) {
       str.push('"isAbstract": ' + element.isAbstract + "");
+    }
+    if (element.label !== undefined && element.label !== null) {
+      str.push('"label": ' + '"' + element.label + '"');
     }
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
@@ -334,6 +340,9 @@ export class UmlSerializer
     }
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
+    }
+    if (element.temp !== undefined && element.temp !== null) {
+      str.push('"temp": ' + element.temp + "");
     }
     return "{" + str.join(",\n") + "}";
   }

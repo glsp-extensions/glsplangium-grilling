@@ -1,11 +1,21 @@
 /*********************************************************************************
-* Copyright (c) 2023 borkdominik and others.
-*
-* This program and the accompanying materials are made available under the
-* terms of the MIT License which is available at https://opensource.org/licenses/MIT.
-*
-* SPDX-License-Identifier: MIT
-*********************************************************************************/
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
+import {
+    AstNode,
+    DefaultSharedModuleContext,
+    Module,
+    PartialLangiumServices,
+    PartialLangiumSharedServices,
+    createDefaultModule,
+    createDefaultSharedModule,
+    inject
+} from 'langium';
 import {
     AddedSharedModelServices,
     AddedSharedServices,
@@ -16,15 +26,6 @@ import {
     OpenableTextDocuments,
     SharedServices
 } from 'model-service';
-import {
-    DefaultSharedModuleContext,
-    Module,
-    PartialLangiumServices,
-    PartialLangiumSharedServices,
-    createDefaultModule,
-    createDefaultSharedModule,
-    inject
-} from 'langium';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { UmlGeneratedModule, UmlGeneratedSharedModule } from '../generated/module.js';
 import { ClientLogger } from './uml-client-logger.js';
@@ -40,6 +41,83 @@ import { UmlScopeProvider } from './uml-scope-provider.js';
 import { UmlScopeComputation } from './uml-scope.js';
 import { UmlSerializer } from './uml-serializer.js';
 import { UmlWorkspaceManager } from './uml-workspace-manager.js';
+
+import * as jsonpatch from 'fast-json-patch';
+import { URI } from 'vscode-uri';
+import { getNodeByPointer } from '../validation/json-pointer.js';
+import { validateNode } from '../validation/validator.js';
+
+export class UmlModelService extends ModelService {
+    override async patch<T extends AstNode>(
+        uri: string,
+        patchOp: string | jsonpatch.Operation | jsonpatch.Operation[],
+        client?: string
+    ): Promise<T> {
+        /* ───────────────────── step 0: normalise input ───────────────────── */
+        const operations: jsonpatch.Operation[] = Array.isArray(patchOp)
+            ? patchOp
+            : typeof patchOp === 'string'
+              ? JSON.parse(patchOp)
+              : [patchOp];
+
+        console.log('[patch] incoming operations', operations);
+
+        /* ───────────────────── step 1: fetch current AST ──────────────────── */
+        await this.open(uri, client);
+        const document = this.documents.getOrCreateDocument(URI.parse(uri));
+        const root = document.parseResult.value;
+
+        /* ───────────────────── step 2: validate each op ───────────────────── */
+        for (const op of operations) {
+            console.log('[patch] validating op', op);
+
+            if (op.op !== 'add' && op.op !== 'replace') {
+                console.log('[patch] op skipped (no validation needed)');
+                continue;
+            }
+            if (typeof op.path !== 'string') continue;
+
+            /* parent pointer = everything up to the last '/' */
+            const lastSlash = op.path.lastIndexOf('/');
+            const parentPointer = lastSlash === 0 ? '/' : op.path.slice(0, lastSlash);
+            const propOrIndex = op.path.slice(lastSlash + 1);
+
+            const target = getNodeByPointer(root, parentPointer);
+
+            if (!target) {
+                console.warn('[patch] target not found in AST, letting patchManager handle it');
+                continue; // let fast-json-patch surface the error later
+            }
+
+            /* shadow-clone the element & apply the incoming change */
+            const clone = Array.isArray(target) ? ([...target] as any) : ({ ...target } as any);
+
+            if (Array.isArray(clone)) {
+                const idx = Number(propOrIndex);
+                if (op.op === 'replace') clone[idx] = op.value;
+                else clone.splice(idx, 0, op.value);
+            } else {
+                clone[propOrIndex] = op.value;
+            }
+
+            try {
+                validateNode(clone);
+            } catch (e) {
+                const msg = (e as Error).message ?? e;
+                console.error('[patch] validation FAILED:', msg, '\n  ↳ op          :', op, '\n  ↳ parent      :', parentPointer);
+                throw e;
+            }
+            console.log('[patch] validation OK ✔');
+        }
+
+        /* ───────────────────── step 3: delegate to super ──────────────────── */
+        console.log('[patch] all operations validated, delegating to super.patch');
+        const result = await super.patch(uri, operations, client);
+        console.log('[patch] super.patch returned', result);
+
+        return result as T;
+    }
+}
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -75,7 +153,7 @@ export const UmlSharedModule: Module<
         ClientLogger: services => new ClientLogger(services)
     },
     model: {
-        ModelService: services => new ModelService(services)
+        ModelService: services => new UmlModelService(services)
     }
 };
 

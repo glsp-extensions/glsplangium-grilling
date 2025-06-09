@@ -128,7 +128,6 @@ function generate(
       text
     )
   );
-
   const creationPathMapping = buildCreationPathMapping(langiumDeclarations);
   writeCreationPathFile(extensionPath, creationPathMapping);
 

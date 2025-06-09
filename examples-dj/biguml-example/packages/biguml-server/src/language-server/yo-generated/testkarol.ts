@@ -210,7 +210,9 @@
       {
         "name": "name",
         "isOptional": false,
-        "decorators": [],
+        "decorators": [
+          "LengthBetween"
+        ],
         "types": [
           {
             "type": "simple",
@@ -297,7 +299,9 @@
       {
         "name": "name",
         "isOptional": false,
-        "decorators": [],
+        "decorators": [
+          "MinLength"
+        ],
         "types": [
           {
             "type": "simple",
@@ -323,6 +327,8 @@
         "name": "properties",
         "isOptional": true,
         "decorators": [
+          "ValidateIf",
+          "ArrayMaxSize",
           "path"
         ],
         "types": [
@@ -370,6 +376,21 @@
           }
         ],
         "multiplicity": "1"
+      },
+      {
+        "name": "temp",
+        "isOptional": true,
+        "decorators": [
+          "Equals"
+        ],
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "boolean"
+          }
+        ],
+        "multiplicity": "1",
+        "defaultValue": true
       }
     ],
     "extends": [
@@ -417,6 +438,18 @@
         ],
         "multiplicity": "1",
         "defaultValue": true
+      },
+      {
+        "name": "label",
+        "isOptional": false,
+        "decorators": [],
+        "types": [
+          {
+            "type": "simple",
+            "typeName": "string"
+          }
+        ],
+        "multiplicity": "1"
       },
       {
         "name": "visibility",

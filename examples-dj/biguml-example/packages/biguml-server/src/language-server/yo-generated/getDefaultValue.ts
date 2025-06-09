@@ -107,6 +107,11 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "visibility",
       "propertyType": "Visibility"
+    },
+    {
+      "property": "temp",
+      "propertyType": "boolean",
+      "defaultValue": true
     }
   ],
   "Test": [
@@ -120,6 +125,10 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       "property": "isAbstract",
       "propertyType": "boolean",
       "defaultValue": true
+    },
+    {
+      "property": "label",
+      "propertyType": "string"
     },
     {
       "property": "visibility",
@@ -140,6 +149,11 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       "property": "isActive",
       "propertyType": "boolean"
+    },
+    {
+      "property": "temp",
+      "propertyType": "boolean",
+      "defaultValue": true
     }
   ],
   "Interface": [

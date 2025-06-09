@@ -13,7 +13,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { DefaultModelState, JsonModelState } from '@eclipse-glsp/server';
+import { ActionDispatcher, DefaultModelState, JsonModelState, MessageAction, SeverityLevel } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 import { DiagramSerializer, ModelService } from 'model-service';
 import { URI } from 'vscode-uri';
@@ -40,6 +40,9 @@ export class ClassDiagramModelState extends DefaultModelState implements JsonMod
     protected _semanticUri: string;
     protected _semanticRoot: Diagram;
     protected _packageId: string;
+
+    @inject(ActionDispatcher)
+    protected readonly actionDispatcher!: ActionDispatcher;
 
     setSemanticRoot(uri: string, semanticRoot: Diagram): void {
         this._semanticUri = uri;
@@ -93,8 +96,14 @@ export class ClassDiagramModelState extends DefaultModelState implements JsonMod
     }
 
     async sendModelPatch(patch: string): Promise<void> {
-        this._semanticRoot = await this.modelService.patch(this.semanticUri, patch, 'glsp');
-        this.index.indexSemanticRoot(this.semanticRoot);
+        try {
+            this._semanticRoot = await this.modelService.patch(this.semanticUri, patch, 'glsp');
+            this.index.indexSemanticRoot(this.semanticRoot);
+        } catch (ex: unknown) {
+            const message = ex instanceof Error ? ex.message : String(ex);
+
+            this.actionDispatcher.dispatch(MessageAction.create(message, { severity: 'ERROR' as SeverityLevel }));
+        }
     }
 
     async updateSourceModel(sourceModel: ClassDiagramSourceModel, doNotUpdateSemanticRoot?: boolean): Promise<void> {
