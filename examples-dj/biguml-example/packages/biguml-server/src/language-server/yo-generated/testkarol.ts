@@ -479,7 +479,9 @@
       {
         "name": "name",
         "isOptional": false,
-        "decorators": [],
+        "decorators": [
+          "LengthBetween"
+        ],
         "types": [
           {
             "type": "simple",
@@ -952,7 +954,9 @@
       {
         "name": "name",
         "isOptional": false,
-        "decorators": [],
+        "decorators": [
+          "MinLength"
+        ],
         "types": [
           {
             "type": "simple",

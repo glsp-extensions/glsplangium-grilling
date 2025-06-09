@@ -45,7 +45,7 @@ import { UmlWorkspaceManager } from './uml-workspace-manager.js';
 import * as jsonpatch from 'fast-json-patch';
 import { URI } from 'vscode-uri';
 import { getNodeByPointer } from '../validation/json-pointer.js';
-import { validateNode } from '../validation/validator.js';
+import { validateNode } from './validation/validator.js';
 
 export class UmlModelService extends ModelService {
     override async patch<T extends AstNode>(
@@ -53,7 +53,6 @@ export class UmlModelService extends ModelService {
         patchOp: string | jsonpatch.Operation | jsonpatch.Operation[],
         client?: string
     ): Promise<T> {
-        /* ───────────────────── step 0: normalise input ───────────────────── */
         const operations: jsonpatch.Operation[] = Array.isArray(patchOp)
             ? patchOp
             : typeof patchOp === 'string'
@@ -62,12 +61,10 @@ export class UmlModelService extends ModelService {
 
         console.log('[patch] incoming operations', operations);
 
-        /* ───────────────────── step 1: fetch current AST ──────────────────── */
         await this.open(uri, client);
         const document = this.documents.getOrCreateDocument(URI.parse(uri));
         const root = document.parseResult.value;
 
-        /* ───────────────────── step 2: validate each op ───────────────────── */
         for (const op of operations) {
             console.log('[patch] validating op', op);
 
@@ -77,7 +74,6 @@ export class UmlModelService extends ModelService {
             }
             if (typeof op.path !== 'string') continue;
 
-            /* parent pointer = everything up to the last '/' */
             const lastSlash = op.path.lastIndexOf('/');
             const parentPointer = lastSlash === 0 ? '/' : op.path.slice(0, lastSlash);
             const propOrIndex = op.path.slice(lastSlash + 1);
@@ -86,10 +82,9 @@ export class UmlModelService extends ModelService {
 
             if (!target) {
                 console.warn('[patch] target not found in AST, letting patchManager handle it');
-                continue; // let fast-json-patch surface the error later
+                continue;
             }
 
-            /* shadow-clone the element & apply the incoming change */
             const clone = Array.isArray(target) ? ([...target] as any) : ({ ...target } as any);
 
             if (Array.isArray(clone)) {
@@ -110,7 +105,6 @@ export class UmlModelService extends ModelService {
             console.log('[patch] validation OK ✔');
         }
 
-        /* ───────────────────── step 3: delegate to super ──────────────────── */
         console.log('[patch] all operations validated, delegating to super.patch');
         const result = await super.patch(uri, operations, client);
         console.log('[patch] super.patch returned', result);

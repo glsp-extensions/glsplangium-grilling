@@ -12,6 +12,7 @@ import {
 } from "./generator/default-value-generator";
 import { generateLangiumText } from "./generator/langium-generator";
 import { generateSerializer } from "./generator/serializer-generator";
+import { generateValidationFiles } from "./generator/validation-generator";
 import {
   parseDefinitionFile,
   parseGeneratorConfigFile,
@@ -133,6 +134,9 @@ function generate(
 
   const defaultMapping = buildDefaultValueMapping(langiumDeclarations);
   writeDefaultValueFile(extensionPath, defaultMapping);
+
+  const defFilePath = path.resolve(extensionPath, "definition", "def.ts");
+  generateValidationFiles(extensionPath, defFilePath);
 }
 
 function writeToFile(extensionPath: string, filePath: string, text: string) {
