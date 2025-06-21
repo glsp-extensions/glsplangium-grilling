@@ -37,8 +37,8 @@ import {
     ToolPaletteItemProvider
 } from '@eclipse-glsp/server';
 import { injectable, interfaces } from 'inversify';
+import { RequestPropertyPaletteActionHandler } from '../../yo-generated/property-palette/request-property-palette-action-handler.js';
 import { RequestOutlineActionHandler } from '../common/handler/action/request-outline-action-handler.js';
-import { RequestPropertyPaletteActionHandler } from '../common/handler/action/request-property-palette-action-handler.js';
 import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { ClassDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';

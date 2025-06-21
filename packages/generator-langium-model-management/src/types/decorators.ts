@@ -13,3 +13,12 @@ export function astType(value: any): ClassDecorator {
     (constructor as any).__customDecorators = existing;
   };
 }
+export function skipPropertyPP(_target: any, _propertyKey?: any) {}
+export function dynamicProperty(value: any): PropertyDecorator {
+  return (constructor: Function) => {
+    Reflect.defineMetadata("dynamicProperty", value, constructor);
+    const existing = (constructor as any).__customDecorators || [];
+    existing.push(`dynamicProperty:${value}`);
+    (constructor as any).__customDecorators = existing;
+  };
+}

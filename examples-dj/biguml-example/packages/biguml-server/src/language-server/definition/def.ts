@@ -10,9 +10,11 @@ import { ArrayMaxSize, Equals, MinLength, ValidateIf } from "class-validator";
 import {
   astType,
   crossReference,
+  dynamicProperty,
   noBounds,
   path,
   root,
+  skipPropertyPP,
   withDefaults,
 } from "generator-langium-model-management";
 import "reflect-metadata";
@@ -55,6 +57,8 @@ class ClassDiagram {
   relations?: Array<Relation>;
 }
 
+//type ClassDiagramElements = Enumeration | EnumerationLiteral | Class |
+
 @withDefaults
 export class Enumeration extends Entity {
   @LengthBetween(3, 10, { message: "Enumeration.name must be 3–10 characters" })
@@ -88,6 +92,7 @@ export class Class extends Entity {
   //test: Test = { name: "Karol" };
   @Equals(false, { message: "temp must be true in this profile." })
   temp?: boolean = true;
+  @skipPropertyPP skip?: boolean;
 }
 
 interface Test {
@@ -120,7 +125,7 @@ export class Property {
   isUnique?: boolean = false;
   visibility?: Visibility = "PUBLIC";
   multiplicity?: string;
-  @crossReference propertyType?: DataTypeReference;
+  @dynamicProperty("DataType") @crossReference propertyType?: DataTypeReference;
   aggregation?: AggregationType;
 }
 
@@ -147,7 +152,9 @@ export class Parameter {
   direction?: ParameterDirection;
   effect?: EffectType;
   visibility?: Visibility;
-  @crossReference parameterType?: DataTypeReference;
+  @dynamicProperty("DataType")
+  @crossReference
+  parameterType?: DataTypeReference;
   multiplicity?: string;
 }
 type DataTypeReference =
@@ -180,7 +187,9 @@ export class InstanceSpecification extends Entity {
 @noBounds
 export class Slot {
   name: string;
-  @crossReference definingFeature?: SlotDefiningFeature;
+  @dynamicProperty("DefiningFeature")
+  @crossReference
+  definingFeature?: SlotDefiningFeature;
   @path values?: Array<LiteralSpecification> = [];
 }
 type SlotDefiningFeature = Property | Class | Interface;

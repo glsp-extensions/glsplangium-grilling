@@ -11,22 +11,12 @@ export const visitPropertyDeclaration =
       const expr = node.expression;
       if (ts.isCallExpression(expr)) {
         const decoratorName = expr.expression.getText();
-        if (decoratorName === "defaultValue") {
-          // Handle @defaultValue("some value")
-          if (expr.arguments.length > 0) {
-            const arg = expr.arguments[0];
-            let value: string;
-            if (ts.isStringLiteral(arg)) {
-              value = arg.text;
-            } else {
-              value = arg.getText();
-            }
-            target.decorators.push(`defaultValue:${value}`);
-          } else {
-            target.decorators.push("defaultValue:");
-          }
+        if (expr.arguments.length > 0) {
+          const args = expr.arguments.map((arg) =>
+            ts.isStringLiteral(arg) ? arg.text : arg.getText()
+          );
+          target.decorators.push(`${decoratorName}:${args.join(",")}`);
         } else {
-          // For other call expressions, simply push the decorator's name.
           target.decorators.push(decoratorName);
         }
       } else if (ts.isIdentifier(expr)) {

@@ -7,8 +7,8 @@ import { isPackageUri } from './uml-package-manager.js';
 import { Utils } from './util/uri-util.js';
 
 export class UmlLangiumDocuments extends DefaultLangiumDocuments {
-   override getOrCreateDocument(uri: URI): any {
-      // only create documents for actual language files but not for package.json
-      return isPackageUri(uri) ? undefined : super.getOrCreateDocument(Utils.toRealURI(uri));
-   }
+    override getOrCreateDocument(uri: URI): any {
+        // only create documents for actual language files but not for package.json
+        return isPackageUri(uri) ? undefined : super.getOrCreateDocument(Utils.toRealURI(uri));
+    }
 }

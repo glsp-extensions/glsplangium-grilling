@@ -81,5 +81,5 @@ export function getCreationPath(parentType: string, childType: string): string |
   }
   const filePath = path.join(outputFolder, "getCreationPath.ts");
   fs.writeFileSync(filePath, content, { encoding: "utf8" });
-  console.log(`Generated getCreationPath file at: ${filePath}`);
+  console.log(`Generated getCreationPath file: ${filePath}`);
 }

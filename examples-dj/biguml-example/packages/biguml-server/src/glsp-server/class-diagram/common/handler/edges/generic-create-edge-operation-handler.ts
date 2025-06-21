@@ -15,8 +15,8 @@ import {
 } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 import { createRandomUUID } from 'model-service';
-import { getProperties, getRelationTypeFromElementId } from '../../../../../language-server/yo-generated/getDefaultValue.js';
 import { BigUmlCommand } from '../../../../biguml/index.js';
+import { getProperties, getRelationTypeFromElementId } from '../../../../yo-generated/getDefaultValue.js';
 import { ClassDiagramModelState } from '../../../model/class-diagram-model-state.js';
 import { ModelTypes } from '../../util/model-types.js';
 

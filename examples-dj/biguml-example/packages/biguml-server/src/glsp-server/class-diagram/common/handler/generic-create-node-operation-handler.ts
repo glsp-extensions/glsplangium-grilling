@@ -23,8 +23,8 @@ import { ClassDiagramModelState } from '../../model/class-diagram-model-state.js
 import { ModelTypes, astTypes } from '../util/model-types.js';
 import { GridSnapper } from './grid-snapper.js';
 
-import { getCreationPath } from '../../../../language-server/yo-generated/getCreationPath.js';
-import { getProperties, isNoBounds } from '../../../../language-server/yo-generated/getDefaultValue.js';
+import { getCreationPath } from '../../../yo-generated/getCreationPath.js';
+import { getProperties, isNoBounds } from '../../../yo-generated/getDefaultValue.js';
 
 @injectable()
 export class GenericCreateNodeOperationHandler extends OperationHandler implements CreateNodeOperationHandler {

@@ -1,11 +1,11 @@
 /*********************************************************************************
-* Copyright (c) 2023 borkdominik and others.
-*
-* This program and the accompanying materials are made available under the
-* terms of the MIT License which is available at https://opensource.org/licenses/MIT.
-*
-* SPDX-License-Identifier: MIT
-*********************************************************************************/
+ * Copyright (c) 2023 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { CrossReference } from 'generator-langium-model-management';
 import {
     AstNode,
@@ -267,7 +267,9 @@ export class UmlJsonSerializer implements JsonSerializer {
 
     private getAstNodeById<T extends AstNode = AstNode>(node: AstNode, id: string): T | undefined {
         const retNode = streamAst(node).find((astNode: any) => astNode[properties.referenceProperty] === id);
-        if (retNode) {return retNode as T;}
+        if (retNode) {
+            return retNode as T;
+        }
         return node as T;
     }
 }

@@ -56,7 +56,10 @@ export class UmlModelService extends ModelService {
         const operations: jsonpatch.Operation[] = Array.isArray(patchOp)
             ? patchOp
             : typeof patchOp === 'string'
-              ? JSON.parse(patchOp)
+              ? (() => {
+                    const parsed = JSON.parse(patchOp);
+                    return Array.isArray(parsed) ? parsed : [parsed];
+                })()
               : [patchOp];
 
         console.log('[patch] incoming operations', operations);

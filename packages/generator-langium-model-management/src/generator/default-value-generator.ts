@@ -199,5 +199,5 @@ export function getRelationTypeFromElementId(
   }
   const filePath = path.join(outputFolder, "getDefaultValue.ts");
   fs.writeFileSync(filePath, content, "utf8");
-  console.log(`Generated getDefaultValue file at: ${filePath}`);
+  console.log(`Generated getDefaultValue file: ${filePath}`);
 }

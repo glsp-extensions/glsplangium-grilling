@@ -1535,6 +1535,36 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                 "cardinality": "?"
               },
               {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ","
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "\\"skip\\""
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": ":"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "skip",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@47"
+                      },
+                      "arguments": []
+                    }
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
                 "$type": "Keyword",
                 "value": "}"
               }
@@ -2105,6 +2135,36 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
               {
                 "$type": "Assignment",
                 "feature": "temp",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@47"
+                  },
+                  "arguments": []
+                }
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Keyword",
+                "value": "\\"skip\\""
+              },
+              {
+                "$type": "Keyword",
+                "value": ":"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "skip",
                 "operator": "=",
                 "terminal": {
                   "$type": "RuleCall",

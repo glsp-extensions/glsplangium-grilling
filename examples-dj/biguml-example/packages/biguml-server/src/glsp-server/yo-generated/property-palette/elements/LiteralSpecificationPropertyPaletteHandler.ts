@@ -1,0 +1,20 @@
+// AUTO-GENERATED – DO NOT EDIT
+
+import { SetPropertyPaletteAction } from '@biguml/biguml-protocol';
+import { LiteralSpecification } from '../../../../language-server/generated/ast.js';
+import { PropertyPalette } from '../../../util/property-palette-util.js';
+
+export namespace LiteralSpecificationPropertyPaletteHandler {
+    export function getPropertyPalette(semanticElement: LiteralSpecification): SetPropertyPaletteAction[] {
+        return [
+            SetPropertyPaletteAction.create(
+                PropertyPalette.builder()
+                    .elementId(semanticElement.__id)
+                    .label(semanticElement.$type)
+                    .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
+                    .text(semanticElement.__id, 'value', semanticElement.value, 'Value')
+                    .build()
+            )
+        ];
+    }
+}

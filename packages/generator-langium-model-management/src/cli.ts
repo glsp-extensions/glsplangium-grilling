@@ -11,6 +11,7 @@ import {
   writeDefaultValueFile,
 } from "./generator/default-value-generator";
 import { generateLangiumText } from "./generator/langium-generator";
+import { writePropertyPaletteHandlers } from "./generator/property-palette-generator";
 import { generateSerializer } from "./generator/serializer-generator";
 import { generateValidationFiles } from "./generator/validation-generator";
 import {
@@ -129,14 +130,17 @@ function generate(
       text
     )
   );
+
+  const glspRoot = path.join(path.dirname(extensionPath), "glsp-server");
   const creationPathMapping = buildCreationPathMapping(langiumDeclarations);
-  writeCreationPathFile(extensionPath, creationPathMapping);
+  writeCreationPathFile(glspRoot, creationPathMapping);
 
   const defaultMapping = buildDefaultValueMapping(langiumDeclarations);
-  writeDefaultValueFile(extensionPath, defaultMapping);
+  writeDefaultValueFile(glspRoot, defaultMapping);
 
-  const defFilePath = path.resolve(extensionPath, "definition", "def.ts");
-  generateValidationFiles(extensionPath, defFilePath);
+  writePropertyPaletteHandlers(glspRoot, langiumDeclarations);
+
+  generateValidationFiles(extensionPath);
 }
 
 function writeToFile(extensionPath: string, filePath: string, text: string) {

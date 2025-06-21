@@ -163,7 +163,7 @@ ${body}
     .join("\n");
 
   fs.writeFileSync(out, `${imports.join("\n")}\n\n${classes}`, "utf8");
-  console.log("[validation-generator] wrote", out);
+  console.log("Generated validation-elements file:", out);
 }
 
 function writeValidatorFile(extPath: string, info: ValidationInfo) {
@@ -197,13 +197,11 @@ export function validateNode(node: AstNode): void {
 }
 `;
   fs.writeFileSync(out, content, "utf8");
-  console.log("[validation-generator] wrote", out);
+  console.log("Generated validator file:", out);
 }
 
-export function generateValidationFiles(
-  extensionPath: string,
-  defPath: string
-) {
+export function generateValidationFiles(extensionPath: string) {
+  const defPath = path.resolve(extensionPath, "definition", "def.ts");
   const info = buildValidationInfo(defPath);
   writeValidationElementsFile(extensionPath, defPath, info);
   writeValidatorFile(extensionPath, info);
