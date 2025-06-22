@@ -1,6 +1,6 @@
 import { ArrayMaxSize, Equals, MinLength, ValidateIf } from 'class-validator';
 import { LengthBetween } from '../../validation/custom-validators/length-between-validator.js';
-import { Enumeration, Class, Interface, DataType } from '../../generated/ast.js';
+import { Class, DataType, Enumeration, Interface, Property } from '../../generated/ast.js';
 
 export class EnumerationValidationElement {
     constructor(src: Enumeration) {
@@ -8,7 +8,7 @@ export class EnumerationValidationElement {
     }
 
     @LengthBetween(3, 10, { message: 'Enumeration.name must be 3–10 characters' })
-    name: any;
+    name: string;
 }
 
 export class ClassValidationElement {
@@ -17,18 +17,15 @@ export class ClassValidationElement {
     }
 
     @MinLength(5, { message: 'Class.name must be at least 5 characters long' })
-    name: any;
-
+    name: string;
     @ValidateIf(o => o.isActive === true)
     @ArrayMaxSize(3, {
         message: 'Active classes must declare at most 3 properties.'
     })
-    properties?: unknown[];
-
+    properties?: Array<Property>;
     @Equals(false, { message: 'temp must be true in this profile.' })
-    temp: any;
-
-    isActive: any;
+    temp?: boolean;
+    isActive?: boolean;
 }
 
 export class InterfaceValidationElement {
@@ -37,7 +34,7 @@ export class InterfaceValidationElement {
     }
 
     @LengthBetween(3, 10, { message: 'Interface.name must be 3–10 characters' })
-    name: any;
+    name: string;
 }
 
 export class DataTypeValidationElement {
@@ -46,5 +43,5 @@ export class DataTypeValidationElement {
     }
 
     @MinLength(5)
-    name: any;
+    name: string;
 }

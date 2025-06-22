@@ -5,12 +5,13 @@ import { Project } from "ts-morph";
 interface PropertyInfo {
   name: string;
   decoratorTexts: string[];
-  isArray: boolean;
+  typeText: string;
+  isOptional: boolean;
 }
 
 interface EntityInfo {
-  name: string; // Class, Enumeration, …
-  dtoClassName: string; // ClassValidationElement
+  name: string; // AST type name, e.g. Class, Enumeration, …
+  dtoClassName: string; // e.g. ClassValidationElement
   props: PropertyInfo[];
 }
 
@@ -63,13 +64,15 @@ function buildValidationInfo(defPath: string): ValidationInfo {
         .getDecorators()
         .filter((d) => decoratorNames.has(d.getName()));
       if (decos.length) {
+        const typeNode = prop.getTypeNode();
         props.push({
           name: prop.getName(),
           decoratorTexts: decos.map((d) => d.getText()),
-          isArray: prop.getType().isArray(),
+          typeText: typeNode?.getText() ?? prop.getType().getText(),
+          isOptional: prop.hasQuestionToken(),
         });
 
-        // capture o.someFlag from @ValidateIf
+        // capture flags from ValidateIf lambdas
         decos
           .filter((d) => d.getName() === "ValidateIf")
           .forEach((d) => {
@@ -81,14 +84,16 @@ function buildValidationInfo(defPath: string): ValidationInfo {
       }
     });
 
-    // bring referenced flags in even without decorators
+    // include referenced flags even without decorators
     validateIfRefs.forEach((n) => {
       if (!props.find((p) => p.name === n)) {
-        const pDecl = cls.getProperty(n);
+        const decl = cls.getProperty(n)!;
+        const typeNode = decl.getTypeNode();
         props.push({
           name: n,
           decoratorTexts: [],
-          isArray: pDecl?.getType().isArray() ?? false,
+          typeText: typeNode?.getText() ?? decl.getType().getText(),
+          isOptional: decl.hasQuestionToken(),
         });
       }
     });
@@ -120,6 +125,7 @@ export function writeValidationElementsFile(
 
   const imports: string[] = [];
 
+  // 1) Re-emit any decorator imports
   info.decoratorImports.forEach((i) => {
     const importPath = i.from.startsWith(".")
       ? path
@@ -132,14 +138,43 @@ export function writeValidationElementsFile(
     imports.push(`import { ${i.names.join(", ")} } from '${importPath}';`);
   });
 
+  // 2) Collect all AST types we actually use
+  const astTypeNames = new Set<string>();
+  // a) ctor source types
+  info.entities.forEach((e) => astTypeNames.add(e.name));
+  // b) every PascalCase identifier in prop.typeText
+  info.entities.forEach((e) => {
+    e.props.forEach((p) => {
+      const ids = p.typeText.match(/\b[A-Z][A-Za-z0-9_]*\b/g) || [];
+      ids.forEach((id) => {
+        if (
+          ![
+            "Array",
+            "Readonly",
+            "Partial",
+            "Record",
+            "unknown",
+            "any",
+            "string",
+            "number",
+            "boolean",
+          ].includes(id)
+        ) {
+          astTypeNames.add(id);
+        }
+      });
+    });
+  });
+
+  // 3) Emit a single import for all AST types
   const astImportPath = path
     .relative(path.dirname(out), path.join(extPath, "generated", "ast.js"))
     .replace(/\\/g, "/");
-
   imports.push(
-    `import { ${info.entities.map((e) => e.name).join(", ")} } from '${astImportPath}';`
+    `import { ${[...astTypeNames].sort().join(", ")} } from '${astImportPath}';`
   );
 
+  // 4) Generate DTO classes without extra blank lines
   const classes = info.entities
     .map((ent) => {
       const body = ent.props
@@ -147,10 +182,10 @@ export function writeValidationElementsFile(
           const decos = p.decoratorTexts.length
             ? "    " + p.decoratorTexts.join("\n    ") + "\n"
             : "";
-          const type = p.isArray ? "unknown[]" : "any";
-          return `${decos}    ${p.name}${p.isArray ? "?" : ""}: ${type};`;
+          const optionalMark = p.isOptional ? "?" : "";
+          return `${decos}    ${p.name}${optionalMark}: ${p.typeText};`;
         })
-        .join("\n\n");
+        .join("\n");
 
       return `
 export class ${ent.dtoClassName} {

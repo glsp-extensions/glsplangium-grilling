@@ -88,8 +88,6 @@ export class Class extends Entity {
   @path operations?: Array<Operation>;
   isActive?: boolean;
   visibility?: Visibility;
-  ///**@minLength(3)**/ test: string = "abc";
-  //test: Test = { name: "Karol" };
   @Equals(false, { message: "temp must be true in this profile." })
   temp?: boolean = true;
   @skipPropertyPP skip?: boolean;

@@ -37,8 +37,8 @@ import {
     ToolPaletteItemProvider
 } from '@eclipse-glsp/server';
 import { injectable, interfaces } from 'inversify';
+import { RequestOutlineActionHandler } from '../../yo-generated/outline/request-outline-action-handler.js';
 import { RequestPropertyPaletteActionHandler } from '../../yo-generated/property-palette/request-property-palette-action-handler.js';
-import { RequestOutlineActionHandler } from '../common/handler/action/request-outline-action-handler.js';
 import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { ClassDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';
@@ -74,7 +74,6 @@ export class ClassDiagramModule extends DiagramModule {
         rebind: interfaces.Rebind
     ): void {
         super.configure(bind, unbind, isBound, rebind);
-        // bind(DefaultValueProvider).to(DefaultValueConfigurationImpl).inSingletonScope();
     }
 
     protected bindDiagramConfiguration(): BindingTarget<DiagramConfiguration> {
@@ -97,34 +96,7 @@ export class ClassDiagramModule extends DiagramModule {
     protected override configureOperationHandlers(binding: InstanceMultiBinding<OperationHandlerConstructor>): void {
         super.configureOperationHandlers(binding);
         binding.add(GenericCreateNodeOperationHandler);
-        //binding.add(CreateClassOperationHandler);
-        //binding.add(CreateClassPropertyOperationHandler);
-        //binding.add(CreateClassMethodOperationHandler);
-        //binding.add(CreateEnumerationOperationHandler);
-        //binding.add(CreateEnumerationLiteralOperationHandler);
-        //binding.add(CreateInterfaceOperationHandler);
-        //binding.add(CreateAbstractClassOperationHandler);
-        //binding.add(CreateParameterOperationHandler);
-        //binding.add(CreatePackageOperationHandler);
-        //binding.add(CreateDataTypeOperationHandler);
-        //binding.add(CreatePrimitiveTypeOperationHandler);
-        //binding.add(CreateInstanceSpecificationOperationHandler);
-        //binding.add(CreateSlotOperationHandler);
-        //binding.add(CreateLiteralSpecificationOperationHandler);
-
         binding.add(GenericCreateEdgeOperationHandler);
-
-        //binding.add(CreateAbstractionOperationHandler);
-        //binding.add(CreateAssociationOperationHandler);
-        //binding.add(CreateDependencyOperationHandler);
-        //binding.add(CreateGeneralizationOperationHandler);
-        //binding.add(CreateInterfaceRealizationOperationHandler);
-        //binding.add(CreatePackageImportOperationHandler);
-        //binding.add(CreatePackageMergeOperationHandler);
-        //binding.add(CreateRealizationOperationHandler);
-        //binding.add(CreateSubstitutionOperationHandler);
-        //binding.add(CreateUsageOperationHandler);
-
         binding.add(ClassDiagramChangeBoundsOperationHandler);
         binding.add(ClassLabelEditOperationHandler);
         binding.add(UpdateOperationHandler);

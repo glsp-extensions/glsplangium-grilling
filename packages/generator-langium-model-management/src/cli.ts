@@ -11,6 +11,7 @@ import {
   writeDefaultValueFile,
 } from "./generator/default-value-generator";
 import { generateLangiumText } from "./generator/langium-generator";
+import { writeRequestOutlineActionHandler } from "./generator/outline-generator";
 import { writePropertyPaletteHandlers } from "./generator/property-palette-generator";
 import { generateSerializer } from "./generator/serializer-generator";
 import { generateValidationFiles } from "./generator/validation-generator";
@@ -139,6 +140,8 @@ function generate(
   writeDefaultValueFile(glspRoot, defaultMapping);
 
   writePropertyPaletteHandlers(glspRoot, langiumDeclarations);
+
+  writeRequestOutlineActionHandler(glspRoot, langiumDeclarations);
 
   generateValidationFiles(extensionPath);
 }
