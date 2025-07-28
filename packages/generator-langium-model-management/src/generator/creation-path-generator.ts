@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { format } from "../util";
 import { LangiumDeclaration } from "./../types";
 
 export function buildCreationPathMapping(
@@ -37,14 +38,14 @@ export function buildCreationPathMapping(
   return mapping;
 }
 
-export function writeCreationPathFile(
+export async function writeCreationPathFile(
   extensionPath: string,
   mapping: Record<
     string,
     Array<{ property: string; allowedChildTypes?: string[] }>
   >
-): void {
-  const content = `
+): Promise<void> {
+  const rawContent = `
 const mapping: Record<string, Array<{ property: string; allowedChildTypes?: string[] }>> = ${JSON.stringify(
     mapping,
     null,
@@ -60,20 +61,22 @@ function pluralise(type: string): string {
 }
 
 export function getCreationPath(parentType: string, childType: string): string | undefined {
-    const parentKey = stripPrefix(parentType);
-    const childKey = stripPrefix(childType);
+  const parentKey = stripPrefix(parentType);
+  const childKey = stripPrefix(childType);
 
-    if (mapping[parentKey]) {
-        console.log('parentKey ', parentKey);
-        for (const entry of mapping[parentKey]) {
-            if (entry.allowedChildTypes && entry.allowedChildTypes.includes(childKey)) {
-                return entry.property;
-            }
-        }
+  if (mapping[parentKey]) {
+    console.log('parentKey ', parentKey);
+    for (const entry of mapping[parentKey]) {
+      if (entry.allowedChildTypes && entry.allowedChildTypes.includes(childKey)) {
+        return entry.property;
+      }
     }
-    return undefined;
+  }
+  return undefined;
 }
 `;
+
+  const content = await format(rawContent);
 
   const outputFolder = path.join(extensionPath, "yo-generated");
   if (!fs.existsSync(outputFolder)) {

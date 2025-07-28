@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { CrossReference } from 'generator-langium-model-management';
+import { CrossReference } from '@borkdominik/generator-langium-model-management';
 import {
     AstNode,
     AstNodeLocator,

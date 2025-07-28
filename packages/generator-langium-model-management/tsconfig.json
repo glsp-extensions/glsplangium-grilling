@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "outDir": "./generators",
     "emitDecoratorMetadata": true,
+    "types": []
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "src/templates", "generators"]

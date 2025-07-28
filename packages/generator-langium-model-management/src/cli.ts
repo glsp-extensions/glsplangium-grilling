@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { OutlineContribution } from "@borkdominik/outline";
+import { PropertyPaletteContribution } from "@borkdominik/property-palette";
 import fs from "fs";
 import path from "path";
 import { parseEcoreDefinitionFile } from "./ecore/ecore-parser";
@@ -11,8 +13,6 @@ import {
   writeDefaultValueFile,
 } from "./generator/default-value-generator";
 import { generateLangiumText } from "./generator/langium-generator";
-import { writeRequestOutlineActionHandler } from "./generator/outline-generator";
-import { writePropertyPaletteHandlers } from "./generator/property-palette-generator";
 import { generateSerializer } from "./generator/serializer-generator";
 import { generateValidationFiles } from "./generator/validation-generator";
 import {
@@ -20,6 +20,7 @@ import {
   parseGeneratorConfigFile,
   parseLangiumConfigFile,
 } from "./parser/parser";
+import { GeneratorRegistry } from "./registry/generator-registry";
 import {
   transformDeclaration,
   transformLangiumDeclarationsToLangiumGrammar,
@@ -92,7 +93,7 @@ if (args[0] === "generate") {
   }
 }
 
-function generate(
+async function generate(
   tsDeclarations: any,
   generatorConfig: any,
   config: any,
@@ -139,11 +140,13 @@ function generate(
   const defaultMapping = buildDefaultValueMapping(langiumDeclarations);
   writeDefaultValueFile(glspRoot, defaultMapping);
 
-  writePropertyPaletteHandlers(glspRoot, langiumDeclarations);
-
-  writeRequestOutlineActionHandler(glspRoot, langiumDeclarations);
-
   generateValidationFiles(extensionPath);
+
+  const registry = new GeneratorRegistry();
+  registry.register(PropertyPaletteContribution);
+  registry.register(OutlineContribution);
+
+  await registry.execute(glspRoot, langiumDeclarations);
 }
 
 function writeToFile(extensionPath: string, filePath: string, text: string) {

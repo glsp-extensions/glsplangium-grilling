@@ -37,13 +37,13 @@ import {
     ToolPaletteItemProvider
 } from '@eclipse-glsp/server';
 import { injectable, interfaces } from 'inversify';
-import { RequestOutlineActionHandler } from '../../yo-generated/outline/request-outline-action-handler.js';
-import { RequestPropertyPaletteActionHandler } from '../../yo-generated/property-palette/request-property-palette-action-handler.js';
-import { UpdateElementPropertyActionHandler } from '../common/handler/action/update-element-property-action-handler.js';
+import { RequestClassOutlineActionHandler } from '../../yo-generated/outline/request-class-outline-action-handler.js';
+import { RequestClassPropertyPaletteActionHandler } from '../../yo-generated/property-palette/request-class-property-palette-action-handler.js';
 import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { ClassDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';
-import { GenericCreateEdgeOperationHandler } from '../common/handler/edges/generic-create-edge-operation-handler.js';
-import { GenericCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
+import { ClassCreateEdgeOperationHandler } from '../common/handler/generic-create-edge-operation-handler.js';
+import { ClassCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
+import { UpdateElementPropertyActionHandler } from '../common/handler/update-element-property-action-handler.js';
 import { ClassDiagramUpdateClientOperationHandler } from '../common/handler/update-glsp-client-handler.js';
 import { UpdateOperationHandler } from '../common/handler/update-operation-handler.js';
 import { ClassLabelEditOperationHandler } from '../common/labeledit/class-label-edit-operation-handler.js';
@@ -95,8 +95,8 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureOperationHandlers(binding: InstanceMultiBinding<OperationHandlerConstructor>): void {
         super.configureOperationHandlers(binding);
-        binding.add(GenericCreateNodeOperationHandler);
-        binding.add(GenericCreateEdgeOperationHandler);
+        binding.add(ClassCreateNodeOperationHandler);
+        binding.add(ClassCreateEdgeOperationHandler);
         binding.add(ClassDiagramChangeBoundsOperationHandler);
         binding.add(ClassLabelEditOperationHandler);
         binding.add(UpdateOperationHandler);
@@ -154,8 +154,8 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureActionHandlers(binding: InstanceMultiBinding<ActionHandlerConstructor>): void {
         super.configureActionHandlers(binding);
-        binding.add(RequestPropertyPaletteActionHandler);
+        binding.add(RequestClassPropertyPaletteActionHandler);
         binding.add(UpdateElementPropertyActionHandler);
-        binding.add(RequestOutlineActionHandler);
+        binding.add(RequestClassOutlineActionHandler);
     }
 }

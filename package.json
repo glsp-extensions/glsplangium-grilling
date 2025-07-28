@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples-dj/biguml-example",
+      "examples-dj/biguml-example/packages/*",
+      "examples-dj/biguml-example/packages/biguml-vscode-integration/*"
+    ],
+    "nohoist": [
+      "**/path",
+      "**/path/**",
+      "umldiagram/@vscode/codicons",
+      "umldiagram/@vscode/codicons/**",
+      "umldiagram/@biguml/biguml-vscode-integration-webview"
+    ]
+  },
+  "scripts": {
+    "full-build": "yarn workspace @borkdominik/outline build && yarn workspace @borkdominik/property-palette build && yarn workspace @borkdominik/model-management-common build && yarn workspace @borkdominik/generator-langium-model-management build && yarn workspace @biguml/biguml-server build && yarn workspace @biguml/biguml-server generate"
+  }
+}

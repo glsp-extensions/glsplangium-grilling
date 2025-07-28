@@ -1,3 +1,4 @@
+import prettier from "prettier";
 import { LangiumGrammar } from "./types";
 import { Type } from "./types/types";
 
@@ -38,5 +39,18 @@ export function isString(langiumGrammar: LangiumGrammar, _type: Type) {
   );
   if (typeRule) {
     return getReturnTypeFromDefinitions(typeRule.definitions) === "string";
+  }
+}
+
+export async function format(content: string): Promise<string> {
+  try {
+    return await prettier.format(content, {
+      parser: "typescript",
+      semi: true,
+      singleQuote: true,
+    });
+  } catch {
+    console.warn("Prettier formatting failed. Writing raw output.");
+    return content;
   }
 }

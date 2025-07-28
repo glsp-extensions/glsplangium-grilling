@@ -22,6 +22,14 @@ export function isAggregationType(item: unknown): item is AggregationType {
     return item === 'NONE' || item === 'SHARED' || item === 'COMPOSITE';
 }
 
+export type ClassDiagramElements = AbstractClass | Abstraction | Aggregation | Association | Class | Composition | DataType | Dependency | Enumeration | EnumerationLiteral | Generalization | InstanceSpecification | Interface | InterfaceRealization | LiteralSpecification | Operation | Package | PackageImport | PackageMerge | Parameter | PrimitiveType | Property | Realization | Relation | Slot | Substitution | Usage;
+
+export const ClassDiagramElements = 'ClassDiagramElements';
+
+export function isClassDiagramElements(item: unknown): item is ClassDiagramElements {
+    return reflection.isInstance(item, ClassDiagramElements);
+}
+
 export type Concurrency = 'CONCURRENT' | 'GUARDED' | 'SEQUENTIAL';
 
 export function isConcurrency(item: unknown): item is Concurrency {
@@ -64,6 +72,14 @@ export const MetaInfo = 'MetaInfo';
 
 export function isMetaInfo(item: unknown): item is MetaInfo {
     return reflection.isInstance(item, MetaInfo);
+}
+
+export type PackageDiagramElements = Abstraction | Class | Dependency | Package | PackageImport | PackageMerge | Usage;
+
+export const PackageDiagramElements = 'PackageDiagramElements';
+
+export function isPackageDiagramElements(item: unknown): item is PackageDiagramElements {
+    return reflection.isInstance(item, PackageDiagramElements);
 }
 
 export type ParameterDirection = 'IN' | 'INOUT' | 'OUT' | 'RETURN';
@@ -661,6 +677,7 @@ export type UmlAstType = {
     Association: Association
     Class: Class
     ClassDiagram: ClassDiagram
+    ClassDiagramElements: ClassDiagramElements
     Composition: Composition
     DataType: DataType
     DataTypeReference: DataTypeReference
@@ -679,6 +696,7 @@ export type UmlAstType = {
     Operation: Operation
     Package: Package
     PackageDiagram: PackageDiagram
+    PackageDiagramElements: PackageDiagramElements
     PackageImport: PackageImport
     PackageMerge: PackageMerge
     Parameter: Parameter
@@ -700,31 +718,32 @@ export type UmlAstType = {
 export class UmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AbstractClass', 'Abstraction', 'Aggregation', 'Association', 'Class', 'ClassDiagram', 'Composition', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'Test', 'UnionType_0', 'Usage'];
+        return ['AbstractClass', 'Abstraction', 'Aggregation', 'Association', 'Class', 'ClassDiagram', 'ClassDiagramElements', 'Composition', 'DataType', 'DataTypeReference', 'Dependency', 'Diagram', 'ElementWithSizeAndPosition', 'Entity', 'Enumeration', 'EnumerationLiteral', 'Generalization', 'InstanceSpecification', 'Interface', 'InterfaceRealization', 'LiteralSpecification', 'MetaInfo', 'Operation', 'Package', 'PackageDiagram', 'PackageDiagramElements', 'PackageImport', 'PackageMerge', 'Parameter', 'Position', 'PrimitiveType', 'Property', 'Realization', 'Relation', 'Size', 'Slot', 'SlotDefiningFeature', 'StateMachineDiagram', 'Substitution', 'Test', 'UnionType_0', 'Usage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
         switch (subtype) {
             case AbstractClass: {
-                return this.isSubtype(Class, supertype);
+                return this.isSubtype(Class, supertype) || this.isSubtype(ClassDiagramElements, supertype);
             }
             case Abstraction:
+            case Dependency:
+            case PackageImport:
+            case PackageMerge:
+            case Usage: {
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(PackageDiagramElements, supertype) || this.isSubtype(Relation, supertype);
+            }
             case Aggregation:
             case Association:
             case Composition:
-            case Dependency:
             case Generalization:
             case InterfaceRealization:
-            case PackageImport:
-            case PackageMerge:
             case Realization:
-            case Substitution:
-            case Usage: {
-                return this.isSubtype(Relation, supertype);
+            case Substitution: {
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(Relation, supertype);
             }
-            case Class:
-            case Interface: {
-                return this.isSubtype(DataTypeReference, supertype) || this.isSubtype(Entity, supertype) || this.isSubtype(SlotDefiningFeature, supertype);
+            case Class: {
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(DataTypeReference, supertype) || this.isSubtype(Entity, supertype) || this.isSubtype(PackageDiagramElements, supertype) || this.isSubtype(SlotDefiningFeature, supertype);
             }
             case ClassDiagram:
             case PackageDiagram:
@@ -734,21 +753,34 @@ export class UmlAstReflection extends AbstractAstReflection {
             case DataType:
             case Enumeration:
             case PrimitiveType: {
-                return this.isSubtype(DataTypeReference, supertype) || this.isSubtype(Entity, supertype);
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(DataTypeReference, supertype) || this.isSubtype(Entity, supertype);
             }
             case Entity: {
                 return this.isSubtype(ElementWithSizeAndPosition, supertype);
             }
-            case InstanceSpecification:
+            case EnumerationLiteral:
+            case LiteralSpecification:
+            case Operation:
+            case Parameter:
+            case Relation:
+            case Slot: {
+                return this.isSubtype(ClassDiagramElements, supertype);
+            }
+            case InstanceSpecification: {
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(Entity, supertype);
+            }
+            case Interface: {
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(DataTypeReference, supertype) || this.isSubtype(Entity, supertype) || this.isSubtype(SlotDefiningFeature, supertype);
+            }
             case Package: {
-                return this.isSubtype(Entity, supertype);
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(Entity, supertype) || this.isSubtype(PackageDiagramElements, supertype);
             }
             case Position:
             case Size: {
                 return this.isSubtype(MetaInfo, supertype);
             }
             case Property: {
-                return this.isSubtype(SlotDefiningFeature, supertype);
+                return this.isSubtype(ClassDiagramElements, supertype) || this.isSubtype(SlotDefiningFeature, supertype);
             }
             default: {
                 return false;

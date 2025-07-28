@@ -4,19 +4,6 @@
   "private": true,
   "license": "(EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR MIT)",
   "main": "index.js",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "packages/biguml-vscode-integration/*"
-    ],
-    "nohoist": [
-      "**/path",
-      "**/path/**",
-      "umldiagram/@vscode/codicons",
-      "umldiagram/@vscode/codicons/**",
-      "umldiagram/@biguml/biguml-vscode-integration-webview"
-    ]
-  },
   "scripts": {
     "build:server": "cd ../server && mvn clean install && cd ../client && yarn copy:server",
     "check:headers": "glsp checkHeaders .",

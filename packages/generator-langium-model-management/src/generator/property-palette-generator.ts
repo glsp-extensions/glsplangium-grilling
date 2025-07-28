@@ -23,7 +23,7 @@ export function writePropertyPaletteHandlers(
   });
 
   // ─── generate the central dispatcher ─────────────────────────
-  writeRequestPropertyPaletteHandler(extensionPath, nodes);
+  writeRequestPropertyPaletteHandlers(extensionPath, declarations);
 }
 
 function getNodeDecls(decls: LangiumDeclaration[]) {
@@ -178,107 +178,137 @@ function emitBuilderLine(
   return;
 }
 
-function writeRequestPropertyPaletteHandler(
+export function writeRequestPropertyPaletteHandlers(
   extensionPath: string,
-  nodes: LangiumDeclaration[]
-) {
+  declarations: LangiumDeclaration[]
+): void {
+  // ─── make sure the output dir exists ──────────────────────────────────────────
   const outDir = path.join(extensionPath, "yo-generated", "property-palette");
-  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
 
-  const filePath = path.join(
-    outDir,
-    "request-property-palette-action-handler.ts"
+  // ─── helper: find all type-aliases ending with "DiagramElements" ─────────────
+  const diagramAliases = declarations.filter(
+    (d) => d.type === "type" && d.name?.endsWith("DiagramElements")
   );
 
-  // collect all dynamic types across all nodes
-  const allDyn = Array.from(
-    new Set(
-      nodes.flatMap(
-        (d) =>
-          d.properties?.flatMap(
-            (p) =>
-              p.decorators
-                ?.filter((d) => d.startsWith("dynamicProperty:"))
-                .map((d) => d.split(":")[1]) ?? []
-          ) ?? []
+  // ─── prepare a map of all concrete Entity subclasses ─────────────────────────
+  const allEntities = getNodeDecls(declarations);
+
+  // ─── for each diagramElements alias, generate one handler file ───────────────
+  for (const alias of diagramAliases) {
+    const fullKey = alias.name!.replace(/Elements$/, ""); // e.g. "ClassDiagram"
+    const shortKey = fullKey.replace(/Diagram$/, ""); // → "Class"
+    const fileName = `request-${lcFirst(shortKey)}-property-palette-action-handler.ts`;
+    const className = `Request${shortKey}PropertyPaletteActionHandler`;
+    const modelStateClass = `${shortKey}DiagramModelState`;
+    const modelStateImportPath = `../../../glsp-server/${lcFirst(shortKey)}-diagram/model/${lcFirst(shortKey)}-diagram-model-state.js`;
+
+    // ─── gather the union members: e.g. ["Class","Interface",…] ────────────────
+    const members = alias.properties?.[0]?.types
+      .map((t) => t.typeName)
+      .filter(Boolean) as string[];
+
+    // ─── filter only those entities that belong to this diagram ────────────────
+    const nodes = allEntities.filter((e) => members.includes(e.name!));
+
+    // ─── build single import for all guards ────────────────────────────────────
+    const guardNames = nodes
+      .map((d) => `is${d.name}`)
+      .sort()
+      .join(", ");
+    const astImport = `import { ${guardNames} } from '../../../language-server/generated/ast.js';`;
+
+    // ─── build imports for each per-type handler ───────────────────────────────
+    const handlerImports = nodes
+      .map((d) => d.name!)
+      .sort()
+      .map(
+        (n) =>
+          `import { ${n}PropertyPaletteHandler } from './elements/${n}PropertyPaletteHandler.js';`
       )
-    )
-  );
+      .join("\n");
 
-  // build the code that creates each <lowerFirst>Choices array
-  const dynamicBuilders = allDyn
-    .map((typeName) => {
-      const varName = `${lcFirst(typeName)}Choices`;
-      const indexCall = `getAll${typeName}s`;
-      return `    const ${varName} = this.modelState.index.${indexCall}().map((item) => ({
+    // ─── collect all dynamic types across these nodes ───────────────────────────
+    const allDyn = Array.from(
+      new Set(
+        nodes.flatMap(
+          (d) =>
+            d.properties?.flatMap(
+              (p) =>
+                p.decorators
+                  ?.filter((d) => d.startsWith("dynamicProperty:"))
+                  .map((d) => d.split(":")[1]) ?? []
+            ) ?? []
+        )
+      )
+    );
+
+    // ─── build the code that creates each <lowerFirst>Choices array ─────────────
+    const dynamicBuilders = allDyn
+      .map((typeName) => {
+        const varName = `${lcFirst(typeName)}Choices`;
+        const indexCall = `getAll${typeName}s`;
+        return `    const ${varName} = this.modelState.index.${indexCall}().map((item) => ({
       label: item.name,
       value: item.__id + '_refValue',
       secondaryText: item.$type
     }));`;
-    })
-    .join("\n");
+      })
+      .join("\n");
 
-  // single import for all guards
-  const guards = nodes
-    .map((d) => `is${d.name}`)
-    .sort()
-    .join(", ");
-  const astImport = `import { ${guards} } from '../../../language-server/generated/ast.js';`;
-
-  const handlerImports = nodes
-    .map((d) => d.name!)
-    .sort()
-    .map(
-      (n) =>
-        `import { ${n}PropertyPaletteHandler } from './elements/${n}PropertyPaletteHandler.js';`
-    )
-    .join("\n");
-
-  // build dispatch chain passing only needed choice arrays
-  const dispatchChain = nodes
-    .map((d) => {
-      const dynForDecl = Array.from(
-        new Set(
-          d.properties?.flatMap(
-            (p) =>
-              p.decorators
-                ?.filter((d) => d.startsWith("dynamicProperty:"))
-                .map((d) => d.split(":")[1]) ?? []
-          ) ?? []
-        )
-      );
-      const args = ["semanticElement"]
-        .concat(dynForDecl.map((t) => lcFirst(t) + "Choices"))
-        .join(", ");
-      return `    } else if (is${d.name}(semanticElement)) {
+    // ─── build dispatch chain passing only needed choice arrays ────────────────
+    const dispatchChain = nodes
+      .map((d) => {
+        const dynForDecl = Array.from(
+          new Set(
+            d.properties?.flatMap(
+              (p) =>
+                p.decorators
+                  ?.filter((d) => d.startsWith("dynamicProperty:"))
+                  .map((d) => d.split(":")[1]) ?? []
+            ) ?? []
+          )
+        );
+        const args = ["semanticElement"]
+          .concat(dynForDecl.map((t) => lcFirst(t) + "Choices"))
+          .join(", ");
+        return `    } else if (is${d.name}(semanticElement)) {
       return ${d.name}PropertyPaletteHandler.getPropertyPalette(${args});
 `;
-    })
-    .join("");
+      })
+      .join("");
 
-  const content = `// AUTO-GENERATED – DO NOT EDIT
-
+    // ─── assemble the handler source ───────────────────────────────────────────
+    const content = `// AUTO-GENERATED – DO NOT EDIT
+/*********************************************************************************
+ * Copyright (c) 2025 borkdominik and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the MIT License which is available at https://opensource.org/licenses/MIT.
+ *
+ * SPDX-License-Identifier: MIT
+ *********************************************************************************/
 import { RequestPropertyPaletteAction, SetPropertyPaletteAction } from '@biguml/biguml-protocol';
 import { ActionHandler, MaybePromise } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 ${astImport}
-import { ClassDiagramModelState } from '../../../glsp-server/class-diagram/model/class-diagram-model-state.js';
+import { ${modelStateClass} } from '${modelStateImportPath}';
 ${handlerImports}
 
 @injectable()
-export class RequestPropertyPaletteActionHandler implements ActionHandler {
+export class ${className} implements ActionHandler {
   actionKinds = [RequestPropertyPaletteAction.KIND];
 
-  @inject(ClassDiagramModelState)
-  protected modelState!: ClassDiagramModelState;
+  @inject(${modelStateClass})
+  protected modelState!: ${modelStateClass};
 
   execute(action: RequestPropertyPaletteAction): MaybePromise<any[]> {
     if (!action.elementId) {
       return [SetPropertyPaletteAction.create()];
     }
-    const semanticElement = this.modelState.index.findIdElement(
-      action.elementId
-    );
+    const semanticElement = this.modelState.index.findIdElement(action.elementId);
     if (!semanticElement) {
       return [SetPropertyPaletteAction.create()];
     }
@@ -292,8 +322,9 @@ ${dispatchChain}    }
 }
 `;
 
-  fs.writeFileSync(filePath, content, "utf8");
-  console.log(`Generated RequestPropertyPaletteActionHandler: ${filePath}`);
+    fs.writeFileSync(path.join(outDir, fileName), content, "utf8");
+    console.log(`Generated ${fileName}`);
+  }
 }
 
 // utilities

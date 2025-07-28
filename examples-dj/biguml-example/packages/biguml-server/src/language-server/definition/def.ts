@@ -6,7 +6,6 @@
  *
  * SPDX-License-Identifier: MIT
  *********************************************************************************/
-import { ArrayMaxSize, Equals, MinLength, ValidateIf } from "class-validator";
 import {
   astType,
   crossReference,
@@ -16,7 +15,8 @@ import {
   root,
   skipPropertyPP,
   withDefaults,
-} from "generator-langium-model-management";
+} from "@borkdominik/generator-langium-model-management";
+import { ArrayMaxSize, Equals, MinLength, ValidateIf } from "class-validator";
 import "reflect-metadata";
 import { LengthBetween } from "../validation/custom-validators/length-between-validator.js";
 
@@ -57,7 +57,34 @@ class ClassDiagram {
   relations?: Array<Relation>;
 }
 
-//type ClassDiagramElements = Enumeration | EnumerationLiteral | Class |
+type ClassDiagramElements =
+  | Enumeration
+  | EnumerationLiteral
+  | Class
+  | AbstractClass
+  | Interface
+  | Package
+  | Property
+  | Operation
+  | Parameter
+  | DataType
+  | PrimitiveType
+  | InstanceSpecification
+  | Slot
+  | LiteralSpecification
+  | Relation
+  | Abstraction
+  | Dependency
+  | Association
+  | Aggregation
+  | Composition
+  | InterfaceRealization
+  | Generalization
+  | PackageImport
+  | PackageMerge
+  | Realization
+  | Substitution
+  | Usage;
 
 @withDefaults
 export class Enumeration extends Entity {
@@ -304,6 +331,15 @@ export class PackageDiagram {
   @path relations?: Array<Relation>;
 }
 
+type PackageDiagramElements =
+  | Class
+  | Package
+  | Abstraction
+  | Dependency
+  | PackageImport
+  | PackageMerge
+  | Usage;
+
 @withDefaults
 export class Package extends Entity {
   name: string;
@@ -335,7 +371,3 @@ type RelationType =
   | "SUBSTITUTION"
   | "USAGE";
 type Visibility = "PUBLIC" | "PRIVATE" | "PROTECTED" | "PACKAGE";
-
-export function validateSingleProperty(): boolean {
-  return true;
-}

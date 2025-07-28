@@ -13,13 +13,14 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { ActionDispatcher, DefaultModelState, JsonModelState, MessageAction, SeverityLevel } from '@eclipse-glsp/server';
+import { ActionDispatcher, JsonModelState, MessageAction, SeverityLevel } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 import { DiagramSerializer, ModelService } from 'model-service';
 import { URI } from 'vscode-uri';
 import { BigUmlLSPServices } from '../../../integration.js';
 import { Diagram } from '../../../language-server/generated/ast.js';
 import { QualifiedNameProvider } from '../../../language-server/yo-generated/uml-naming.js';
+import { BaseDiagramModelState } from '../../common/model/base-diagram-model-state.js';
 import { ClassDiagramModelIndex } from './class-diagram-model-index.js';
 
 export interface ClassDiagramSourceModel {
@@ -31,7 +32,7 @@ export interface ClassDiagramSourceModel {
  * It also provides convenience methods for accessing specific language services.
  */
 @injectable()
-export class ClassDiagramModelState extends DefaultModelState implements JsonModelState<ClassDiagramSourceModel> {
+export class ClassDiagramModelState extends BaseDiagramModelState implements JsonModelState<ClassDiagramSourceModel> {
     @inject(ClassDiagramModelIndex)
     declare index: ClassDiagramModelIndex;
     @inject(BigUmlLSPServices)

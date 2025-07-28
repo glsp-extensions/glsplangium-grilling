@@ -1,6 +1,6 @@
 {
-  "name": "generator-langium-model-management",
-  "version": "2.0.0",
+  "name": "@borkdominik/generator-langium-model-management",
+  "version": "3.0.0",
   "description": "Yeoman generator to setup Langium with Model Service - enabling graphical editors access to the AST",
   "author": "David Jäger",
   "engines": {
@@ -31,7 +31,10 @@
     "prepare": "yarn build"
   },
   "dependencies": {
+    "@borkdominik/outline": "*",
+    "@borkdominik/property-palette": "*",
     "chalk": "4.1.2",
+    "diff": "^8.0.2",
     "fast-xml-parser": "^4.3.5",
     "lodash": "~4.17.21",
     "mem-fs": "^4.0.0",
@@ -45,6 +48,7 @@
     "yeoman-generator": "~5.9.0"
   },
   "devDependencies": {
+    "@types/diff": "^8.0.0",
     "@types/lodash": "~4.14.197",
     "@types/node": "^20.4.0",
     "@types/reflect-metadata": "^0.1.0",
@@ -60,5 +64,7 @@
     "node": "18.17.1",
     "npm": "9.6.7"
   },
-  "bin": "./generators/cli.js"
+  "bin": {
+    "generator-langium-model-management": "./generators/cli.js"
+  }
 }

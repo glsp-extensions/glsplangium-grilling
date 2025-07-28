@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { Project } from "ts-morph";
+import { format } from "../util";
 
 interface PropertyInfo {
   name: string;
@@ -110,7 +111,7 @@ function buildValidationInfo(defPath: string): ValidationInfo {
   return { entities, decoratorImports };
 }
 
-export function writeValidationElementsFile(
+async function writeValidationElementsFile(
   extPath: string,
   defPath: string,
   info: ValidationInfo
@@ -197,11 +198,14 @@ ${body}
     })
     .join("\n");
 
-  fs.writeFileSync(out, `${imports.join("\n")}\n\n${classes}`, "utf8");
+  const rawContent = `${imports.join("\n")}\n\n${classes}`;
+  const formatted = await format(rawContent);
+
+  fs.writeFileSync(out, formatted, "utf8");
   console.log("Generated validation-elements file:", out);
 }
 
-function writeValidatorFile(extPath: string, info: ValidationInfo) {
+async function writeValidatorFile(extPath: string, info: ValidationInfo) {
   const out = path.join(extPath, "yo-generated", "validation/validator.ts");
   fs.mkdirSync(path.dirname(out), { recursive: true });
 
@@ -217,7 +221,7 @@ function writeValidatorFile(extPath: string, info: ValidationInfo) {
     )
     .join("");
 
-  const content = `import { validateSync } from 'class-validator';
+  const rawContent = `import { validateSync } from 'class-validator';
 import type { AstNode } from 'langium';
 import { ${astGuards} } from '../../generated/ast.js';
 import { ${dtoNames} } from './validation-elements.js';
@@ -231,7 +235,8 @@ export function validateNode(node: AstNode): void {
     }
 }
 `;
-  fs.writeFileSync(out, content, "utf8");
+  const formatted = await format(rawContent);
+  fs.writeFileSync(out, formatted, "utf8");
   console.log("Generated validator file:", out);
 }
 

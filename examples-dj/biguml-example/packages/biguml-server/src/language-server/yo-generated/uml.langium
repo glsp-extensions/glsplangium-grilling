@@ -36,8 +36,10 @@ Usage :   '{'  '"__type"' ':' '"Usage"'   ( ','  '"__id"' ':' '"' __id = LANGIUM
 StateMachineDiagram :   '{'  '"__type"' ':' '"StateMachineDiagram"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"diagramType"' ':' '"' diagramType = "STATE_MACHINE" '"' )   '}' ;
 PackageDiagram :   '{'  '"__type"' ':' '"PackageDiagram"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"diagramType"' ':' '"' diagramType = "PACKAGE" '"' ) ( ','  '"entities"' ':' '[' ( (  entities += Entity  ) (  ','   entities += Entity  )* )? ']' )? ( ','  '"relations"' ':' '[' ( (  relations += Relation  ) (  ','   relations += Relation  )* )? ']' )?   '}' ;
 Package :   '{'  '"__type"' ':' '"Package"'   ( ','  '"__id"' ':' '"' __id = LANGIUM_ID '"' ) ( ','  '"name"' ':' '"' name = LANGIUM_ID '"' ) ( ','  '"uri"' ':' '"' uri = LANGIUM_ID '"' )? ( ','  '"visibility"' ':' '"' visibility = Visibility '"' )? ( ','  '"entities"' ':' '[' ( (  entities += Entity  ) (  ','   entities += Entity  )* )? ']' )?   '}' ;
+ClassDiagramElements  : Enumeration | EnumerationLiteral | Class | AbstractClass | Interface | Package | Property | Operation | Parameter | DataType | PrimitiveType | InstanceSpecification | Slot | LiteralSpecification | Relation | Abstraction | Dependency | Association | Aggregation | Composition | InterfaceRealization | Generalization | PackageImport | PackageMerge | Realization | Substitution | Usage ;  // TEST_CHANGE
 DataTypeReference  : DataType | Enumeration | Class | Interface | PrimitiveType ;  // TEST_CHANGE
 SlotDefiningFeature  : Property | Class | Interface ;  // TEST_CHANGE
+PackageDiagramElements  : Class | Package | Abstraction | Dependency | PackageImport | PackageMerge | Usage ;  // TEST_CHANGE
 AggregationType  returns string : "NONE" | "SHARED" | "COMPOSITE" ;  // TEST_CHANGE
 ParameterDirection  returns string : "IN" | "OUT" | "INOUT" | "RETURN" ;  // TEST_CHANGE
 EffectType  returns string : "CREATE" | "READ" | "UPDATE" | "DELETE" ;  // TEST_CHANGE

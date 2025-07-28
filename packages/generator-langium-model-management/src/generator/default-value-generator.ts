@@ -3,6 +3,7 @@
 import fs from "fs";
 import path from "path";
 import { LangiumDeclaration } from "../types";
+import { format } from "../util";
 
 interface DefaultMappingEntry {
   property: string;
@@ -88,15 +89,15 @@ export function buildDefaultValueMapping(
   };
 }
 
-export function writeDefaultValueFile(
+export async function writeDefaultValueFile(
   extensionPath: string,
   payload: {
     defaultMapping: DefaultMapping;
     noBoundsClasses: string[];
     astTypeMap: Record<string, string>;
   }
-) {
-  const content = `// THIS FILE IS GENERATED — DO NOT EDIT
+): Promise<void> {
+  const rawContent = `// THIS FILE IS GENERATED — DO NOT EDIT
 
 interface DefaultMappingEntry {
   property: string;
@@ -192,6 +193,8 @@ export function getRelationTypeFromElementId(
   }
 }
 `;
+
+  const content = await format(rawContent);
 
   const outputFolder = path.join(extensionPath, "yo-generated");
   if (!fs.existsSync(outputFolder)) {
