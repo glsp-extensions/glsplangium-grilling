@@ -1,8 +1,0 @@
-.vscode
-node_modules
-lib/
-src/
-tsconfig.json
-webpack.config.js
-tsconfig.tsbuildinfo
-.eslintrc.js

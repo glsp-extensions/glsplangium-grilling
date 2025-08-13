@@ -17,5 +17,19 @@
   },
   "scripts": {
     "full-build": "yarn workspace @borkdominik/outline build && yarn workspace @borkdominik/property-palette build && yarn workspace @borkdominik/model-management-common build && yarn workspace @borkdominik/generator-langium-model-management build && yarn workspace @biguml/biguml-server build && yarn workspace @biguml/biguml-server generate"
+  },
+  "resolutions": {
+    "**/@eclipse-glsp/client": "2.0.0",
+    "**/@eclipse-glsp/protocol": "2.0.0",
+    "**/@eclipse-glsp/server": "2.0.0",
+    "**/@eclipse-glsp/layout-elk": "2.0.0",
+    "**/@eclipse-glsp/vscode-integration": "2.0.0",
+    "**/@eclipse-glsp/vscode-integration-webview": "2.0.0",
+    "**/sprotty": "1.0.0",
+    "**/inversify": "6.0.2"
+  },
+  "devDependencies": {
+    "@types/diff": "^8.0.0",
+    "@types/yeoman-environment": "^4.0.0"
   }
 }
