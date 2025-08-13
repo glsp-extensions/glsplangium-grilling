@@ -12,7 +12,6 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/lib": true,
-    "examples-al/**": true,
   },
   "editor.insertSpaces": true,
   "[typescript]": {
