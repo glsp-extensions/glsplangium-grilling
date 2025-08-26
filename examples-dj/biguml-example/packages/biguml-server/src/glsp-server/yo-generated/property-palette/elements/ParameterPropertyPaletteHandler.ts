@@ -13,30 +13,30 @@ export namespace ParameterPropertyPaletteHandler {
       SetPropertyPaletteAction.create(
         PropertyPalette.builder()
           .elementId(semanticElement.__id)
-          .label(semanticElement.$type)
+          .label((semanticElement as any).name ?? semanticElement.$type)
           .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
           .bool(
             semanticElement.__id,
             'isException',
-            semanticElement.isException,
+            !!semanticElement.isException,
             'isException',
           )
           .bool(
             semanticElement.__id,
             'isStream',
-            semanticElement.isStream,
+            !!semanticElement.isStream,
             'isStream',
           )
           .bool(
             semanticElement.__id,
             'isOrdered',
-            semanticElement.isOrdered,
+            !!semanticElement.isOrdered,
             'isOrdered',
           )
           .bool(
             semanticElement.__id,
             'isUnique',
-            semanticElement.isUnique,
+            !!semanticElement.isUnique,
             'isUnique',
           )
           .choice(
@@ -64,7 +64,9 @@ export namespace ParameterPropertyPaletteHandler {
             semanticElement.__id,
             'parameterType',
             dataTypeChoices,
-            semanticElement.parameterType?.ref?.__id + '_refValue',
+            (semanticElement.parameterType as any)?.ref?.__id
+              ? (semanticElement.parameterType as any).ref.__id + '_refValue'
+              : '',
             'Parameter Type',
           )
           .text(

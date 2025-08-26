@@ -17,18 +17,20 @@ export namespace DataTypePropertyPaletteHandler {
       SetPropertyPaletteAction.create(
         PropertyPalette.builder()
           .elementId(semanticElement.__id)
-          .label(semanticElement.$type)
+          .label((semanticElement as any).name ?? semanticElement.$type)
           .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
           .reference(
             semanticElement.__id,
             'properties',
             'Properties',
-            (semanticElement.properties ?? []).map((e) => ({
-              elementId: e.__id,
-              label: e.name,
-              name: e.name,
-              deleteActions: [DeleteElementOperation.create([e.__id])],
-            })),
+            (semanticElement.properties ?? [])
+              .filter((e: any) => !!e && !!e.__id)
+              .map((e: any) => ({
+                elementId: e.__id,
+                label: e.name ?? '(unnamed property)',
+                name: e.name ?? '',
+                deleteActions: [DeleteElementOperation.create([e.__id])],
+              })),
             [
               {
                 label: 'Create Property',
@@ -42,12 +44,14 @@ export namespace DataTypePropertyPaletteHandler {
             semanticElement.__id,
             'operations',
             'Operations',
-            (semanticElement.operations ?? []).map((e) => ({
-              elementId: e.__id,
-              label: e.name,
-              name: e.name,
-              deleteActions: [DeleteElementOperation.create([e.__id])],
-            })),
+            (semanticElement.operations ?? [])
+              .filter((e: any) => !!e && !!e.__id)
+              .map((e: any) => ({
+                elementId: e.__id,
+                label: e.name ?? '(unnamed operation)',
+                name: e.name ?? '',
+                deleteActions: [DeleteElementOperation.create([e.__id])],
+              })),
             [
               {
                 label: 'Create Operation',
@@ -60,7 +64,7 @@ export namespace DataTypePropertyPaletteHandler {
           .bool(
             semanticElement.__id,
             'isAbstract',
-            semanticElement.isAbstract,
+            !!semanticElement.isAbstract,
             'isAbstract',
           )
           .choice(

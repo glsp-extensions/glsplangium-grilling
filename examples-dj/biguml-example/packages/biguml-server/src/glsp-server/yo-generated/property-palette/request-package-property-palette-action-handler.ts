@@ -28,22 +28,38 @@ export class RequestPackagePropertyPaletteActionHandler
   protected modelState!: PackageDiagramModelState;
 
   execute(action: RequestPropertyPaletteAction): MaybePromise<any[]> {
-    if (!action.elementId) {
-      return [SetPropertyPaletteAction.create()];
-    }
-    const semanticElement = this.modelState.index.findIdElement(
-      action.elementId,
-    );
-    if (!semanticElement) {
-      return [SetPropertyPaletteAction.create()];
-    }
+    try {
+      if (!action.elementId) {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (
+        typeof action.elementId !== 'string' ||
+        action.elementId.endsWith('_refValue')
+      ) {
+        return [SetPropertyPaletteAction.create()];
+      }
 
-    if (false) {
-    } else if (isClass(semanticElement)) {
-      return ClassPropertyPaletteHandler.getPropertyPalette(semanticElement);
-    } else if (isPackage(semanticElement)) {
-      return PackagePropertyPaletteHandler.getPropertyPalette(semanticElement);
+      let semanticElement: any | undefined;
+      try {
+        semanticElement = this.modelState.index.findIdElement(action.elementId);
+      } catch {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (!semanticElement) {
+        return [SetPropertyPaletteAction.create()];
+      }
+
+      if (false) {
+      } else if (isClass(semanticElement)) {
+        return ClassPropertyPaletteHandler.getPropertyPalette(semanticElement);
+      } else if (isPackage(semanticElement)) {
+        return PackagePropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      }
+      return [SetPropertyPaletteAction.create()];
+    } catch (_e: unknown) {
+      return [SetPropertyPaletteAction.create()];
     }
-    return [SetPropertyPaletteAction.create()];
   }
 }

@@ -97,7 +97,7 @@ export namespace ${name}PropertyPaletteHandler {
       SetPropertyPaletteAction.create(
         PropertyPalette.builder()
           .elementId(semanticElement.__id)
-          .label(semanticElement.$type)
+          .label((semanticElement as any).name ?? semanticElement.$type)
 ${body}
           .build()
       )
@@ -124,7 +124,9 @@ function emitBuilderLine(
             semanticElement.__id,
             '${id}',
             ${choicesVar},
-            semanticElement.${id}?.ref?.__id + '_refValue',
+            ((semanticElement.${id} as any)?.ref?.__id
+            ? (semanticElement.${id} as any).ref.__id + '_refValue'
+            : ''),
             '${human(id)}'
           )`;
   }
@@ -145,12 +147,14 @@ function emitBuilderLine(
             semanticElement.__id,
             '${id}',
             '${human(id)}',
-            (semanticElement.${id} ?? []).map(e => ({
-              elementId: e.__id,
-              label: e.name,
-              name:  e.name,
-              deleteActions: [DeleteElementOperation.create([e.__id])]
-            })),
+            (semanticElement.${id} ?? [])
+              .filter((e: any) => !!e && !!e.__id)
+              .map((e: any) => ({
+                elementId: e.__id,
+                label: e.name ?? '(unnamed ${toConst(first?.typeName ?? "Element").toLowerCase()})',
+                name:  e.name ?? '',
+                deleteActions: [DeleteElementOperation.create([e.__id])]
+              })),
             [{
               label: 'Create ${label}',
               action: CreateNodeOperation.create(ModelTypes.${modelConst}, { containerId: semanticElement.__id })
@@ -159,7 +163,7 @@ function emitBuilderLine(
   }
 
   if (first?.typeName === "boolean") {
-    return `          .bool(semanticElement.__id, '${id}', semanticElement.${id}, '${id}')`;
+    return `          .bool(semanticElement.__id, '${id}', !!semanticElement.${id}, '${id}')`;
   }
 
   if (first?.typeName === "string" || first?.typeName === "number") {
@@ -248,11 +252,13 @@ export function writeRequestPropertyPaletteHandlers(
       .map((typeName) => {
         const varName = `${lcFirst(typeName)}Choices`;
         const indexCall = `getAll${typeName}s`;
-        return `    const ${varName} = this.modelState.index.${indexCall}().map((item) => ({
-      label: item.name,
-      value: item.__id + '_refValue',
-      secondaryText: item.$type
-    }));`;
+        return `    const ${varName} = (this.modelState.index.${indexCall}?.() ?? [])
+          .filter((item: any) => !!item && !!item.__id && !!item.name)
+          .map((item: any) => ({
+            label: item.name,
+            value: item.__id + '_refValue',
+            secondaryText: item.$type
+          }));`;
       })
       .join("\n");
 
@@ -301,21 +307,34 @@ export class ${className} implements ActionHandler {
   protected modelState!: ${modelStateClass};
 
   execute(action: RequestPropertyPaletteAction): MaybePromise<any[]> {
-    if (!action.elementId) {
-      return [SetPropertyPaletteAction.create()];
-    }
-    const semanticElement = this.modelState.index.findIdElement(action.elementId);
-    if (!semanticElement) {
-      return [SetPropertyPaletteAction.create()];
-    }
+    try {
+      if (!action.elementId) {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (typeof action.elementId !== 'string' || action.elementId.endsWith('_refValue')) {
+        return [SetPropertyPaletteAction.create()];
+      }
 
-${dynamicBuilders}
+      let semanticElement: any | undefined;
+      try {
+        semanticElement = this.modelState.index.findIdElement(action.elementId);
+      } catch {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (!semanticElement) {
+        return [SetPropertyPaletteAction.create()];
+      }
 
-    if (false) {
-${dispatchChain}    }
-    return [SetPropertyPaletteAction.create()];
+  ${dynamicBuilders}
+
+      if (false) {
+  ${dispatchChain}    }
+        return [SetPropertyPaletteAction.create()];
+      } catch (_e: unknown) { 
+        return [SetPropertyPaletteAction.create()];
+      }
+    }
   }
-}
 `;
 
     results.push({ path: path.join(outDir, fileName), content });

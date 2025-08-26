@@ -61,7 +61,6 @@ import { ClassDiagramModelIndex } from '../model/class-diagram-model-index.js';
 import { ClassDiagramModelState } from '../model/class-diagram-model-state.js';
 import { ClassDiagramModelStorage } from '../model/class-diagram-model-storage.js';
 import { ClassDiagramConfiguration } from './class-diagram-configuration.js';
-import { ClassDiagramPopupFactory } from './class-diagram-popup-factory.js';
 
 @injectable()
 export class ClassDiagramModule extends DiagramModule {
@@ -130,7 +129,7 @@ export class ClassDiagramModule extends DiagramModule {
     }
 
     protected override bindPopupModelFactory(): BindingTarget<PopupModelFactory> | undefined {
-        return ClassDiagramPopupFactory;
+        return undefined;
     }
 
     protected override bindModelValidator(): BindingTarget<ModelValidator> | undefined {

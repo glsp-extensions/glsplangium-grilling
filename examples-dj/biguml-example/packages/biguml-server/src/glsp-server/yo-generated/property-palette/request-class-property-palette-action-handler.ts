@@ -53,86 +53,106 @@ export class RequestClassPropertyPaletteActionHandler implements ActionHandler {
   protected modelState!: ClassDiagramModelState;
 
   execute(action: RequestPropertyPaletteAction): MaybePromise<any[]> {
-    if (!action.elementId) {
+    try {
+      if (!action.elementId) {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (
+        typeof action.elementId !== 'string' ||
+        action.elementId.endsWith('_refValue')
+      ) {
+        return [SetPropertyPaletteAction.create()];
+      }
+
+      let semanticElement: any | undefined;
+      try {
+        semanticElement = this.modelState.index.findIdElement(action.elementId);
+      } catch {
+        return [SetPropertyPaletteAction.create()];
+      }
+      if (!semanticElement) {
+        return [SetPropertyPaletteAction.create()];
+      }
+
+      const dataTypeChoices = (this.modelState.index.getAllDataTypes?.() ?? [])
+        .filter((item: any) => !!item && !!item.__id && !!item.name)
+        .map((item: any) => ({
+          label: item.name,
+          value: item.__id + '_refValue',
+          secondaryText: item.$type,
+        }));
+      const definingFeatureChoices = (
+        this.modelState.index.getAllDefiningFeatures?.() ?? []
+      )
+        .filter((item: any) => !!item && !!item.__id && !!item.name)
+        .map((item: any) => ({
+          label: item.name,
+          value: item.__id + '_refValue',
+          secondaryText: item.$type,
+        }));
+
+      if (false) {
+      } else if (isEnumeration(semanticElement)) {
+        return EnumerationPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isEnumerationLiteral(semanticElement)) {
+        return EnumerationLiteralPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isClass(semanticElement)) {
+        return ClassPropertyPaletteHandler.getPropertyPalette(semanticElement);
+      } else if (isAbstractClass(semanticElement)) {
+        return AbstractClassPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isInterface(semanticElement)) {
+        return InterfacePropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isProperty(semanticElement)) {
+        return PropertyPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+          dataTypeChoices,
+        );
+      } else if (isOperation(semanticElement)) {
+        return OperationPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isParameter(semanticElement)) {
+        return ParameterPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+          dataTypeChoices,
+        );
+      } else if (isDataType(semanticElement)) {
+        return DataTypePropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isPrimitiveType(semanticElement)) {
+        return PrimitiveTypePropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isInstanceSpecification(semanticElement)) {
+        return InstanceSpecificationPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isSlot(semanticElement)) {
+        return SlotPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+          definingFeatureChoices,
+        );
+      } else if (isLiteralSpecification(semanticElement)) {
+        return LiteralSpecificationPropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      } else if (isPackage(semanticElement)) {
+        return PackagePropertyPaletteHandler.getPropertyPalette(
+          semanticElement,
+        );
+      }
+      return [SetPropertyPaletteAction.create()];
+    } catch (_e: unknown) {
       return [SetPropertyPaletteAction.create()];
     }
-    const semanticElement = this.modelState.index.findIdElement(
-      action.elementId,
-    );
-    if (!semanticElement) {
-      return [SetPropertyPaletteAction.create()];
-    }
-
-    const dataTypeChoices = this.modelState.index
-      .getAllDataTypes()
-      .map((item) => ({
-        label: item.name,
-        value: item.__id + '_refValue',
-        secondaryText: item.$type,
-      }));
-    const definingFeatureChoices = this.modelState.index
-      .getAllDefiningFeatures()
-      .map((item) => ({
-        label: item.name,
-        value: item.__id + '_refValue',
-        secondaryText: item.$type,
-      }));
-
-    if (false) {
-    } else if (isEnumeration(semanticElement)) {
-      return EnumerationPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isEnumerationLiteral(semanticElement)) {
-      return EnumerationLiteralPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isClass(semanticElement)) {
-      return ClassPropertyPaletteHandler.getPropertyPalette(semanticElement);
-    } else if (isAbstractClass(semanticElement)) {
-      return AbstractClassPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isInterface(semanticElement)) {
-      return InterfacePropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isProperty(semanticElement)) {
-      return PropertyPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-        dataTypeChoices,
-      );
-    } else if (isOperation(semanticElement)) {
-      return OperationPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isParameter(semanticElement)) {
-      return ParameterPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-        dataTypeChoices,
-      );
-    } else if (isDataType(semanticElement)) {
-      return DataTypePropertyPaletteHandler.getPropertyPalette(semanticElement);
-    } else if (isPrimitiveType(semanticElement)) {
-      return PrimitiveTypePropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isInstanceSpecification(semanticElement)) {
-      return InstanceSpecificationPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isSlot(semanticElement)) {
-      return SlotPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-        definingFeatureChoices,
-      );
-    } else if (isLiteralSpecification(semanticElement)) {
-      return LiteralSpecificationPropertyPaletteHandler.getPropertyPalette(
-        semanticElement,
-      );
-    } else if (isPackage(semanticElement)) {
-      return PackagePropertyPaletteHandler.getPropertyPalette(semanticElement);
-    }
-    return [SetPropertyPaletteAction.create()];
   }
 }

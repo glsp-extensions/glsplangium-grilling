@@ -18,25 +18,29 @@ export namespace SlotPropertyPaletteHandler {
       SetPropertyPaletteAction.create(
         PropertyPalette.builder()
           .elementId(semanticElement.__id)
-          .label(semanticElement.$type)
+          .label((semanticElement as any).name ?? semanticElement.$type)
           .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
           .choice(
             semanticElement.__id,
             'definingFeature',
             definingFeatureChoices,
-            semanticElement.definingFeature?.ref?.__id + '_refValue',
+            (semanticElement.definingFeature as any)?.ref?.__id
+              ? (semanticElement.definingFeature as any).ref.__id + '_refValue'
+              : '',
             'Defining Feature',
           )
           .reference(
             semanticElement.__id,
             'values',
             'Values',
-            (semanticElement.values ?? []).map((e) => ({
-              elementId: e.__id,
-              label: e.name,
-              name: e.name,
-              deleteActions: [DeleteElementOperation.create([e.__id])],
-            })),
+            (semanticElement.values ?? [])
+              .filter((e: any) => !!e && !!e.__id)
+              .map((e: any) => ({
+                elementId: e.__id,
+                label: e.name ?? '(unnamed literal_specification)',
+                name: e.name ?? '',
+                deleteActions: [DeleteElementOperation.create([e.__id])],
+              })),
             [
               {
                 label: 'Create Literal Specification',

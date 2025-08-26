@@ -12,7 +12,7 @@ export namespace PackagePropertyPaletteHandler {
       SetPropertyPaletteAction.create(
         PropertyPalette.builder()
           .elementId(semanticElement.__id)
-          .label(semanticElement.$type)
+          .label((semanticElement as any).name ?? semanticElement.$type)
           .text(semanticElement.__id, 'name', semanticElement.name, 'Name')
           .text(semanticElement.__id, 'uri', semanticElement.uri, 'Uri')
           .choice(
