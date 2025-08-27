@@ -61,7 +61,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "bigUML.model.newEmpty",
+        "command": "bigUML.model.createEmpty",
         "title": "New Empty UML Diagram",
         "category": "bigUML",
         "enablement": "workspaceFolderCount > 0"
@@ -173,7 +173,7 @@
       "webview/context": [],
       "file/newFile": [
         {
-          "command": "bigUML.model.newEmpty",
+          "command": "bigUML.model.createEmpty",
           "when": "workspaceFolderCount > 0"
         }
       ],
