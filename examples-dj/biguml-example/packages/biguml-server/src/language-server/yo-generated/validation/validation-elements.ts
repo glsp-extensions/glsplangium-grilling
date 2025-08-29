@@ -1,4 +1,4 @@
-import { ArrayMaxSize, Equals, MinLength, ValidateIf } from 'class-validator';
+import { ArrayMaxSize, Matches, MinLength, ValidateIf } from 'class-validator';
 import { LengthBetween } from '../../validation/custom-validators/length-between-validator.js';
 import {
   Class,
@@ -22,15 +22,16 @@ export class ClassValidationElement {
     Object.assign(this, src);
   }
 
-  @MinLength(5, { message: 'Class.name must be at least 5 characters long' })
+  @Matches(/^[A-Z]/, {
+    message: 'First letter of class name must be uppercase.',
+  })
+  @MinLength(5, { message: 'Class name must be at least 5 characters long' })
   name: string;
   @ValidateIf((o) => o.isActive === true)
   @ArrayMaxSize(3, {
     message: 'Active classes must declare at most 3 properties.',
   })
   properties?: Array<Property>;
-  @Equals(false, { message: 'temp must be true in this profile.' })
-  temp?: boolean;
   isActive?: boolean;
 }
 

@@ -1,84 +1,32 @@
-/********************************************************************************
- * Copyright (c) 2023 CrossBreeze.
- ********************************************************************************/
-import { Operation } from '@eclipse-glsp/protocol';
-import { Command, OperationHandler } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import 'reflect-metadata';
-import { BigUmlCommand } from '../../../biguml/common/handler/big-uml-command.js';
+import { AbstractUpdateOperationHandler, smartCast } from '../../../common/handler/abstract-update-operation-handler.js';
+import { UpdateOperation } from '../../../common/operation/update-operation.js';
 import { ClassDiagramModelState } from '../../model/class-diagram-model-state.js';
 
 @injectable()
-export class UpdateOperationHandler extends OperationHandler {
-    override operationType = UpdateOperation.KIND;
+export class ClassDiagramUpdateOperationHandler extends AbstractUpdateOperationHandler {
+    @inject(ClassDiagramModelState)
+    declare readonly modelState: ClassDiagramModelState;
 
-    @inject(ClassDiagramModelState) declare modelState: ClassDiagramModelState;
-
-    createCommand(op: UpdateOperation): Command {
-        const patch = this.createUpdate(op);
-        console.log('PATCH IS: ', patch);
-        return new BigUmlCommand(this.modelState, JSON.stringify([JSON.parse(patch)]));
-    }
-
-    createUpdate(operation: UpdateOperation): string {
-        console.log('[createUpdate] incoming value -', operation.property, 'type:', typeof operation.value, 'value:', operation.value);
-        const path = this.modelState.index.findPath(operation.elementId);
-        let value: any = operation.value;
-        if (typeof value === 'string' && value.endsWith('_refValue')) {
-            const element = this.modelState.index.findIdElement(value.substring(0, value.length - 9));
-            value = {
+    /** class-specific: convert "*_refValue" markers to proper { ref: { __id, __documentUri } } or smart-cast primitives */
+    protected override transformValue(operation: UpdateOperation, _element: any): unknown {
+        const raw = operation.value;
+        if (typeof raw === 'string' && raw.endsWith('_refValue')) {
+            const refId = raw.slice(0, -'_refValue'.length);
+            const target = this.modelState.index.findIdElement(refId);
+            if (!target) return raw; // fallback: leave as-is
+            return {
                 ref: {
-                    __id: element.__id,
-                    __documentUri: element.$document?.uri
+                    __id: target.__id,
+                    __documentUri: target.$document?.uri
                 }
             };
-        } else {
-            value = smartCast(value);
         }
-        const elementToBeUpdated = this.modelState.index.findIdElement(operation.elementId);
-        const op = elementToBeUpdated && elementToBeUpdated[operation.property] ? 'replace' : 'add';
-
-        return JSON.stringify({
-            op,
-            path: path + '/' + operation.property,
-            value: value
-        });
-    }
-}
-
-export interface UpdateOperation extends Operation {
-    kind: typeof UpdateOperation.KIND;
-    elementId: string;
-    property: string;
-    value: string | number | boolean;
-}
-
-export namespace UpdateOperation {
-    export const KIND = 'UpdateOperation';
-
-    export function is(object: any): object is UpdateOperation {
-        return Operation.hasKind(object, KIND);
+        return smartCast(raw);
     }
 
-    export function create(elementId: string, property: string, value: string | number | boolean): UpdateOperation {
-        return {
-            kind: KIND,
-            isOperation: true,
-            elementId,
-            property,
-            value
-        };
+    /** class-specific: add vs replace depending on whether the property exists */
+    protected override chooseOp(element: any, property: string, _value: unknown): 'add' | 'replace' {
+        return element && element[property] ? 'replace' : 'add';
     }
-}
-
-function smartCast(value: any): any {
-    if (typeof value !== 'string') return value;
-
-    const trimmed = value.trim().toLowerCase();
-    if (trimmed === 'true') return true;
-    if (trimmed === 'false') return false;
-
-    if (!isNaN(Number(trimmed))) return Number(trimmed);
-
-    return value; // leave all other strings as-is
 }

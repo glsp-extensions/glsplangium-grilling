@@ -10,7 +10,7 @@ import { UpdateElementPropertyAction } from '@biguml/biguml-protocol';
 import { ActionHandler, MaybePromise, Operation } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
 import { PackageDiagramModelState } from '../../../model/package-diagram-model-state.js';
-import { UpdateOperation } from '../update-operation-handler.js';
+import { UpdateOperation } from '../old-update-operation-handler.js';
 
 @injectable()
 export class UpdateElementPropertyActionHandler implements ActionHandler {

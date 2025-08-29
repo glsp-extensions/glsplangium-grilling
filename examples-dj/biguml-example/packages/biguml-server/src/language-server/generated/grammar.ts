@@ -1513,36 +1513,6 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
                   },
                   {
                     "$type": "Keyword",
-                    "value": "\\"temp\\""
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "temp",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@49"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "?"
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Keyword",
                     "value": "\\"skip\\""
                   },
                   {
@@ -2113,36 +2083,6 @@ export const UmlGrammar = (): Grammar => loadedUmlGrammar ?? (loadedUmlGrammar =
               {
                 "$type": "Keyword",
                 "value": "\\""
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ","
-              },
-              {
-                "$type": "Keyword",
-                "value": "\\"temp\\""
-              },
-              {
-                "$type": "Keyword",
-                "value": ":"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "temp",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@49"
-                  },
-                  "arguments": []
-                }
               }
             ],
             "cardinality": "?"

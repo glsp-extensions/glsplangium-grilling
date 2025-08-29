@@ -38,22 +38,24 @@ import {
 import { injectable } from 'inversify';
 import { RequestPackageOutlineActionHandler } from '../../yo-generated/outline/request-package-outline-action-handler.js';
 import { RequestPackagePropertyPaletteActionHandler } from '../../yo-generated/property-palette/request-package-property-palette-action-handler.js';
-import { ChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
+import { PackageDiagramChangeBoundsOperationHandler } from '../common/handler/change-bounds-operation-handler.js';
 import { PackageDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';
 import { PackageCreateEdgeOperationHandler } from '../common/handler/generic-create-edge-operation-handler.js';
 import { PackageCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
-import { UpdateElementPropertyActionHandler } from '../common/handler/update-element-property-action-handler.js';
-import { UpdateOperationHandler } from '../common/handler/update-operation-handler.js';
+import { PackageDiagramUpdateElementPropertyActionHandler } from '../common/handler/update-element-property-action-handler.js';
+import { PackageDiagramUpdateOperationHandler } from '../common/handler/update-operation-handler.js';
+import { PackageLabelEditOperationHandler } from '../common/labeledit/package-label-edit-operation-handler.js';
 import { PackageLabelEditValidator } from '../common/labeledit/package-label-edit-validator.js';
-import { PackageLabelEditOperationHandler } from '../common/labeledit/packge-label-edit-operation-handler.js';
-import { PackageDiagramModelValidator } from '../common/marker/package-diagram-model-validator.js';
 import { PackageDiagramNavigationTargetResolver } from '../common/model/package-diagram-navigation-target-resolver.js';
-import { NextNodeNavigationTargetProvider } from '../common/provider/next-node-navigation-target-provider.js';
-import { NodeDocumentationNavigationTargetProvider } from '../common/provider/node-documentation-navigation-target-provider.js';
-import { PackageDiagramCommandPaletteActionProvider } from '../common/provider/package-diagram-command-palette-action-provider.js';
-import { PackageDiagramContextMenuItemProvider } from '../common/provider/package-diagram-context-menu-item-provider.js';
+import {
+    PackageDiagramNextNodeNavigationTargetProvider,
+    PackageDiagramPreviousNodeNavigationTargetProvider
+} from '../common/provider/base-next-prev-target-provider.js';
+import { PackageDiagramCommandPaletteActionProvider } from '../common/provider/package-command-palette-action-provider.js';
+import { PackageDiagramContextMenuItemProvider } from '../common/provider/package-context-menu-item-provider.js';
 import { PackageDiagramToolPaletteItemProvider } from '../common/provider/package-diagram-tool-palette-item-provider.js';
-import { PreviousNodeNavigationTargetProvider } from '../common/provider/previous-node-navigation-target-provider.js';
+import { PackageDiagramNodeDocumentationNavigationTargetProvider } from '../common/provider/package-node-doc-nav-target-provider.js';
+import { PackageDiagramModelValidator } from '../common/validator/package-diagram-model-validator.js';
 import { PackageDiagramGModelFactory } from '../model/package-diagram-gmodel-factory.js';
 import { PackageDiagramModelIndex } from '../model/package-diagram-model-index.js';
 import { PackageDiagramModelState } from '../model/package-diagram-model-state.js';
@@ -86,9 +88,9 @@ export class PackageDiagramModule extends DiagramModule {
         binding.add(PackageCreateNodeOperationHandler);
         binding.add(PackageCreateEdgeOperationHandler);
 
-        binding.add(ChangeBoundsOperationHandler);
+        binding.add(PackageDiagramChangeBoundsOperationHandler);
         binding.add(PackageLabelEditOperationHandler);
-        binding.add(UpdateOperationHandler);
+        binding.add(PackageDiagramUpdateOperationHandler);
         binding.add(PackageDiagramDeleteOperationHandler);
     }
 
@@ -123,9 +125,9 @@ export class PackageDiagramModule extends DiagramModule {
 
     protected override configureNavigationTargetProviders(binding: MultiBinding<NavigationTargetProvider>): void {
         super.configureNavigationTargetProviders(binding);
-        binding.add(NextNodeNavigationTargetProvider);
-        binding.add(PreviousNodeNavigationTargetProvider);
-        binding.add(NodeDocumentationNavigationTargetProvider);
+        binding.add(PackageDiagramNextNodeNavigationTargetProvider);
+        binding.add(PackageDiagramPreviousNodeNavigationTargetProvider);
+        binding.add(PackageDiagramNodeDocumentationNavigationTargetProvider);
     }
 
     protected override configureContextActionProviders(binding: MultiBinding<ContextActionsProvider>): void {
@@ -139,7 +141,7 @@ export class PackageDiagramModule extends DiagramModule {
     protected override configureActionHandlers(binding: InstanceMultiBinding<ActionHandlerConstructor>): void {
         super.configureActionHandlers(binding);
         binding.add(RequestPackagePropertyPaletteActionHandler);
-        binding.add(UpdateElementPropertyActionHandler);
+        binding.add(PackageDiagramUpdateElementPropertyActionHandler);
         binding.add(RequestPackageOutlineActionHandler);
     }
 }

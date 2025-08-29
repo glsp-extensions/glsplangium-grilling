@@ -109,11 +109,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
       propertyType: 'Visibility',
     },
     {
-      property: 'temp',
-      propertyType: 'boolean',
-      defaultValue: true,
-    },
-    {
       property: 'skip',
       propertyType: 'boolean',
     },
@@ -153,11 +148,6 @@ const defaultMapping: Record<string, DefaultMappingEntry[]> = {
     {
       property: 'isActive',
       propertyType: 'boolean',
-    },
-    {
-      property: 'temp',
-      propertyType: 'boolean',
-      defaultValue: true,
     },
     {
       property: 'skip',

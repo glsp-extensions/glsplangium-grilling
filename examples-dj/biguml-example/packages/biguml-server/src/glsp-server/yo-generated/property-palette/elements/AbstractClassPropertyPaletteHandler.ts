@@ -94,7 +94,6 @@ export namespace AbstractClassPropertyPaletteHandler {
             semanticElement.visibility,
             'Visibility',
           )
-          .bool(semanticElement.__id, 'temp', !!semanticElement.temp, 'temp')
           .build(),
       ),
     ];

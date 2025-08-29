@@ -43,19 +43,21 @@ import { ClassDiagramChangeBoundsOperationHandler } from '../common/handler/chan
 import { ClassDiagramDeleteOperationHandler } from '../common/handler/delete-operation-handler.js';
 import { ClassCreateEdgeOperationHandler } from '../common/handler/generic-create-edge-operation-handler.js';
 import { ClassCreateNodeOperationHandler } from '../common/handler/generic-create-node-operation-handler.js';
-import { UpdateElementPropertyActionHandler } from '../common/handler/update-element-property-action-handler.js';
+import { ClassDiagramUpdateElementPropertyActionHandler } from '../common/handler/update-element-property-action-handler.js';
 import { ClassDiagramUpdateClientOperationHandler } from '../common/handler/update-glsp-client-handler.js';
-import { UpdateOperationHandler } from '../common/handler/update-operation-handler.js';
+import { ClassDiagramUpdateOperationHandler } from '../common/handler/update-operation-handler.js';
 import { ClassLabelEditOperationHandler } from '../common/labeledit/class-label-edit-operation-handler.js';
 import { ClassLabelEditValidator } from '../common/labeledit/class-label-edit-validator.js';
-import { ClassDiagramModelValidator } from '../common/marker/class-diagram-model-validator.js';
 import { ClassDiagramNavigationTargetResolver } from '../common/model/class-diagram-navigation-target-resolver.js';
-import { ClassDiagramCommandPaletteActionProvider } from '../common/provider/class-diagram-command-palette-action-provider.js';
-import { ClassDiagramContextMenuItemProvider } from '../common/provider/class-diagram-context-menu-item-provider.js';
+import {
+    ClassDiagramNextNodeNavigationTargetProvider,
+    ClassDiagramPreviousNodeNavigationTargetProvider
+} from '../common/provider/base-next-prev-target-provider.js';
+import { ClassDiagramCommandPaletteActionProvider } from '../common/provider/class-command-palette-action-provider.js';
+import { ClassDiagramContextMenuItemProvider } from '../common/provider/class-context-menu-item-provider.js';
 import { ClassDiagramToolPaletteItemProvider } from '../common/provider/class-diagram-tool-palette-item-provider.js';
-import { NextNodeNavigationTargetProvider } from '../common/provider/next-node-navigation-target-provider.js';
-import { NodeDocumentationNavigationTargetProvider } from '../common/provider/node-documentation-navigation-target-provider.js';
-import { PreviousNodeNavigationTargetProvider } from '../common/provider/previous-node-navigation-target-provider.js';
+import { ClassDiagramNodeDocumentationNavigationTargetProvider } from '../common/provider/class-node-doc-nav-target-provider.js';
+import { ClassDiagramModelValidator } from '../common/validator/class-diagram-model-validator.js';
 import { ClassDiagramGModelFactory } from '../model/class-diagram-gmodel-factory.js';
 import { ClassDiagramModelIndex } from '../model/class-diagram-model-index.js';
 import { ClassDiagramModelState } from '../model/class-diagram-model-state.js';
@@ -98,7 +100,7 @@ export class ClassDiagramModule extends DiagramModule {
         binding.add(ClassCreateEdgeOperationHandler);
         binding.add(ClassDiagramChangeBoundsOperationHandler);
         binding.add(ClassLabelEditOperationHandler);
-        binding.add(UpdateOperationHandler);
+        binding.add(ClassDiagramUpdateOperationHandler);
         binding.add(ClassDiagramUpdateClientOperationHandler);
         binding.add(ClassDiagramDeleteOperationHandler);
     }
@@ -138,9 +140,9 @@ export class ClassDiagramModule extends DiagramModule {
 
     protected override configureNavigationTargetProviders(binding: MultiBinding<NavigationTargetProvider>): void {
         super.configureNavigationTargetProviders(binding);
-        binding.add(NextNodeNavigationTargetProvider);
-        binding.add(PreviousNodeNavigationTargetProvider);
-        binding.add(NodeDocumentationNavigationTargetProvider);
+        binding.add(ClassDiagramNextNodeNavigationTargetProvider);
+        binding.add(ClassDiagramPreviousNodeNavigationTargetProvider);
+        binding.add(ClassDiagramNodeDocumentationNavigationTargetProvider);
     }
 
     protected override configureContextActionProviders(binding: MultiBinding<ContextActionsProvider>): void {
@@ -154,7 +156,7 @@ export class ClassDiagramModule extends DiagramModule {
     protected override configureActionHandlers(binding: InstanceMultiBinding<ActionHandlerConstructor>): void {
         super.configureActionHandlers(binding);
         binding.add(RequestClassPropertyPaletteActionHandler);
-        binding.add(UpdateElementPropertyActionHandler);
+        binding.add(ClassDiagramUpdateElementPropertyActionHandler);
         binding.add(RequestClassOutlineActionHandler);
     }
 }

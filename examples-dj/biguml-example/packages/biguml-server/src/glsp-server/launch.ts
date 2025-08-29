@@ -9,7 +9,7 @@ import { BigUmlLSPServices } from '../integration.js';
 import { UmlServices, UmlSharedServices } from '../language-server/yo-generated/uml-module.js';
 import { BigUmlServerModule } from './biguml-glsp-server.js';
 import { ClassDiagramModule } from './class-diagram/diagram/class-diagram-module.js';
-import { BigUmlLayoutConfigurator } from './layout/biguml-layout.configurator.js';
+import { LayeredLayoutConfigurator } from './common/layout/layered-layout-configurator.js';
 
 const GLSP_SERVER_PORT = 5007;
 const GLSP_SERVER_HOST = '127.0.0.1';
@@ -34,7 +34,7 @@ export function startGLSPServer(services: BigUmlLSPServices, workspaceFolders: a
     //     // use Eclipse Layout Kernel with our custom layered layout configuration
     const elkLayoutModule = configureELKLayoutModule({
         algorithms: ['layered'],
-        layoutConfigurator: BigUmlLayoutConfigurator
+        layoutConfigurator: LayeredLayoutConfigurator
     });
     //     // create server module with our workflow model diagram
     const serverModule = new BigUmlServerModule().configureDiagramModule(new ClassDiagramModule(), elkLayoutModule);

@@ -424,7 +424,8 @@
         "name": "name",
         "isOptional": false,
         "decorators": [
-          "MinLength:5,{ message: \"Class.name must be at least 5 characters long\" }"
+          "Matches:/^[A-Z]/,{\n    message: \"First letter of class name must be uppercase.\",\n  }",
+          "MinLength:5,{ message: \"Class name must be at least 5 characters long\" }"
         ],
         "types": [
           {
@@ -500,21 +501,6 @@
           }
         ],
         "multiplicity": "1"
-      },
-      {
-        "name": "temp",
-        "isOptional": true,
-        "decorators": [
-          "Equals:false,{ message: \"temp must be true in this profile.\" }"
-        ],
-        "types": [
-          {
-            "type": "simple",
-            "typeName": "boolean"
-          }
-        ],
-        "multiplicity": "1",
-        "defaultValue": true
       },
       {
         "name": "skip",

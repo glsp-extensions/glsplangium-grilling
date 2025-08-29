@@ -16,7 +16,7 @@ import {
   skipPropertyPP,
   withDefaults,
 } from "@borkdominik/generator-langium-model-management";
-import { ArrayMaxSize, Equals, MinLength, ValidateIf } from "class-validator";
+import { ArrayMaxSize, Matches, MinLength, ValidateIf } from "class-validator";
 import "reflect-metadata";
 import { LengthBetween } from "../validation/custom-validators/length-between-validator.js";
 
@@ -103,7 +103,10 @@ export class EnumerationLiteral {
 
 @withDefaults
 export class Class extends Entity {
-  @MinLength(5, { message: "Class.name must be at least 5 characters long" })
+  @Matches(/^[A-Z]/, {
+    message: "First letter of class name must be uppercase.",
+  })
+  @MinLength(5, { message: "Class name must be at least 5 characters long" })
   name: string;
   isAbstract: boolean = false;
   @ValidateIf((o) => o.isActive === true)
@@ -115,8 +118,6 @@ export class Class extends Entity {
   @path operations?: Array<Operation>;
   isActive?: boolean;
   visibility?: Visibility;
-  @Equals(false, { message: "temp must be true in this profile." })
-  temp?: boolean = true;
   @skipPropertyPP skip?: boolean;
 }
 

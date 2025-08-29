@@ -125,7 +125,6 @@ export interface Class extends AstNode {
     operations: Array<Operation>
     properties: Array<Property>
     skip: boolean
-    temp: boolean
     visibility: Visibility
 }
 
@@ -454,7 +453,6 @@ export interface AbstractClass extends Class {
     operations: Array<Operation>
     properties: Array<Property>
     skip: boolean
-    temp: boolean
     visibility: Visibility
 }
 
@@ -870,8 +868,7 @@ export class UmlAstReflection extends AbstractAstReflection {
                         { name: 'isActive', type: 'boolean' },
                         { name: 'operations', type: 'array' },
                         { name: 'properties', type: 'array' },
-                        { name: 'skip', type: 'boolean' },
-                        { name: 'temp', type: 'boolean' }
+                        { name: 'skip', type: 'boolean' }
                     ]
                 };
             }
@@ -995,8 +992,7 @@ export class UmlAstReflection extends AbstractAstReflection {
                         { name: 'isActive', type: 'boolean' },
                         { name: 'operations', type: 'array' },
                         { name: 'properties', type: 'array' },
-                        { name: 'skip', type: 'boolean' },
-                        { name: 'temp', type: 'boolean' }
+                        { name: 'skip', type: 'boolean' }
                     ]
                 };
             }

@@ -1,11 +1,21 @@
 import { DefaultModelState, GModelIndex } from '@eclipse-glsp/server';
+import { AstNode } from 'langium';
 import type { DiagramSerializer, ModelService } from 'model-service';
 import type { Diagram } from '../../../language-server/generated/ast.js';
 import type { QualifiedNameProvider } from '../../../language-server/yo-generated/uml-naming.js';
 
 export interface BigUmlModelIndex extends GModelIndex {
+    findSemanticElement<T extends AstNode>(id: string, guard: (item: unknown) => item is T): T;
+
+    findSemanticElement<T extends AstNode = AstNode>(id: string, guard?: (item: unknown) => item is T): T | undefined;
+
     findIdElement(id: string): any;
-    findPath(id: string): string;
+
+    findPath(id: string): string | undefined;
+
+    findPositionPath(id: string): string | undefined;
+
+    findSizePath(id: string): string | undefined;
 }
 
 export abstract class BaseDiagramModelState extends DefaultModelState {

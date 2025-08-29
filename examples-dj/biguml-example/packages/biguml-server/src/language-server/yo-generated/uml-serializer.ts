@@ -282,9 +282,6 @@ export class UmlSerializer
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
     }
-    if (element.temp !== undefined && element.temp !== null) {
-      str.push('"temp": ' + element.temp + "");
-    }
     if (element.skip !== undefined && element.skip !== null) {
       str.push('"skip": ' + element.skip + "");
     }
@@ -347,9 +344,6 @@ export class UmlSerializer
     }
     if (element.visibility !== undefined && element.visibility !== null) {
       str.push('"visibility": ' + this.serializeVisibility(element.visibility));
-    }
-    if (element.temp !== undefined && element.temp !== null) {
-      str.push('"temp": ' + element.temp + "");
     }
     if (element.skip !== undefined && element.skip !== null) {
       str.push('"skip": ' + element.skip + "");
