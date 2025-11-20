@@ -16,7 +16,8 @@
     ]
   },
   "scripts": {
-    "full-build": "yarn workspace @borkdominik/outline build && yarn workspace @borkdominik/property-palette build && yarn workspace @borkdominik/model-management-common build && yarn workspace @borkdominik/generator-langium-model-management build && yarn workspace @biguml/biguml-server build && yarn workspace @biguml/biguml-server generate"
+    "full-build": "yarn workspace @borkdominik/outline build && yarn workspace @borkdominik/property-palette build && yarn workspace @borkdominik/model-management-common build && yarn workspace @borkdominik/generator-langium-model-management build && yarn workspace @biguml/biguml-server build && yarn workspace @biguml/biguml-server generate",
+    "test": "vitest"
   },
   "resolutions": {
     "**/@eclipse-glsp/client": "2.0.0",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "@types/diff": "^8.0.0",
-    "@types/yeoman-environment": "^4.0.0"
+    "@types/yeoman-environment": "^4.0.0",
+    "@vitest/coverage-v8": "^4.0.10",
+    "vitest": "^4.0.10"
   }
 }

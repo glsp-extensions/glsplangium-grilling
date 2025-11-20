@@ -5,11 +5,11 @@
     "moduleResolution": "Node",
     "declaration": true,
     "outDir": "lib",
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": ["node", "vitest"]
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }

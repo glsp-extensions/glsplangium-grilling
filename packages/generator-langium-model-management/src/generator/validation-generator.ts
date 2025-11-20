@@ -43,7 +43,7 @@ function collectDecoratorImports(defPath: string) {
   return res;
 }
 
-function buildValidationInfo(defPath: string): ValidationInfo {
+export function buildValidationInfo(defPath: string): ValidationInfo {
   const decoratorImports = collectDecoratorImports(defPath);
   const decoratorNames = new Set<string>(
     decoratorImports.flatMap((i) => i.names)
@@ -73,7 +73,6 @@ function buildValidationInfo(defPath: string): ValidationInfo {
           isOptional: prop.hasQuestionToken(),
         });
 
-        // capture flags from ValidateIf lambdas
         decos
           .filter((d) => d.getName() === "ValidateIf")
           .forEach((d) => {
@@ -85,7 +84,6 @@ function buildValidationInfo(defPath: string): ValidationInfo {
       }
     });
 
-    // include referenced flags even without decorators
     validateIfRefs.forEach((n) => {
       if (!props.find((p) => p.name === n)) {
         const decl = cls.getProperty(n)!;
@@ -126,7 +124,6 @@ async function writeValidationElementsFile(
 
   const imports: string[] = [];
 
-  // 1) Re-emit any decorator imports
   info.decoratorImports.forEach((i) => {
     const importPath = i.from.startsWith(".")
       ? path
@@ -139,11 +136,9 @@ async function writeValidationElementsFile(
     imports.push(`import { ${i.names.join(", ")} } from '${importPath}';`);
   });
 
-  // 2) Collect all AST types we actually use
   const astTypeNames = new Set<string>();
-  // a) ctor source types
+
   info.entities.forEach((e) => astTypeNames.add(e.name));
-  // b) every PascalCase identifier in prop.typeText
   info.entities.forEach((e) => {
     e.props.forEach((p) => {
       const ids = p.typeText.match(/\b[A-Z][A-Za-z0-9_]*\b/g) || [];
@@ -167,7 +162,6 @@ async function writeValidationElementsFile(
     });
   });
 
-  // 3) Emit a single import for all AST types
   const astImportPath = path
     .relative(path.dirname(out), path.join(extPath, "generated", "ast.js"))
     .replace(/\\/g, "/");
@@ -175,7 +169,6 @@ async function writeValidationElementsFile(
     `import { ${[...astTypeNames].sort().join(", ")} } from '${astImportPath}';`
   );
 
-  // 4) Generate DTO classes without extra blank lines
   const classes = info.entities
     .map((ent) => {
       const body = ent.props
